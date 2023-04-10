@@ -1,10 +1,10 @@
 # Heroj
 Web aplikacija za prvu pomoć.
 
-###Uvod
+### Uvod
 Projekat iz predmeta Web Programiranje II/Dinamički Web Sistemi na Prirodno-matematičkom fakultetu, Odsjek za matematičke i kompjuterske nauke, UNSA. 
 
-###Specifikacije
+### Specifikacije
 Kreirati web aplikaciju koja će pomoći korisnicima da brzo i adekvatno reaguju u hitnim slučajevima i da nauče prvu pomoć. 
 Aplikacija je predviđena za korištenje različitim tipovima korisnika:
     • Gosti 
@@ -28,7 +28,7 @@ Dodatne specifikacije – ako stignemo
     • Karta svih zdravstvenih ustanova za određeni grad ili područje  (~)
     • Treći tip korisnika koji postavlja predavanja: doktori? (mnogo posla)
 
-###Studenti
+### Studenti
 Harun Hadžić - https://github.com/hare2049
 Ensar Horozović - https://github.com/Ensarh98
 Edim Omerhožić - https://github.com/edi18
