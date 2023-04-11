@@ -35,7 +35,7 @@ Dodatne specifikacije – ako stignemo:
 
 Harun Hadžić - https://github.com/hare2049
 
-Ensar Horozović - https://github.com/Ensarh98
+Ensar Horozović -  https://github.com/Ensarh98
 
 Edim Omerhožić - https://github.com/edi18
 
