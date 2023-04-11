@@ -33,9 +33,13 @@ U nastavku ćemo detaljnije navesti specifikacije za svaki tip korisnika:
 
       
 Dodatne specifikacije – ako stignemo:
+
     • Promjena boje pozadine na stranici za sve korisnike  (x)
+    
     • Karta svih zdravstvenih ustanova za određeni grad ili područje  (~)
+    
     • Treći tip korisnika koji postavlja predavanja: doktori? (mnogo posla)
+    
 
 ### Studenti
 
