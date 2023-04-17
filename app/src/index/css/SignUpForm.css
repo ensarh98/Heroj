@@ -1,0 +1,57 @@
+#SignUpForm{
+    border: 3px #590D22;
+    height: 500px;
+    width: 60%;
+    background-color: #C9184A;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1031;
+    border-radius: 20px;
+}
+
+#ObscuringDiv{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, .7);
+    z-index: 1031;
+}
+
+#FormHeader{
+    background-color: #590D22;
+    border-bottom: 1px dashed #FFF0F3;
+}
+
+#FormTitle{
+    font-size: larger;
+    font-weight: bolder;
+}
+
+#CloseButton{
+    border-radius: 10px;
+}
+
+#DivZaFormu{
+    height: 90%;
+    width: 100%;
+}
+
+label{
+    font-weight: bolder;
+}
+
+#RegisterButton{
+    background-color: white;
+    color: #FF4D6D;
+}
+
+.validationSpan{
+    color: yellow;
+    visibility: visible;
+    display: inline-block;
+    min-height: 1.5em;
+}

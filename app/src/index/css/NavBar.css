@@ -1,0 +1,14 @@
+nav{
+    background-color: #C9184A;
+    border-bottom: 1px solid #A4133C;
+}
+.buttons{
+    font-size: large;
+    font-weight: bold;
+    border: 1px solid #A4133C;
+    color: #FFF0F3;
+}
+
+.buttons:hover{
+    background-color: #A4133C;
+}

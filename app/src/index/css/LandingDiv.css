@@ -1,0 +1,9 @@
+#LandingDiv{
+    height: 100vh;
+    background-color: #C9184A;
+    border-bottom: 5px dotted #590D22;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
