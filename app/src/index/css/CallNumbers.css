@@ -1,0 +1,9 @@
+@media all and (min-width:0px) and (max-width: 568px) {
+    #CallNumbers{
+        font-size: x-large;
+    }
+}
+
+#CallNumbers{
+    font-weight: bold;
+}

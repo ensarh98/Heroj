@@ -1,0 +1,12 @@
+#PopularInterventions{
+    margin-bottom: 200px;
+}
+
+.intervention{
+    color: #FFF0F3;
+    padding-inline: 2vw;
+}
+
+.intervention:hover{
+    color: #FF758F;
+}
