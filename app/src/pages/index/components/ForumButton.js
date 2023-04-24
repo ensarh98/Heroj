@@ -1,6 +1,10 @@
+import { Link } from 'react-router-dom';
+
 function ForumButton(props) {
     return (
-        <button className={`btn btn-outline-danger ${props.className}`}>Forum</button>
+        <Link to={"/forum"}>
+            <button className={`btn btn-outline-danger ${props.className}`}>Forum</button>
+        </Link>
     );
 }
 
