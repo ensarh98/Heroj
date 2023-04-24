@@ -1,5 +1,6 @@
 import "../css/LogInForm.css";
 import ReactDom from "react-dom";
+
 import {useState} from "react";
 
 let usernameFlag = false;
@@ -10,12 +11,7 @@ function usernameCheck() {
     if(!usernameInput.toLowerCase().match(/^[a-zA-Z0-9_]+$/)){
         usernameFlag = false;
     }
-    else if(usernameInput.length < 3){
-        usernameFlag = false;
-    }
-    else {
-        usernameFlag = true;
-    }
+    else usernameFlag = usernameInput.length >= 3;
 }
 
 function passwordCheck() {
@@ -25,12 +21,7 @@ function passwordCheck() {
     }
     else if(!passwordInput.match(/[A-Z]/)){
         passwordFlag = false;
-    }else if(passwordInput.length < 5){
-        passwordFlag = false;
-    }
-    else {
-        passwordFlag = true;
-    }
+    }else passwordFlag = passwordInput.length >= 5;
 }
 
 function LogInForm(props) {

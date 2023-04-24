@@ -7,7 +7,7 @@ import Footer from "./Footer";
 import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
 
-function App() {
+function IndexApp() {
     const [isOpen, setIsOpen] = useState(false)
     const [isOpen2, setIsOpen2] = useState(false)
 
@@ -30,4 +30,4 @@ function App() {
 }
 
 
-export default App;
+export default IndexApp;
