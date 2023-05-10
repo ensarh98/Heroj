@@ -10,10 +10,10 @@ export default function Topic() {
 
   return (
     <>
-      <Container fluid>
-        <Row>
+      <Container>
+        <Row className="mt-5">
           <Col>
-            <Card body className='mb-4 mt-4 bg-dark text-white'>
+            <Card body className='mb-4 bg-dark text-white'>
               <h4>{id}</h4>
             </Card>
           </Col>
