@@ -4,11 +4,7 @@ import Quiz from "./pages/quiz";
 import Forum from "./pages/forum";
 import NoPage from "./pages/nopage";
 import IndexApp from "./pages/index/components/indexApp";
-// Bootstrap CSS
-import "bootstrap/dist/css/bootstrap.min.css";
-// Bootstrap Bundle JS
-import "bootstrap/dist/js/bootstrap.bundle.min";
-import "./pages/index/css/index.css"
+
 
 export default function App() {
   return (
