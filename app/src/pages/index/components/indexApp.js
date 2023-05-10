@@ -7,6 +7,13 @@ import Footer from "./Footer";
 import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
 
+// Bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";
+// Bootstrap Bundle JS
+import "bootstrap/dist/js/bootstrap.bundle.min";
+
+import "../css/index.css"
+
 function IndexApp() {
     const [isOpen, setIsOpen] = useState(false)
     const [isOpen2, setIsOpen2] = useState(false)
