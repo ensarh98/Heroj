@@ -14,9 +14,10 @@ class User(models.Model):
         return self.date_suspension and self.date_suspension > timezone.now()
 
 class Forum(models.Model):
+    id = models.CharField(primary_key=True, max_length=200)
     title = models.CharField(max_length=200)
     def __str__(self):
-        return self.title
+        return self.id
 
 class Topic(models.Model):
     title = models.CharField(max_length=200)
