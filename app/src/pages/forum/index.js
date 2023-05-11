@@ -9,6 +9,7 @@ import axios from "axios";
 
 import './index.css'
 import React, { useState } from 'react';
+import ForumCard from './ForumCard';
 
 export default function Forum() {
 
@@ -24,28 +25,28 @@ export default function Forum() {
       <Container>
         <Row className='mt-5'>
           <Col xs={9}>
-            <Card className='mb-4 bg-dark text-white'>
-              <Card.Header><h4>Forums</h4></Card.Header>
-                <ListGroup variant="flush">
-                  {forums.map((forum) => (
-                    <ListGroup.Item>
-                      <Link to={`/forum/${forum.pk}`}>
-                        {forum.fields.title}
-                      </Link>
-                    </ListGroup.Item>
-                  ))}
-                </ListGroup>
-            </Card>
+            <ForumCard title={<h4>Forums</h4>}>
+              {forums.map((forum) => (
+                <Link to={`/forum/${forum.pk}`}>
+                  {forum.fields.title}
+                </Link>
+              ))}
+            </ForumCard>
             {forums.map((forum) => (
-              <Card className='mb-4 bg-dark text-white'>
-                <Card.Header><h4>{forum.fields.title}</h4></Card.Header>
-                <ListGroup variant="flush">
-                  <ListGroup.Item>Post 1</ListGroup.Item>
-                  <ListGroup.Item>Post 2</ListGroup.Item>
-                  <ListGroup.Item>Post 3</ListGroup.Item>
-                  <ListGroup.Item>Post 4</ListGroup.Item>
-                </ListGroup>
-              </Card>
+              <ForumCard title={<h4>{forum.fields.title}</h4>}>
+                <Link to={`#`}>
+                  Post 1
+                </Link>
+                <Link to={`#`}>
+                  Post 2
+                </Link>
+                <Link to={`#`}>
+                  Post 3
+                </Link>
+                <Link to={`#`}>
+                  Post 4
+                </Link>
+              </ForumCard>
             ))}
           </Col>
           <Col>
