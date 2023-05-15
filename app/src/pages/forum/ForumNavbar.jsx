@@ -29,9 +29,10 @@ export default function ForumNavbar() {
           </Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-            <Button variant='dark' onClick={handleShow}>
-              Sign in
-            </Button>
+              <Button variant='dark' onClick={handleShow}>
+                Sign in
+              </Button>
+              <Nav.Link href='forum/register/'>Sign up</Nav.Link>
               <Nav.Link href="#home">Home</Nav.Link>
               <Nav.Link href="#link">Link</Nav.Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">

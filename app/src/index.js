@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import Topic from "./pages/forum/Topic";
 import ForumRegister from "./pages/forum/ForumRegister";
+import ForumRegisterId from "./pages/forum/ForumRegisterId";
 //import "./pages/index/css/index.css"
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
             <Route index element={<IndexApp />} />
             <Route path="/forum" element={<Forum />} />
             <Route path="/forum/register" element={<ForumRegister />} />
+            <Route path="/forum/register/:id" element={<ForumRegisterId />} />
             <Route path="/forum/:id" element={<Topic />} />
             <Route path="quiz" element={<Quiz />} />
             <Route path="*" element={<NoPage />} />

@@ -8,10 +8,15 @@ class User(models.Model):
     date_created = models.DateField(auto_now=True)
     date_suspension = models.DateTimeField(default=None, blank=True, null=True)
     banned = models.BooleanField(default=False)
+    is_verified = models.BooleanField(default=False)
     def __str__(self):
         return self.username
     def is_suspended(self):
         return self.date_suspension and self.date_suspension > timezone.now()
+
+class RegisterToken(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    token = models.CharField(max_length=32, unique=True)
 
 class Forum(models.Model):
     id = models.CharField(primary_key=True, max_length=200)
