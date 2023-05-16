@@ -24,6 +24,10 @@ export default function ForumRegister() {
       .then((res) => res.data);
   }
 
+  const validateUsername = (username) => {
+    return !username.match("^[a-zA-Z0-9_]{5,15}$");
+  }
+
   return (
     <>
       <Container>
@@ -32,11 +36,17 @@ export default function ForumRegister() {
             <Form className="border p-5">
               <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control ref={emailRef} type="email" placeholder="name@example.com" />
               </Form.Group>
               <Form.Group className="mb-3" controlId="username">
                 <Form.Label>Username</Form.Label>
-                <Form.Control ref={usernameRef} type="text" />
+                <Form.Control 
+                ref={usernameRef} 
+                type="text"
+                isInvalid={validateUsername}
+                />
+                <Form.Control.Feedback type='invalid'>
+                  Invalid username format
+                </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" controlId="password">
                 <Form.Label>Password</Form.Label>

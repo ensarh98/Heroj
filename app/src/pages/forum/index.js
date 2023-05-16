@@ -17,7 +17,7 @@ export default function Forum() {
   const [forums, setForums] = useState([])
 
   React.useEffect(() => {
-    axios.get('http://127.0.0.1:8000/forum/')
+    axios.get(`${process.env.REAC_APP_API}forum/`)
       .then(res => setForums(res.data))
   }, [])
 
