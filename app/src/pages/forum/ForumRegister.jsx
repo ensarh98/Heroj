@@ -7,13 +7,16 @@ import axios from "axios";
 import React from "react";
 
 export default function ForumRegister() {
+  const emailRef = React.useRef();
+  const usernameRef = React.useRef();
+  const passwordRef = React.useRef();
 
   const onSubmit = () => {
-    const email = document.getElementById("email").value;
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+    const email = emailRef.current.value;
+    const username = usernameRef.current.value;
+    const password = passwordRef.current.value;
     
-    axios.post('http://127.0.0.1:8000/forum/register', {
+    axios.post(`${process.env.REACT_APP_API}forum/register`, {
       email,
       username,
       password
@@ -29,15 +32,15 @@ export default function ForumRegister() {
             <Form className="border p-5">
               <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control id="email" type="email" placeholder="name@example.com" />
+                <Form.Control ref={emailRef} type="email" placeholder="name@example.com" />
               </Form.Group>
               <Form.Group className="mb-3" controlId="username">
                 <Form.Label>Username</Form.Label>
-                <Form.Control id="username" type="text" />
+                <Form.Control ref={usernameRef} type="text" />
               </Form.Group>
               <Form.Group className="mb-3" controlId="password">
                 <Form.Label>Password</Form.Label>
-                <Form.Control id="password" type="password" />
+                <Form.Control ref={passwordRef} type="password" />
               </Form.Group>
               <Button variant="primary" onClick={onSubmit}>
                 Sign up
