@@ -9,7 +9,7 @@ export default function ForumRegisterId() {
   const { id } = useParams();
 
   const onSubmit = () => {
-    axios.post(`http://127.0.0.1:8000/forum/register/${id}/`)
+    axios.post(`${process.env.REACT_APP_API}forum/register/${id}/`)
       .then((res) => res.data);
   }
 

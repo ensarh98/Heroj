@@ -9,11 +9,12 @@ from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.core.mail import send_mail
 from django.utils.crypto import get_random_string
-import environ
 import re
+from django.conf import settings
+import environ
 
 env = environ.Env()
-environ.Env.read_env()
+environ.Env.read_env(settings.BASE_DIR / '.env')
 
 def getAll(request):
     return HttpResponse("Hello, world. You're at the polls index.")
@@ -73,7 +74,7 @@ def registerUser(request):
     # Send verify email response
     send_mail(
         "Heroj, Verify email",
-        f"Please follow the link below to verify your email:\nhttp://localhost:3000/forum/register/{uid}",
+        f"Please follow the link below to verify your email:\n{env('REACT_APP')}forum/register/{uid}",
         "heroj.grupa.4@gmail.com",
         [email],
         fail_silently=False,
