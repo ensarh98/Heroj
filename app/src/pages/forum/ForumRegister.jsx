@@ -65,7 +65,7 @@ export default function ForumRegister() {
                     isInvalid={errors.username}
                   />
                   <Form.Control.Feedback type='invalid'>
-                    Invalid username format
+                    Username must contain only alphanumeric values or _, at least 5 and max 15 characters
                   </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>
