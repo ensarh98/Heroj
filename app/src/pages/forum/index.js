@@ -17,9 +17,9 @@ export default function Forum() {
   const [forums, setForums] = useState([])
 
   React.useEffect(() => {
-    axios.get(`${process.env.REAC_APP_API}forum/`)
+    axios.get(`${process.env.REACT_APP_API}forum/`)
       .then(res => setForums(res.data))
-  }, [])
+  }, [forums])
 
   return (
     <>

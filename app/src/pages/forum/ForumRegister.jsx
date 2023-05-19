@@ -11,6 +11,7 @@ export default function ForumRegister() {
   const [email, setEmail] = React.useState('');
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [confirmPassword, setConfirmPassword] = React.useState('');
 
   const [errors, setErrors] = React.useState({});
   
@@ -19,6 +20,7 @@ export default function ForumRegister() {
       email: false,
       username: false,
       password: false,
+      confirmPassword: false,
     })
   }, [])
 
@@ -35,11 +37,47 @@ export default function ForumRegister() {
     return !username.match("^[a-zA-Z0-9_]{5,15}$");
   }
 
+  const invalidEmail = (email) => {
+    return !email.match("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
+  }
+
+  const invalidPassword = (password) => {
+    return !password.match("^[a-zA-Z0-9_]{6,15}$");
+  }
+
+  const invalidConfirmPassword = (confirmPassword) => {
+    return confirmPassword !== password;
+  }
+
   const onChangeUsername = (username) => {
     setUsername(username);
     setErrors({
       ...errors,
       username: invalidUsername(username)
+    })
+  }
+
+  const onChangeEmail = (email) => {
+    setEmail(email);
+    setErrors({
+      ...errors,
+      email: invalidEmail(email)
+    })
+  }
+
+  const onChangePassword = (password) => {
+    setPassword(password);
+    setErrors({
+      ...errors,
+      password: invalidPassword(password)
+    })
+  }
+
+  const onChangeConfirmPassword = (confirmPassword) => {
+    setConfirmPassword(confirmPassword);
+    setErrors({
+      ...errors,
+      confirmPassword: invalidConfirmPassword(confirmPassword)
     })
   }
 
@@ -51,10 +89,16 @@ export default function ForumRegister() {
             <Form className="border p-5">
               <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control 
-                  type="text"
-                  onChange={e => setEmail(e.target.value)}
-                />
+                <InputGroup hasValidation>
+                  <Form.Control 
+                    type="text"
+                    onChange={e => onChangeEmail(e.target.value)}
+                    isInvalid={errors.email}
+                  />
+                  <Form.Control.Feedback type='invalid'>
+                    Email format is invalid
+                  </Form.Control.Feedback>
+                </InputGroup>
               </Form.Group>
               <Form.Group className="mb-3" controlId="username">
                 <Form.Label>Username</Form.Label>
@@ -71,10 +115,29 @@ export default function ForumRegister() {
               </Form.Group>
               <Form.Group className="mb-3" controlId="password">
                 <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  onChange={e => setPassword(e.target.value)}
-                />
+                <InputGroup hasValidation>
+                  <Form.Control
+                    type="password"
+                    onChange={e => onChangePassword(e.target.value)}
+                    isInvalid={errors.password}
+                  />
+                  <Form.Control.Feedback type='invalid'>
+                    Password must contain only alphanumeric values or _, at least 6 and max 15 characters
+                  </Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="confirmPassword">
+                <Form.Label>Confirm Password</Form.Label>
+                <InputGroup hasValidation>
+                  <Form.Control
+                    type="password"
+                    onChange={e => onChangeConfirmPassword(e.target.value)}
+                    isInvalid={errors.confirmPassword}
+                  />
+                  <Form.Control.Feedback type='invalid'>
+                    Both passwords must match
+                  </Form.Control.Feedback>
+                </InputGroup>
               </Form.Group>
               <Button variant="primary" onClick={onSubmit}>
                 Sign up
