@@ -6,12 +6,14 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import axios from "axios";
 import React from "react";
+import ForumRegisterSuccess from "./ForumRegisterSuccess";
 
 export default function ForumRegister() {
   const [email, setEmail] = React.useState('');
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
+  const [success, setSuccess] = React.useState(false);
 
   const [errors, setErrors] = React.useState({});
   
@@ -24,13 +26,16 @@ export default function ForumRegister() {
     })
   }, [])
 
-  const onSubmit = () => {    
-    axios.post(`${process.env.REACT_APP_API}forum/register`, {
+  const onSubmit = async () => {    
+    const res = await axios.post(`${process.env.REACT_APP_API}forum/register`, {
       email,
       username,
       password
-    })
-      .then((res) => res.data);
+    }).then((res) => {
+      if (res.status === 201) {
+        setSuccess(true);
+      }
+    });
   }
 
   const invalidUsername = (username) => {
@@ -83,7 +88,9 @@ export default function ForumRegister() {
 
   return (
     <>
-      <Container>
+      {
+        success
+        ? (<ForumRegisterSuccess></ForumRegisterSuccess>) : <Container>
         <Row>
           <Col>
             <Form className="border p-5">
@@ -146,6 +153,7 @@ export default function ForumRegister() {
           </Col>
         </Row>
       </Container>
+      }
     </>
   )
 }
