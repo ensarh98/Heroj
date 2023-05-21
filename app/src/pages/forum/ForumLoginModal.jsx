@@ -36,6 +36,11 @@ export default function ForumLoginModal(props) {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" onChange={(e) => setPassword(e.target.value)} />
             </Form.Group>
+            <Form.Check 
+              type='checkbox'
+              id='remember-me'
+              label='Remember me'
+            />
           </Form>
         </Modal.Body>
         <Modal.Footer>
