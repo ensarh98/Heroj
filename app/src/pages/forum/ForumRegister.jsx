@@ -13,27 +13,53 @@ export default function ForumRegister() {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
+
   const [success, setSuccess] = React.useState(false);
 
-  const [errors, setErrors] = React.useState({});
+  const [errors, setErrors] = React.useState({
+    email: {
+      value: false,
+      msg: ''
+    },
+    username: {
+      value: false,
+      msg: ''
+    },
+    password: {
+      value: false,
+      msg: ''
+    },
+    confirmPassword: {
+      value: false,
+      msg: ''
+    },
+  });
   
-  React.useEffect(() => {
+  const setErrorField = (key, value, msg) => {
     setErrors({
-      email: false,
-      username: false,
-      password: false,
-      confirmPassword: false,
+      ...errors,
+      [key]: {
+        value: value,
+        msg: msg
+      }
     })
-  }, [])
+  }
 
-  const onSubmit = async () => {    
-    const res = await axios.post(`${process.env.REACT_APP_API}forum/register`, {
+  const onSubmit = () => {
+    axios.post(`${process.env.REACT_APP_API}forum/register`, {
       email,
       username,
       password
     }).then((res) => {
       if (res.status === 201) {
         setSuccess(true);
+      } else if (res.status === 200) {
+        if (res.data === 'email is not avaliable') {
+          setErrorField('email', true, 'Email is not avalible.');
+        }
+        else if (res.data === 'username already exists') {
+          setErrorField('username', true, 'Username is not avalible.');
+        }
       }
     });
   }
@@ -56,34 +82,34 @@ export default function ForumRegister() {
 
   const onChangeUsername = (username) => {
     setUsername(username);
-    setErrors({
-      ...errors,
-      username: invalidUsername(username)
-    })
+    setErrorField(
+      'username', 
+      invalidUsername(username), 
+      'Username must contain only alphanumeric values or _, at least 5 and max 15 characters.'
+    );
   }
 
   const onChangeEmail = (email) => {
     setEmail(email);
-    setErrors({
-      ...errors,
-      email: invalidEmail(email)
-    })
+    setErrorField('email', invalidEmail(email), 'Email format is not valid.');
   }
 
   const onChangePassword = (password) => {
     setPassword(password);
-    setErrors({
-      ...errors,
-      password: invalidPassword(password)
-    })
+    setErrorField(
+      'password',
+      invalidPassword(password),
+      'Password must contain only alphanumeric values or _, at least 6 and max 15 characters'
+    );
   }
 
   const onChangeConfirmPassword = (confirmPassword) => {
     setConfirmPassword(confirmPassword);
-    setErrors({
-      ...errors,
-      confirmPassword: invalidConfirmPassword(confirmPassword)
-    })
+    setErrorField(
+      'confirmPassword',
+      invalidConfirmPassword(confirmPassword),
+      'Passwords must match'
+    );
   }
 
   return (
@@ -97,13 +123,13 @@ export default function ForumRegister() {
               <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Email address</Form.Label>
                 <InputGroup hasValidation>
-                  <Form.Control 
+                  <Form.Control
                     type="text"
                     onChange={e => onChangeEmail(e.target.value)}
-                    isInvalid={errors.email}
+                    isInvalid={errors.email.value}
                   />
                   <Form.Control.Feedback type='invalid'>
-                    Email format is invalid
+                    {errors.email.msg}
                   </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>
@@ -113,10 +139,10 @@ export default function ForumRegister() {
                   <Form.Control 
                     type="text"
                     onChange={e => onChangeUsername(e.target.value)}
-                    isInvalid={errors.username}
+                    isInvalid={errors.username.value}
                   />
                   <Form.Control.Feedback type='invalid'>
-                    Username must contain only alphanumeric values or _, at least 5 and max 15 characters
+                    {errors.username.msg}
                   </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>
@@ -126,10 +152,10 @@ export default function ForumRegister() {
                   <Form.Control
                     type="password"
                     onChange={e => onChangePassword(e.target.value)}
-                    isInvalid={errors.password}
+                    isInvalid={errors.password.value}
                   />
                   <Form.Control.Feedback type='invalid'>
-                    Password must contain only alphanumeric values or _, at least 6 and max 15 characters
+                    {errors.password.msg}
                   </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>
@@ -139,10 +165,10 @@ export default function ForumRegister() {
                   <Form.Control
                     type="password"
                     onChange={e => onChangeConfirmPassword(e.target.value)}
-                    isInvalid={errors.confirmPassword}
+                    isInvalid={errors.confirmPassword.value}
                   />
                   <Form.Control.Feedback type='invalid'>
-                    Both passwords must match
+                    {errors.confirmPassword.msg}
                   </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>

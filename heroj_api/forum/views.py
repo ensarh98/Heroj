@@ -33,6 +33,14 @@ def registerUser(request):
     email = body['email']
     password = body['password']
 
+    # Validate for empty fields (just in case)
+    if username == '':
+        return HttpResponse(content='username is required', status=200)
+    if email == '':
+        return HttpResponse(content='email is required', status=200)
+    if password == '':
+        return HttpResponse(content='password is required', status=200)
+
     # Validate username format
     if re.match("^[a-zA-Z0-9_]{5,15}$", username) == False:
         print("bad username: " + username)
@@ -43,13 +51,13 @@ def registerUser(request):
         print("bad password")
         return HttpResponse(content='wrong password format', status=401)
 
-    # Check if username already exists
-    if User.objects.filter(username=username).exists():
-        return HttpResponse(content='username already exists', status=401)
-    
     # Check if email is not avalible
     if User.objects.filter(email=email).exists():
-        return HttpResponse(content='email is not avaliable', status=401)
+        return HttpResponse(content='email is not avaliable', status=200)
+
+    # Check if username already exists
+    if User.objects.filter(username=username).exists():
+        return HttpResponse(content='username already exists', status=200)
 
     # Create new user in database
     user = User(username=username, email=email, password=make_password(password))
