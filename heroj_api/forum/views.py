@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.core import serializers
 from .models import Forum, RegisterToken, User
 from rest_framework.decorators import api_view
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.core.mail import send_mail
@@ -110,3 +110,24 @@ def registerUserId(request, id):
     token.delete()
 
     return HttpResponse('verification successful', status=201)
+
+@api_view(['POST'])
+def login(request):
+    
+    #email = request.POST['email']
+    #password = request.POST['password']
+    body = json.loads(request.body)
+    email = body['email']
+    password = body['password']
+
+    # Check if email exists
+    if User.objects.filter(email=email).exists() == False:
+        return HttpResponse('email does not exist', status=401)
+
+    user = User.objects.get(email=email)
+    
+    # Check password
+    if check_password(password, user.password):
+        return HttpResponse('login successful', status=200)
+    
+    return HttpResponse('bad password', status=401)

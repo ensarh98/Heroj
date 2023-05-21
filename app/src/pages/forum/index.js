@@ -19,7 +19,7 @@ export default function Forum() {
   React.useEffect(() => {
     axios.get(`${process.env.REACT_APP_API}forum/`)
       .then(res => setForums(res.data))
-  }, [forums])
+  }, [])
 
   return (
     <>
