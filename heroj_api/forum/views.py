@@ -90,10 +90,17 @@ def registerUser(request):
 
     return HttpResponse(content='successful registration', status=201)
 
+@api_view(['GET'])
+def checkForUserId(request, id):
+    if RegisterToken.objects.filter(token=id).exists() == False:
+        return HttpResponse('token not found', status=200)
+    
+    return HttpResponse('token found', status=200)
+
 @api_view(['POST'])
 def registerUserId(request, id):
-    if RegisterToken.objects.filter(token=id).exists == False:
-        return HttpResponse('token not found', status=401)
+    if RegisterToken.objects.filter(token=id).exists() == False:
+        return HttpResponse('token not found', status=404)
     
     # Retrieve user from token and verify
     token = RegisterToken.objects.get(token=id)
