@@ -8,12 +8,14 @@ export default function ForumLoginModal(props) {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [remember, setRemember] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post(`${process.env.REACT_APP_API}forum/login`, {
       email,
-      password
+      password,
+      remember
     }).then((res) => {
         console.log(res.data);
         props.handleClose();

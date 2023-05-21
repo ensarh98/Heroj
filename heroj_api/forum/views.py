@@ -113,21 +113,41 @@ def registerUserId(request, id):
 
 @api_view(['POST'])
 def login(request):
-    
-    #email = request.POST['email']
-    #password = request.POST['password']
     body = json.loads(request.body)
     email = body['email']
     password = body['password']
+    remember = body['remember']
 
-    # Check if email exists
-    if User.objects.filter(email=email).exists() == False:
-        return HttpResponse('email does not exist', status=401)
+    # Check that the test cookie worked 
+    if request.session.test_cookie_worked():
+        # The test cookie worked, so delete it.
+        request.session.delete_test_cookie()
+        
+        # User auth
+        # Check if email exists
+        if User.objects.filter(email=email).exists() == False:
+            return HttpResponse('email does not exist', status=401)
+        
+        user = User.objects.get(email=email)
 
-    user = User.objects.get(email=email)
+        # Check password
+        if check_password(password, user.password):
+            request.session['email'] = user.email
+            if remember:
+                request.session['email'].set_expiry(977616000)
+            else:
+                request.session['email'].set_expiry(0)
+            return HttpResponse('login successful', status=200)
+        
+        # Failed auth
+        return HttpResponse('bad password', status=401)
+    else:
+        return HttpResponse('Please enable cookies and try again.')
     
-    # Check password
-    if check_password(password, user.password):
-        return HttpResponse('login successful', status=200)
-    
-    return HttpResponse('bad password', status=401)
+api_view(['POST'])
+def logout(request):
+    try:
+        del request.session['email']
+    except KeyError:
+        pass
+    return HttpResponse("You're logged out.")
