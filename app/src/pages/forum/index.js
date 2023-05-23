@@ -15,8 +15,10 @@ import ForumNavbar from './ForumNavbar';
 export default function Forum() {
 
   const [forums, setForums] = useState([])
-
-  React.useEffect(() => {
+  
+  React.useEffect(async () => {
+    axios.post(`${process.env.REACT_APP_API}forum/login/test`)
+      .then(res => res.data)
     axios.get(`${process.env.REACT_APP_API}forum/`)
       .then(res => setForums(res.data))
   }, [])

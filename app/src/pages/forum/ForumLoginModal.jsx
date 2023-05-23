@@ -3,12 +3,15 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 
 export default function ForumLoginModal(props) {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(false);
+
+  const [cookies, setCookie] = useCookies(['user']);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +20,20 @@ export default function ForumLoginModal(props) {
       password,
       remember
     }).then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
+
+        switch (res.status) {
+          case 200:
+            setCookie('email', email, { expires: 0 });
+            setCookie('password', password, { expires: 0 });
+            break;
+          case 201:
+            setCookie('session_token', res.data['session_token']);
+            break;
+          default:
+            break;
+        }
+
         props.handleClose();
       });
   }
@@ -42,6 +58,7 @@ export default function ForumLoginModal(props) {
               type='checkbox'
               id='remember-me'
               label='Remember me'
+              onChange={(e) => setRemember(e.target.value)}
             />
           </Form>
         </Modal.Body>
