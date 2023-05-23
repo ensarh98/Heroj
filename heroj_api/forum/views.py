@@ -1,8 +1,9 @@
+from datetime import date
 import json
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.core import serializers
-from .models import Forum, RegisterToken, User
+from .models import Forum, RegisterToken, Session, User
 from rest_framework.decorators import api_view
 from django.contrib.auth.hashers import make_password, check_password
 from django.core.exceptions import ValidationError
@@ -23,6 +24,7 @@ def getAll(request):
 def getAll(request):
     qs = Forum.objects.all()
     qs_json = serializers.serialize('json', qs)
+
     return HttpResponse(qs_json, content_type='application/json')
 
 @api_view(['POST'])
@@ -111,6 +113,17 @@ def registerUserId(request, id):
 
     return HttpResponse('verification successful', status=201)
 
+def add_years(d, years):
+    """Return a date that's `years` years after the date (or datetime)
+    object `d`. Return the same calendar date (month and day) in the
+    destination year, if it exists, otherwise use the following day
+    (thus changing February 29 to March 1).
+    """
+    try:
+        return d.replace(year = d.year + years)
+    except ValueError:
+        return d + (date(d.year + years, 1, 1) - date(d.year, 1, 1))
+
 @api_view(['POST'])
 def login(request):
     body = json.loads(request.body)
@@ -118,36 +131,35 @@ def login(request):
     password = body['password']
     remember = body['remember']
 
-    # Check that the test cookie worked 
-    if request.session.test_cookie_worked():
-        # The test cookie worked, so delete it.
-        request.session.delete_test_cookie()
-        
-        # User auth
-        # Check if email exists
-        if User.objects.filter(email=email).exists() == False:
-            return HttpResponse('email does not exist', status=401)
-        
-        user = User.objects.get(email=email)
-
-        # Check password
-        if check_password(password, user.password):
-            request.session['email'] = user.email
-            if remember:
-                request.session['email'].set_expiry(977616000)
-            else:
-                request.session['email'].set_expiry(0)
-            return HttpResponse('login successful', status=200)
-        
-        # Failed auth
-        return HttpResponse('bad password', status=401)
-    else:
-        return HttpResponse('Please enable cookies and try again.')
+    if User.objects.filter(email=email).exists() == False:
+        return HttpResponse('email not found', status=401)
     
-api_view(['POST'])
+    user = User.objects.get(email=email)
+
+    if check_password(password, user.password) == False:
+        return HttpResponse('wrong password', status=401)
+    
+    if remember:
+        today = date.today()
+        session = Session(user=user, expire_date=add_years(today, 2))
+        session.save()
+        return JsonResponse({"session_token": session.id}, status=201)
+
+    return HttpResponse('login success', status=200)
+
+@api_view(['POST'])
 def logout(request):
-    try:
-        del request.session['email']
-    except KeyError:
-        pass
-    return HttpResponse("You're logged out.")
+    body = json.loads(request.body)
+    id = None
+    try: 
+        id = body['id']
+    except KeyError as e:
+        return HttpResponse('logout successful', status=200)
+
+    if Session.objects.filter(id=id).exists() == False:
+        return HttpResponse('session not found', satus=404)
+    
+    session = Session.objects.get(id=id)
+    session.delete()
+
+    return HttpResponse('logout successful', status=200)
