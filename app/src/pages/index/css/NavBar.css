@@ -9,6 +9,12 @@ nav{
     color: #FFF0F3 !important;
 }
 
+@media (max-width: 768px) {
+    .buttons {
+        font-size: medium !important;
+    }
+}
+
 .buttons:hover{
     background-color: #A4133C !important;
 }
