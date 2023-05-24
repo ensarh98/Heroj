@@ -48,3 +48,10 @@ label{
     background-color: white;
     color: #FF4D6D;
 }
+
+.validationSpan{
+    color: yellow;
+    visibility: visible;
+    display: inline-block;
+    min-height: 1.5em;
+}
