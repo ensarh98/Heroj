@@ -5,7 +5,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import ForumLoginModal from './ForumLoginModal';
-import { useCookies } from 'react-cookie';
+import Cookies from 'universal-cookie';
 import axios from 'axios';
 
 export default function ForumNavbar() {
@@ -14,23 +14,33 @@ export default function ForumNavbar() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  const cookies = new Cookies();
+
+  const [logged, setLogged] = useState(false);
 
   const logout = () => {
     axios.post(`${process.env.REACT_APP_API}forum/logout`, {
-      id: cookies.session_token
+      id: cookies.get('session_token')
     }).then((res) => {
       if (res.status === 200) {
-        removeCookie('session_token');
-        removeCookie('email');
-        removeCookie('password');
+        cookies.remove('session_token');
+        setLogged(false);
       }
     })
   }
 
-  useEffect(() => {
+  const [userData, setUserData] = useState({});
 
-  }, [cookies.session_token, cookies.email])
+  useEffect(() => {
+    if (cookies.get('session_token'))
+      axios.get(`${process.env.REACT_APP_API}forum/user/${cookies.get('session_token')}`).then(res => {
+        if (res.status === 200) {
+          console.log(res.data);
+          setUserData(res.data);
+          setLogged(true);
+        }
+      })
+  }, [cookies.get('session_token')])
 
   return (
     <>
@@ -49,14 +59,6 @@ export default function ForumNavbar() {
           </Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              { (!cookies.email && !cookies.session_token) &&
-                <Button variant='dark' onClick={handleShow}>
-                  Sign in
-                </Button>
-              }
-              { (!cookies.email && !cookies.session_token) &&
-                <Nav.Link href='forum/register/'>Sign up</Nav.Link>
-              }
               <Nav.Link href="#home">Home</Nav.Link>
               <Nav.Link href="#link">Link</Nav.Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
@@ -70,10 +72,22 @@ export default function ForumNavbar() {
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown>
-              { (cookies.email || cookies.session_token) &&
-                <Button variant='dark' onClick={logout} className='ms-auto'>
-                  Sign out
+            </Nav>
+            <Nav className='ms-auto'>
+              { cookies.get('session_token') &&
+                <NavDropdown title={`${userData.username}`} alignRight>
+                  <NavDropdown.Item onClick={logout}>
+                    Sign out
+                  </NavDropdown.Item>
+                </NavDropdown>
+              }
+              { !cookies.get('session_token') &&
+                <Button variant='dark' onClick={handleShow}>
+                  Sign in
                 </Button>
+              }
+              { !cookies.get('session_token') &&
+                <Nav.Link href='forum/register/'>Sign up</Nav.Link>
               }
             </Nav>
           </Navbar.Collapse>

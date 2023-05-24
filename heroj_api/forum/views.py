@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import timedelta, date
 import json
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, JsonResponse
@@ -143,18 +143,18 @@ def login(request):
         today = date.today()
         session = Session(user=user, expire_date=add_years(today, 2))
         session.save()
-        return JsonResponse({"session_token": session.id}, status=201)
+        return JsonResponse({"session_token": session.id, "expires": session.expire_date}, status=201)
+    else:
+        today = date.today()
+        session = Session(user=user, expire_date=today+timedelta(days=2))
+        session.save()
+        return JsonResponse({"session_token": session.id, "expires": session.expire_date}, status=201)
 
-    return HttpResponse('login success', status=200)
 
 @api_view(['POST'])
 def logout(request):
     body = json.loads(request.body)
-    id = None
-    try: 
-        id = body['id']
-    except KeyError as e:
-        return HttpResponse('logout successful', status=200)
+    id = body['id']
 
     if Session.objects.filter(id=id).exists() == False:
         return HttpResponse('session not found', satus=404)
@@ -163,3 +163,26 @@ def logout(request):
     session.delete()
 
     return HttpResponse('logout successful', status=200)
+
+@api_view(['GET'])
+def getUser(request, id):
+    if Session.objects.filter(id=id).exists() == False:
+        return HttpResponse('session not found', satus=404)
+    
+    session = Session.objects.get(id=id)
+
+    return JsonResponse({
+        'username': session.user.username,
+        'date_created': session.user.date_created
+    })
+
+@api_view(['GET'])
+def getForum(request, id):
+    if Forum.objects.filter(id=id).exists() == False:
+        return HttpResponse('forum not found', satus=404)
+    
+    forum = Forum.objects.get(id=id)
+
+    return JsonResponse({
+        'title': forum.title
+    })

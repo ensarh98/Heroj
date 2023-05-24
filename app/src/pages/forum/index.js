@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import { posts, topics } from './data';
 import axios from "axios";
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
@@ -16,9 +15,7 @@ export default function Forum() {
 
   const [forums, setForums] = useState([])
   
-  React.useEffect(async () => {
-    axios.post(`${process.env.REACT_APP_API}forum/login/test`)
-      .then(res => res.data)
+  React.useEffect(() => {
     axios.get(`${process.env.REACT_APP_API}forum/`)
       .then(res => setForums(res.data))
   }, [])

@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { useState } from 'react';
-import { useCookies } from 'react-cookie';
+import Cookies from 'universal-cookie';
 
 export default function ForumLoginModal(props) {
 
@@ -11,7 +11,7 @@ export default function ForumLoginModal(props) {
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(false);
 
-  const [cookies, setCookie] = useCookies(['user']);
+  const cookies = new Cookies();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,16 +22,8 @@ export default function ForumLoginModal(props) {
     }).then((res) => {
         //console.log(res.data);
 
-        switch (res.status) {
-          case 200:
-            setCookie('email', email, { expires: 0 });
-            setCookie('password', password, { expires: 0 });
-            break;
-          case 201:
-            setCookie('session_token', res.data['session_token']);
-            break;
-          default:
-            break;
+        if (res.status === 201) {
+          cookies.set('session_token', res.data['session_token'], { expires: new Date(res.data['expires']) });
         }
 
         props.handleClose();
