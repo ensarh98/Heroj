@@ -9,9 +9,18 @@ nav{
     color: #FFF0F3 !important;
 }
 
+.SpanZaHeroj{
+    font-size: xx-large;
+    font-weight: bolder;
+    margin-left: 20px;
+}
+
 @media (max-width: 768px) {
     .buttons {
-        font-size: medium !important;
+        font-size: small !important;
+    }
+    .SpanZaHeroj{
+        display: none;
     }
 }
 

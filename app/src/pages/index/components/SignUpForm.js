@@ -21,6 +21,10 @@ function usernameCheck() {
         usernameSpan.innerHTML = 'Username mora imati minimalno 3 karaktera!';
         usernameFlag = false;
     }
+    else if(usernameInput.length > 16){
+        usernameSpan.innerHTML = 'Username može maksimalno imati 16 karaktera!';
+        usernameFlag = false;
+    }
     else {
         usernameSpan.innerHTML = ''
         usernameFlag = true;

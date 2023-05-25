@@ -4,25 +4,6 @@ import ReactDom from "react-dom";
 import {useState} from "react";
 import axios from "axios";
 
-/*
-function usernameCheck() {
-    let usernameInput = document.getElementById('username').value;
-    if(!usernameInput.toLowerCase().match(/^[a-zA-Z0-9_]+$/)){
-        usernameFlag = false;
-    }
-    else usernameFlag = usernameInput.length >= 3;
-}
-
-function passwordCheck() {
-    let passwordInput = document.getElementById('password').value;
-    if(!passwordInput.toLowerCase().match(/^[a-zA-Z0-9]+$/)){
-        passwordFlag = false;
-    }
-    else if(!passwordInput.match(/[A-Z]/)){
-        passwordFlag = false;
-    }else passwordFlag = passwordInput.length >= 5;
-}
-*/
 function LogInForm(props) {
     let usernameSpan = document.getElementById('usernameSpanLogin');
     let passwordSpan = document.getElementById('passwordSpanLogin');
