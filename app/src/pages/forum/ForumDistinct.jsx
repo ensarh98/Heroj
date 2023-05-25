@@ -10,6 +10,7 @@ import ForumNavbar from "./ForumNavbar";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Cookies from "universal-cookie";
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 export default function ForumDistinct() {
   const { id } = useParams();
@@ -59,7 +60,17 @@ export default function ForumDistinct() {
             <ForumNavbar></ForumNavbar>
           </Col>
         </Row>
-        <Row className="mt-5">
+        <Row>
+          <Col>
+            <Breadcrumb>
+              <Breadcrumb.Item href="http://localhost:3000/forum">Forum</Breadcrumb.Item>
+              <Breadcrumb.Item href={`#`} active>
+                {forumData.title ? forumData.title : "Loading..."}
+              </Breadcrumb.Item>
+            </Breadcrumb>
+          </Col>
+        </Row>
+        <Row>
           <Col>
             <ForumCard title={<h4>{forumData.title ? forumData.title : "Loading..."}</h4>}>
               {forumData.topics ? forumData.topics.map((topic) => (

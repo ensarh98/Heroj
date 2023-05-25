@@ -35,7 +35,7 @@ export default function Forum() {
             </Breadcrumb>
           </Col>
         </Row>
-        <Row className='mt-5'>
+        <Row>
           <Col xs={9}>
             <ForumCard title={<h4>Forums</h4>}>
               {forums.map((forum) => (

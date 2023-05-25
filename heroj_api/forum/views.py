@@ -247,11 +247,13 @@ def getTopic(request, id):
         })
 
     return JsonResponse({
+        'id': topic.pk,
         'title': topic.title,
         'date_created': topic.date_created,
         'date_modified': topic.date_modified,
         'view_count': topic.view_count,
         'created_by': topic.user.username,
+        'forum_id': topic.forum.id,
         'posts': data
     })
 

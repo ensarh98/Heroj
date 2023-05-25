@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import { useParams } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import Form from 'react-bootstrap/Form';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 export default function Topic() {
   const { id } = useParams();
@@ -17,11 +18,16 @@ export default function Topic() {
 
   const cookies = new Cookies();
 
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API}forum/topic/${id}`)
+  const [forumData, setFroumData] = useState({});
+
+  useEffect(async () => {
+    const res = await axios.get(`${process.env.REACT_APP_API}forum/topic/${id}`)
+    setTopic(res.data);
+
+    axios.get(`${process.env.REACT_APP_API}forum/forums/${res.data.forum_id}`)
       .then(res => {
-        setTopic(res.data);
-      })
+        setFroumData(res.data);
+      });
   }, [id]);
 
   const [showReply, setShowReply] = useState(false);
@@ -54,6 +60,19 @@ export default function Topic() {
         <Row>
           <Col>
             <ForumNavbar></ForumNavbar>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Breadcrumb>
+              <Breadcrumb.Item href="../">Forum</Breadcrumb.Item>
+              <Breadcrumb.Item href="./">
+                {forumData.title ? forumData.title : "Loading..."}
+              </Breadcrumb.Item>
+              <Breadcrumb.Item href="#" active>
+                {topic.title ? topic.title : "Loading..."}
+              </Breadcrumb.Item>
+            </Breadcrumb>
           </Col>
         </Row>
         <Row>
