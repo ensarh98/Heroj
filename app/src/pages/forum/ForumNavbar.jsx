@@ -48,7 +48,7 @@ export default function ForumNavbar() {
       <ForumLoginModal show={show} handleClose={handleClose}></ForumLoginModal>
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="http://localhost:3000">
             <img
               alt=""
               src="/logo.svg"
