@@ -6,6 +6,7 @@ import ScrollDiv from "./ScrollDiv";
 import Footer from "./Footer";
 import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
+import "../css/IndexApp.css";
 
 function IndexApp() {
     const [isOpen, setIsOpen] = useState(false)
@@ -18,8 +19,8 @@ function IndexApp() {
     }
 
     return (
-        <div>
-            <NavBar onClick={() => setIsOpen(true)} onClick2={() => setIsOpen2(true)}/>
+        <div className={"indexApp"}>
+            <NavBar onClick={() => setIsOpen(true)} onClick2={() => setIsOpen2(true)} onClick3={() => setIsOpen3(true)}/>
             <LandingDiv onClick={handleArrowClick}/>
             <ScrollDiv onClick={() => setIsOpen(true)} ref={scrollRef}/>
             <SignUpForm onClose={() => setIsOpen(false)} open={isOpen}/>

@@ -1,4 +1,5 @@
 import "../css/SignUpForm.css";
+import "../css/IndexApp.css";
 import ReactDom from "react-dom";
 import {useState} from "react";
 
@@ -114,7 +115,7 @@ function SignUpForm(props) {
     return ReactDom.createPortal(
         <>
             <div id={"ObscuringDiv"} onClick={props.onClose}></div>
-            <div id={"SignUpForm"}>
+            <div id={"SignUpForm"} className={"indexApp"}>
                 <div id={"FormHeader"} className={"container-fluid d-flex justify-content-end p-0"}>
                     <div className={"container-fluid d-flex justify-content-center"}>
                         <span id={"FormTitle"}>Registriraj se</span>

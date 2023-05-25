@@ -1,4 +1,5 @@
 import "../css/LogInForm.css";
+import "../css/IndexApp.css";
 import ReactDom from "react-dom";
 
 import {useState} from "react";
@@ -40,7 +41,7 @@ function LogInForm(props) {
     return ReactDom.createPortal(
         <>
             <div id={"ObscuringDiv"} onClick={props.onClose}></div>
-            <div id={"LogInForm"}>
+            <div id={"LogInForm"} className={"indexApp"}>
                 <div id={"FormHeader"} className={"container-fluid d-flex justify-content-end p-0"}>
                     <div className={"container-fluid d-flex justify-content-center"}>
                         <span id={"FormTitle"}>Prijavi se</span>
