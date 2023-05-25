@@ -6,6 +6,7 @@ import ScrollDiv from "./ScrollDiv";
 import Footer from "./Footer";
 import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
+import "../css/IndexApp.css";
 
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -27,7 +28,7 @@ function IndexApp() {
     }
 
     return (
-        <div>
+        <div className={"indexApp"}>
             <NavBar onClick={() => setIsOpen(true)} onClick2={() => setIsOpen2(true)} onClick3={() => setIsOpen3(true)}/>
             <LandingDiv onClick={handleArrowClick}/>
             <ScrollDiv onClick={() => setIsOpen(true)} ref={scrollRef}/>
