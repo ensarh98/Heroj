@@ -3,7 +3,7 @@ import json
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
-from .models import Forum, RegisterToken, Session, User
+from .models import Forum, Post, RegisterToken, Session, Topic, User
 from rest_framework.decorators import api_view
 from django.contrib.auth.hashers import make_password, check_password
 from django.core.exceptions import ValidationError
@@ -183,6 +183,94 @@ def getForum(request, id):
     
     forum = Forum.objects.get(id=id)
 
+    # Retrieve topics for forum
+    topics = Topic.objects.filter(forum=forum)
+
+    data = []
+    for topic in topics:
+        data.append({
+            'id': topic.pk,
+            'title': topic.title,
+            'date_created': topic.date_created,
+            'date_modified': topic.date_modified,
+            'view_count': topic.view_count,
+            'created_by': topic.user.username,
+        })
+
     return JsonResponse({
-        'title': forum.title
+        'title': forum.title,
+        'topics': data
     })
+
+@api_view(['GET'])
+def getTopics(request, id):
+
+    # Check first if forum exists
+    if Forum.objects.filter(id=id).exists() == False:
+        return HttpResponse('forum not found', satus=404)
+    
+    forum = Forum.objects.get(id=id)
+
+    # Retrieve topics for forum
+    topics = Topic.objects.filter(forum=forum)
+
+    data = []
+    for topic in topics:
+        data.append({
+            "title": topic.title,
+            "date_created": topic.date_created,
+            "date_modified": topic.date_modified,
+            "view_count": topic.view_count,
+            "created_by": topic.user.username,
+        })
+
+    return JsonResponse({"data": data})
+
+@api_view(['GET'])
+def getTopic(request, id):
+    if Topic.objects.filter(id=id).exists() == False:
+        return HttpResponse('topic not found', satus=404)
+    
+    topic = Topic.objects.get(id=id)
+
+    posts = Post.objects.filter(topic=topic)
+
+    data = []
+    for post in posts:
+        data.append({
+            'text': post.text,
+            'created_by': post.user.username,
+            'date_created': post.date_created,
+            'date_modified': post.date_modified
+        })
+
+    return JsonResponse({
+        'title': topic.title,
+        'date_created': topic.date_created,
+        'date_modified': topic.date_modified,
+        'view_count': topic.view_count,
+        'created_by': topic.user.username,
+        'posts': data
+    })
+
+@api_view(['POST'])
+def postReply(request, id):
+    if Topic.objects.filter(id=id).exists() == False:
+        return HttpResponse('topic not found', satus=404)
+    
+    topic = Topic.objects.get(id=id)
+
+    body = json.loads(request.body)
+    
+    text = body['text']
+    session_token = body['session_token']
+
+    if Session.objects.filter(id=session_token).exists() == False:
+        return HttpResponse('session not found', satus=404)
+    
+    session = Session.objects.get(id=id)
+
+    post = Post(text=text, topic=topic, user=session.user)
+    post.save()
+
+    return HttpResponse('success')

@@ -87,7 +87,7 @@ export default function ForumNavbar() {
                 </Button>
               }
               { !cookies.get('session_token') &&
-                <Nav.Link href='forum/register/'>Sign up</Nav.Link>
+                <Nav.Link href={`http://localhost:3000/forum/register/`}>Sign up</Nav.Link>
               }
             </Nav>
           </Navbar.Collapse>

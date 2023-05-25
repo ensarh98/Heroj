@@ -23,6 +23,7 @@ export default function App() {
             <Route path="/forum/register" element={<ForumRegister />} />
             <Route path="/forum/register/:id" element={<ForumRegisterId />} />
             <Route path="/forum/:id" element={<ForumDistinct />} />
+            <Route path="/forum/:forumid/:id" element={<Topic />} />
             <Route path="quiz" element={<Quiz />} />
             <Route path="*" element={<NoPage />} />
         </Routes>
