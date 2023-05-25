@@ -1,14 +1,45 @@
+<<<<<<< HEAD
 /* nav{
     background-color: #C9184A;
     border-bottom: 1px solid #A4133C;
 } */
 /* .buttons{
+=======
+nav{
+    background-color: #C9184A;
+    border-bottom: 1px solid #A4133C;
+}
+.buttons{
+>>>>>>> origin/main
     font-size: large !important;
     font-weight: bold !important;
     border: 1px solid #A4133C !important;
     color: #FFF0F3 !important;
+<<<<<<< HEAD
 } */
 /* 
 .buttons:hover{
     background-color: #A4133C !important;
 } */
+=======
+}
+
+.SpanZaHeroj{
+    font-size: xx-large;
+    font-weight: bolder;
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    .buttons {
+        font-size: small !important;
+    }
+    .SpanZaHeroj{
+        display: none;
+    }
+}
+
+.buttons:hover{
+    background-color: #A4133C !important;
+}
+>>>>>>> origin/main
