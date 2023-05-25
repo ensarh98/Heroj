@@ -33,6 +33,17 @@ export default function Topic() {
       text,
       session_token: cookies.get('session_token'),
     }).then(res => {
+
+      if (res.status === 200) {
+        setTopic({
+          ...topic,
+          posts: [
+            ...topic.posts,
+            res.data
+          ]
+        })
+      }
+
       setShowReply(false);
     })
   };

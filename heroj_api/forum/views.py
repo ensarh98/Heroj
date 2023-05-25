@@ -273,4 +273,9 @@ def postReply(request, id):
     post = Post(text=text, topic=topic, user=session.user)
     post.save()
 
-    return HttpResponse('success')
+    return JsonResponse({
+        'text': post.text,
+        'created_by': post.user.username,
+        'date_created': post.date_created,
+        'date_modified': post.date_modified
+    })
