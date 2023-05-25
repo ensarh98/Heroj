@@ -2,13 +2,16 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from datetime import datetime
 from django.contrib.auth.hashers import make_password, check_password
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
+
 import re
 
 def checkUsername(username):
     if not re.match(r'^[a-zA-Z0-9_]+$', username.lower()):
         return False
     elif len(username) < 3:
+        return False
+    elif len(username) > 16:
         return False
     else:
         return True
@@ -80,10 +83,7 @@ def register(request):
 @api_view(['POST'])
 def login(request):
     from .models import User
-
     userbool = User.objects.filter(username = request.data.get('username')).exists()
-
-#trebam dodati userbool provjeru tj jel postoji user i jel korektan password
 
     if userbool is False:
         return HttpResponseBadRequest("No user")
@@ -91,6 +91,16 @@ def login(request):
         user = User.objects.get(username = request.data.get('username'))
 
         if check_password(request.data.get('password'), user.password):
+            #mozda ovde Response umjestno HttpResponse, provjeri sutra
             return HttpResponse(user.id)
         else:
             return HttpResponseBadRequest("Wrong password")
+
+@api_view(['GET'])
+def getUsername(request):
+    print("reached getUsername")
+    user_id = request.GET.get('ID')
+    from .models import User
+    user = User.objects.get(id=user_id)
+    username = user.username
+    return JsonResponse({'username': username})

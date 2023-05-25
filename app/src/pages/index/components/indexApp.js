@@ -13,10 +13,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import "../css/index.css"
+import LogOutScreen from "./LogOutScreen";
 
 function IndexApp() {
     const [isOpen, setIsOpen] = useState(false)
     const [isOpen2, setIsOpen2] = useState(false)
+    const [isOpen3, setIsOpen3] = useState(false)
 
     const scrollRef = useRef(null);
 
@@ -26,11 +28,12 @@ function IndexApp() {
 
     return (
         <div>
-            <NavBar onClick={() => setIsOpen(true)} onClick2={() => setIsOpen2(true)}/>
+            <NavBar onClick={() => setIsOpen(true)} onClick2={() => setIsOpen2(true)} onClick3={() => setIsOpen3(true)}/>
             <LandingDiv onClick={handleArrowClick}/>
             <ScrollDiv onClick={() => setIsOpen(true)} ref={scrollRef}/>
             <SignUpForm onClose={() => setIsOpen(false)} open={isOpen}/>
             <LogInForm onClose={() => setIsOpen2(false)} open={isOpen2}/>
+            <LogOutScreen onClose={() => setIsOpen3(false)} open={isOpen3}/>
             <Footer/>
         </div>
     );
