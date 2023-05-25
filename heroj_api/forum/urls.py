@@ -14,4 +14,5 @@ urlpatterns = [
     path("topics/<str:id>", views.getTopics, name="getTopics"),
     path("topic/<str:id>", views.getTopic, name="getTopic"),
     path("topic/<str:id>/reply", views.postReply, name="postReply"),
+    path("topic/<str:id>/create", views.createTopic, name="createTopic"),
 ]

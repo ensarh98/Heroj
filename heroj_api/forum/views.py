@@ -173,7 +173,9 @@ def getUser(request, id):
 
     return JsonResponse({
         'username': session.user.username,
-        'date_created': session.user.date_created
+        'email': session.user.email,
+        'date_created': session.user.date_created,
+        'is_verified': session.user.is_verified,
     })
 
 @api_view(['GET'])
@@ -278,4 +280,38 @@ def postReply(request, id):
         'created_by': post.user.username,
         'date_created': post.date_created,
         'date_modified': post.date_modified
+    })
+
+@api_view(['POST'])
+def createTopic(request, id):
+    # Check first if forum exists
+    if Forum.objects.filter(id=id).exists() == False:
+        return HttpResponse('forum not found', satus=404)
+    
+    forum = Forum.objects.get(id=id)
+
+    body = json.loads(request.body)
+
+    title = body['title']
+    text = body['text']
+    session_token = body['session_token']
+
+    if Session.objects.filter(id=session_token).exists() == False:
+        return HttpResponse('session not found', satus=404)
+    
+    session = Session.objects.get(id=session_token)
+
+    topic = Topic(title=title, user=session.user, forum=forum)
+    topic.save()
+
+    post = Post(text=text, topic=topic, user=session.user)
+    post.save()
+
+    return JsonResponse({
+        'id': topic.pk,
+        'title': topic.title,
+        'date_created': topic.date_created,
+        'date_modified': topic.date_modified,
+        'view_count': topic.view_count,
+        'created_by': topic.user.username,
     })

@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import ForumLoginModal from './ForumLoginModal';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function ForumNavbar() {
   const [show, setShow] = useState(false);
@@ -76,6 +77,9 @@ export default function ForumNavbar() {
             <Nav className='ms-auto'>
               { cookies.get('session_token') &&
                 <NavDropdown title={`${userData.username}`} alignRight>
+                  <NavDropdown.Item>
+                    <Link to={`http://localhost:3000/forum/profile`}>Profile</Link>
+                  </NavDropdown.Item>
                   <NavDropdown.Item onClick={logout}>
                     Sign out
                   </NavDropdown.Item>

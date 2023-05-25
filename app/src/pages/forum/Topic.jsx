@@ -61,9 +61,9 @@ export default function Topic() {
             <ForumCard title={<h2>{topic ? topic.title : "Loading"}</h2>}>
               {topic.posts ?
                 topic.posts.map(post => (
-                  <Row>
-                    <Col>
-                      <img src='../public/images/forum/avatar.png' />
+                  <Row className='align-middle'>
+                    <Col xs={3}>
+                      <img src='../../../images/forum/avatar.png' width={"40%"} />
                       {post.created_by}
                     </Col>
                     <Col>
