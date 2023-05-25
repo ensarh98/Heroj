@@ -61,7 +61,7 @@ Harun Hadžić - https://github.com/hare2049
 
 Ensar Horozović -  https://github.com/Ensarh98
 
-Edim Omerhožić - https://github.com/edi18
+Edim Omerhodžić - https://github.com/edi18
 
 Davud Duranović - https://github.com/Davud24
 
