@@ -268,7 +268,7 @@ def postReply(request, id):
     if Session.objects.filter(id=session_token).exists() == False:
         return HttpResponse('session not found', satus=404)
     
-    session = Session.objects.get(id=id)
+    session = Session.objects.get(id=session_token)
 
     post = Post(text=text, topic=topic, user=session.user)
     post.save()
