@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: #C8DDFC;
+  border: 1px solid #000000;
+  width: 28%;
+}
+
+.sidebar-button {
+  background: #C8DDFC;
+  border: 1px solid #000000;
+}
+
+.sidebar-button a {
+  display: block;
+  text-decoration: none;
+  font-family: 'Allerta Stencil', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 32px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.5em;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  -webkit-text-stroke: 1px #000000;
+  padding: 8px;
+}
+
+.sidebar-button a:hover {
+  background: #0F42EB;
+  color: #FFFFFF;
+}
