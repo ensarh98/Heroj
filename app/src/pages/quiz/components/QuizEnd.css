@@ -1,0 +1,48 @@
+/* body {
+  width: 100%;
+  height: 100%;
+  text-align: -webkit-center;
+} */
+
+.correctA {
+  color: green;
+  font-size: 20px;
+}
+
+.incorrectA {
+  color: red;
+  font-size: 20px;
+}
+
+.headerQuizEnd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 55px;
+}
+
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gridLayout {
+  justify-content: center;
+  text-align: -webkit-center;
+}
+
+.list-group-flush > .list-group-item:last-child {
+  display: flex;
+}
+
+.list-group-flush > .list-group-item {
+  padding: 5px;
+  text-align: left;
+}
+
+.columnClass {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
