@@ -29,7 +29,7 @@ function IndexApp() {
       </div>
       <div>
         <LogoComponent />
-        <SearchField1 />
+        <SearchField1 placeholder="Unesite simptom" />
       </div>
     </div>
   );

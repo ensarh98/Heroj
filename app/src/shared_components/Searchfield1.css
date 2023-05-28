@@ -30,6 +30,9 @@
 }
 
 .search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   width: 60px;
   height: 60px;
