@@ -6,3 +6,7 @@ body {
   padding: 0;
   user-select: none;
 }
+
+#main {
+  transition: margin-left 0.5s;
+}
