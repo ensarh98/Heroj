@@ -8,7 +8,7 @@ function IndexApp() {
     <>
       <Button1 text={"Testiranje"} fontSize={"30px"} />
       <LogoComponent />
-      <SearchField1 />
+      <SearchField1 placeholder={"Unesite simptom"} />
     </>
   );
 }

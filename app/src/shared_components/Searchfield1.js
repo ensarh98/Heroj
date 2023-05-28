@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Searchfield1.css";
-import { BiSearch } from "react-icons/bi";
 
-function App() {
+function App(props) {
   const [searchText, setSearchText] = useState("");
+  const [isPlaceholderVisible, setIsPlaceholderVisible] = useState(true);
+  const inputRef = useRef(null);
 
   function handleSearchText() {
     console.log(searchText);
     setSearchText("");
   }
+
+  const handleInputFocus = () => {
+    setIsPlaceholderVisible(false);
+  };
+
+  const handleInputBlur = () => {
+    const inputValue = inputRef.current.value;
+    setIsPlaceholderVisible(inputValue === "");
+  };
 
   return (
     <>
@@ -18,10 +28,17 @@ function App() {
           type="search"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-          placeholder="Unesite simptom"
+          placeholder={isPlaceholderVisible ? props.placeholder : ""}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          ref={inputRef}
         />
         <button className="search-button" onClick={handleSearchText}>
-          <BiSearch className="search-bar-icon" />
+          <img
+            src="../images/search-icon.png"
+            className="search-bar-icon"
+            alt="search"
+          />
         </button>
       </div>
     </>
