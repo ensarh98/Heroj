@@ -1,14 +1,16 @@
-import "../css/IndexApp.css"
+import "../css/IndexApp.css";
 import Button1 from "../../../shared_components/Button1";
-import Sidebar from "../../../shared_components/Sidebar";
+import LogoComponent from "../../../shared_components/LogoComponent";
+import SearchField1 from "../../../shared_components/Searchfield1";
 
-function IndexApp(){
-    return (
-        <>
-            <Button1 text={"Testiranje"} fontSize={"30px"}/>
-            <Sidebar/>
-        </>
-    )
+function IndexApp() {
+  return (
+    <>
+      <Button1 text={"Testiranje"} fontSize={"30px"} />
+      <LogoComponent />
+      <SearchField1 />
+    </>
+  );
 }
 
 export default IndexApp;
