@@ -1,9 +1,9 @@
 import React from "react";
 import "./HideSidebarButton.css";
 
-const HideSidebar = () => {
+const HideSidebar = (props) => {
     return (
-        <button id="hidesidebar">
+        <button id="hidesidebar" onClick={props.onClick}>
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_20_58)">
                     <path d="M33.3333 40H6.66667C3 40 0 37 0 33.3333V6.66667C0 3 3 0 6.66667 0H33.3333C37 0 40 3 40 6.66667V33.3333C40 37 37 40 33.3333 40ZM6.66667 3.33333C4.83333 3.33333 3.33333 4.83333 3.33333 6.66667V33.3333C3.33333 35.1667 4.83333 36.6667 6.66667 36.6667H33.3333C35.1667 36.6667 36.6667 35.1667 36.6667 33.3333V6.66667C36.6667 4.83333 35.1667 3.33333 33.3333 3.33333H6.66667Z" fill="#5378F4" />

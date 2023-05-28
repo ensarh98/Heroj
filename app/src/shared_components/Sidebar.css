@@ -1,12 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
 
 .sidebar {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
   background: #C8DDFC;
   border: 1px solid #000000;
-  width: 28%;
+  height: 100%;
+  width: 400px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: -400px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  transition: 0.5s;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: right;
+  padding: 20px;
+}
+
+.sidebar-footer-logo {
+  position: absolute;
+  bottom: 5%;
 }
 
 .sidebar-button {
