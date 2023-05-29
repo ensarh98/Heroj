@@ -1,0 +1,15 @@
+#showsidebar {
+    background-color: white;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+#showsidebar:hover {
+    background-color: rgb(235, 235, 235);
+    transform: scale(1.1);
+}

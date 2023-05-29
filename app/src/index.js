@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Quiz from "./pages/quiz";
 import Forum from "./pages/forum";
 import NoPage from "./pages/nopage";
-import IndexApp from "./pages/index/components/indexApp";
+import IndexApp from "./pages/index/components/IndexApp";
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
