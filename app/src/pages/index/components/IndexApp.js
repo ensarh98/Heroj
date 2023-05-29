@@ -21,15 +21,32 @@ function IndexApp() {
 
   return (
     <div id="main" ref={mainRef}>
-      <Sidebar innerRef={sidebarRef} closeNav={closeNav} />
-      <Button1 text={"Prijava"} fontSize={"25px"} />
-      <Button1 text={"Registracija"} fontSize={"25px"} />
-      <div>
-        <ShowSidebar onClick={openNav} />
+      <div id="heading">
+        <Sidebar innerRef={sidebarRef} closeNav={closeNav} />
+        <div id="heading-left">
+          <ShowSidebar onClick={openNav} />
+        </div>
+        <div id="heading-right">
+          <Button1 text={"Prijava"} fontSize={"25px"} />
+          <Button1 text={"Registracija"} fontSize={"25px"} />
+        </div>
       </div>
-      <div>
-        <LogoComponent />
-        <SearchField1 placeholder="Unesite simptom" />
+      <div id="content">
+        <div id="logo-and-search">
+          <LogoComponent />
+          <SearchField1 placeholder="Unesite simptom" />
+        </div>
+        {/* <div id="img-container">
+          <div className="img-item">
+            <img src="../../../images/prvapomoc 1.png"></img>
+          </div>
+          <div className="img-item">
+            <img src="../../../images/drugapomoc 1.png"></img>
+          </div>
+          <div className="img-item">
+            <img src="../../../images/trecapomoc 1.png"></img>
+          </div>
+        </div> */}
       </div>
     </div>
   );
