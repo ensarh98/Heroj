@@ -1,7 +1,6 @@
 import React from "react";
 import AnswerOption from "./AnswerOption";
 import "./Question.css";
-import Button from "react-bootstrap/Button";
 import Button1 from "../../../shared_components/Button1";
 
 export default function Question(props) {

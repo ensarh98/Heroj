@@ -4,6 +4,70 @@
   text-align: -webkit-center;
 } */
 
+.end-quiz-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.headerQuizEnd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 55px;
+}
+
+.headerQuizEnd h1 {
+  font-family: "Allerta Stencil";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 128px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.5em;
+  color: #5378f4;
+  /* border: 1px solid #000000; */
+  text-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+}
+
+.gridLayout {
+  display: grid;
+  gap: 10px;
+  align-self: center;
+}
+
+.card {
+  grid-column: span 1;
+}
+
+.card-body {
+  border: 2px solid blue;
+}
+
+@media (min-width: 768px) {
+  .gridLayout {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .gridLayout {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.card:nth-child(6),
+.card:nth-child(9) {
+  grid-column: span 2;
+}
+
+.gridLayout span {
+  width: min-content;
+}
+
 .correctA {
   color: green;
   font-size: 20px;
@@ -14,22 +78,10 @@
   font-size: 20px;
 }
 
-.headerQuizEnd {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 55px;
-}
-
 .card-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.gridLayout {
-  justify-content: center;
-  text-align: -webkit-center;
 }
 
 .list-group-flush > .list-group-item:last-child {

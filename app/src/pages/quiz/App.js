@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Question from "./components/Question";
 import QuizEnd from "./components/QuizEnd";
-import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Button1 from "../../shared_components/Button1";
@@ -95,29 +94,30 @@ function App() {
   }
 
   return (
-    <>
+    <div>
       {numberOfQuestion <= 10 ? (
         showQuiz ? (
           <>
             <div className="container-quiz">
-              <div className="quiz-title row">KVIZ</div>
+              <div className="quiz-title">KVIZ</div>
 
-              <div className="progressBar-wrapper row">
+              <div className="progressBar-wrapper">
                 <ProgressBar
                   now={(numberOfQuestion - 1) * 10}
                   label={`${(numberOfQuestion - 1) * 10}%`}
                   style={{ width: 1000 }}
                 />
               </div>
-
-              <Question
-                showQuiz={showQuiz}
-                question={question}
-                handleNextQuestion={handleNextQuestion}
-                setselectedAnswer={setselectedAnswer}
-                numberOfQuestion={numberOfQuestion}
-                handleAnswerClick={handleAnswerClick}
-              />
+              <div className="quiz-wrapper">
+                <Question
+                  showQuiz={showQuiz}
+                  question={question}
+                  handleNextQuestion={handleNextQuestion}
+                  setselectedAnswer={setselectedAnswer}
+                  numberOfQuestion={numberOfQuestion}
+                  handleAnswerClick={handleAnswerClick}
+                />
+              </div>
             </div>
           </>
         ) : (
@@ -137,7 +137,7 @@ function App() {
           />
         </>
       )}
-    </>
+    </div>
   );
 }
 
