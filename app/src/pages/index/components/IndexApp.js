@@ -4,20 +4,20 @@ import LogoComponent from "../../../shared_components/LogoComponent";
 import SearchField1 from "../../../shared_components/Searchfield1";
 import Sidebar from "../../../shared_components/Sidebar";
 import ShowSidebar from "../../../shared_components/ShowSidebarButton";
+import Case from "../../../shared_components/Case";
 import { useEffect, useRef } from "react";
 
 function IndexApp() {
-
   const mainRef = useRef(null);
   const sidebarRef = useRef(null);
 
   const openNav = () => {
     sidebarRef.current.style.left = "0";
-  }
+  };
 
   const closeNav = () => {
     sidebarRef.current.style.left = "-400px";
-  }
+  };
 
   return (
     <div id="main" ref={mainRef}>
@@ -35,6 +35,25 @@ function IndexApp() {
         <div id="logo-and-search">
           <LogoComponent />
           <SearchField1 placeholder="Unesite simptom" />
+        </div>
+        <div className="row-cases">
+          <Case
+            imagePath={"../../../images/prvapomoc 1.png"}
+            text={"Najpopularniji prvi"}
+            link={""}
+          />
+          <Case
+            imagePath={"../../../images/drugapomoc 1.png"}
+            text={
+              "Najpopularniji prvi sa malo dužim tekstom djgsdgjpsog lksdgj lksjglksdjgkl sdjgl"
+            }
+            link={""}
+          />
+          <Case
+            imagePath={"../../../images/trecapomoc 1.png"}
+            text={"Najpopularniji prvi"}
+            link={""}
+          />
         </div>
         {/* <div id="img-container">
           <div className="img-item">
