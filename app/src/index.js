@@ -13,6 +13,8 @@ import ForumRegister from "./pages/forum/ForumRegister";
 import ForumRegisterId from "./pages/forum/ForumRegisterId";
 import ForumDistinct from "./pages/forum/ForumDistinct";
 import ForumProfile from "./pages/forum/ForumProfile";
+import Register from "./pages/register/Register";
+import Login from "./pages/login/Login";
 //import "./pages/index/css/index.css"
 
 export default function App() {
@@ -23,6 +25,8 @@ export default function App() {
             <Route path="/forum" element={<Forum />} />
             <Route path="/forum/profile" element={<ForumProfile />} />
             <Route path="/forum/register" element={<ForumRegister />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/forum/register/:id" element={<ForumRegisterId />} />
             <Route path="/forum/:id" element={<ForumDistinct />} />
             <Route path="/forum/:forumid/:id" element={<Topic />} />

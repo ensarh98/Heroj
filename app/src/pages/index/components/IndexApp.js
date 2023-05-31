@@ -19,6 +19,14 @@ function IndexApp() {
     sidebarRef.current.style.left = "-400px";
   };
 
+  const handleClickSignUp = () => {
+    window.location.href = 'http://localhost:3000/forum/register/';
+  };
+
+  const handleClickLogIn = () => {
+    window.location.href = 'http://localhost:3000/forum/login/';
+  };
+
   return (
     <div id="main" ref={mainRef}>
       <div id="heading">
@@ -27,8 +35,8 @@ function IndexApp() {
           <ShowSidebar onClick={openNav} />
         </div>
         <div id="heading-right">
-          <Button1 text={"Prijava"} fontSize={"25px"} />
-          <Button1 text={"Registracija"} fontSize={"25px"} />
+          <Button1 text={"Prijava"} fontSize={"25px"} onClick={handleClickLogIn}/>
+          <Button1 text={"Registracija"} fontSize={"25px"} onClick={handleClickSignUp}/>
         </div>
       </div>
       <div id="content">
