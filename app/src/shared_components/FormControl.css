@@ -1,0 +1,7 @@
+.FormControl{
+    color: red;
+    text-align: center;
+    border: 1px solid red;
+    font-size: smaller;
+    overflow-wrap: break-word;
+}

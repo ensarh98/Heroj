@@ -1,0 +1,10 @@
+@font-face {
+    font-family: Montserrat;
+    src: url('../../public/Montserrat/Montserrat-VariableFont_wght.ttf');
+}
+
+.FormLabel{
+    color: rgba(0,0,0,0.5);
+    font-family: Montserrat;
+    padding-left: 15px;
+}

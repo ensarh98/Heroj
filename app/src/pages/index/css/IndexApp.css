@@ -1,12 +1,66 @@
 html,
-body {
-  width: 100%;
+body,
+#root {
   height: 100%;
   margin: 0;
-  padding: 0;
   user-select: none;
 }
 
 #main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   transition: margin-left 0.5s;
+}
+
+#heading {
+  flex: 0 1 auto;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#heading-left {
+  flex: 1;
+}
+
+#heading-right {
+  flex: 1;
+  display: flex;
+  justify-content: right;
+}
+
+#content {
+  flex: 1 1 auto;
+}
+
+#heading-right > .Button1 {
+  margin: 6px;
+}
+
+#logo-and-search {
+  margin-top: 6%;
+}
+
+/* .img-item img {
+  width: 12%;
+} */
+
+.row-cases {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10%;
+  margin-top: 3%;
+}
+
+@media (max-width: 768px) {
+  .row-cases {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10%;
+    margin-top: 3%;
+  }
 }

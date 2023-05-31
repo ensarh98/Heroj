@@ -4,9 +4,8 @@ function Button1(props) {
   const fontSize = {
     fontSize: props.fontSize,
   };
-
   return (
-    <button className={"Button1"} style={fontSize}>
+    <button className={"Button1"} style={fontSize} onClick={props.onClick}>
       {props.text}
     </button>
   );

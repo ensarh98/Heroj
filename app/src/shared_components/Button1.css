@@ -6,7 +6,6 @@
 .Button1{
     font-family: "Allerta Stencil";
     color: #5378f4;
-    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
     width: fit-content;
     padding: 5px 20px;
     border: 2px solid black;
