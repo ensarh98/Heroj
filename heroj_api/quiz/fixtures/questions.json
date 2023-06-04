@@ -540,7 +540,7 @@
     },
     {
         "id": 78,
-        "question": "kada dođemo na mjesto nesreće važno je:",
+        "question": "Kada dođemo na mjesto nesreće važno je:",
         "answers": ["zaštiti sebe i ostale", "pomoći unesrećenom bez obzira na sve", "pobjeći što prije"],
         "correctAnswerIndex": 0,
         "answered": false

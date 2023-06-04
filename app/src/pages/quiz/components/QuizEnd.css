@@ -1,14 +1,6 @@
-/* body {
-  width: 100%;
-  height: 100%;
-  text-align: -webkit-center;
-} */
-
 .end-quiz-wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 100%;
 }
 
 .headerQuizEnd {
@@ -22,7 +14,7 @@
   font-family: "Allerta Stencil";
   font-style: normal;
   font-weight: 400;
-  font-size: 60px;
+  font-size: 4vw;
   line-height: 128px;
   display: flex;
   align-items: center;
@@ -97,4 +89,15 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.result-quiz {
+  display: flex;
+  align-self: center;
+  margin-top: 2vw;
+  background-color: #5378f4;
+}
+
+.result-badge {
+  font-size: 2vw !important;
 }

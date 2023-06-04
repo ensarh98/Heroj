@@ -94,7 +94,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="container-quiz-wrapper">
       {numberOfQuestion <= 10 ? (
         showQuiz ? (
           <>
@@ -121,10 +121,14 @@ function App() {
             </div>
           </>
         ) : (
-          <div className="">
-            <button onClick={handleStartQuiz} size="lg">
+          <div className="start-quiz-button">
+            <Button1
+              onClick={handleStartQuiz}
+              fontSize={25}
+              text={"Start Quiz"}
+            >
               Start Quiz
-            </button>
+            </Button1>
           </div>
         )
       ) : (

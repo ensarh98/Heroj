@@ -18,14 +18,14 @@ export default function Question(props) {
         </div>
         <hr className="line-divide" />
         <div className="confirm-button">
-          <button
+          <Button1
             className="next-question-button"
-            variant="primary"
+            text={"Dalje"}
+            fontSize={24}
             onClick={props.handleNextQuestion}
-            size="lg"
           >
             Dalje
-          </button>
+          </Button1>
         </div>
       </div>
     </>
