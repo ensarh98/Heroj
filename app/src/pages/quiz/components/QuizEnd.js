@@ -11,6 +11,10 @@ export default function QuizEnd(props) {
   return (
     <>
       <div className="headerQuizEnd">
+        <div className="result-quiz">
+          <Badge className="result-badge">{props.correctlyAnswered} / 10</Badge>
+        </div>
+
         <h1>KRAJ KVIZA</h1>
 
         <Button1
@@ -53,9 +57,6 @@ export default function QuizEnd(props) {
               </Card>
             </span>
           ))}
-        </div>
-        <div className="result-quiz">
-          <Badge className="result-badge">{props.correctlyAnswered} / 10</Badge>
         </div>
       </div>
     </>

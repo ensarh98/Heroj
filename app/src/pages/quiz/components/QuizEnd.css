@@ -94,8 +94,10 @@
 .result-quiz {
   display: flex;
   align-self: center;
-  margin-top: 2vw;
-  background-color: #5378f4;
+}
+
+.result-quiz .bg-primary {
+  background-color: #5378f4 !important;
 }
 
 .result-badge {
