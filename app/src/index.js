@@ -4,7 +4,7 @@ import Quiz from "./pages/quiz";
 import Forum from "./pages/forum";
 import NoPage from "./pages/nopage";
 import IndexApp from "./pages/index/components/indexApp";
-import Template from "./pages/template/template"
+import Template from "./pages/template/Template.jsx";
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS

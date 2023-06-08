@@ -1,12 +1,20 @@
-from django.http import HttpResponse
-from django.core import serializers
-from .models import TemplateData
+from django.http import JsonResponse
+from .models import FirstAidCase
 from rest_framework.decorators import api_view
 
 
-# Create your views here.
 @api_view(["GET"])
 def result_view(request, id):
-    result = TemplateData.objects.filter(id=id)
-    json_data = serializers.serialize("json", list(result))
-    return HttpResponse(json_data, content_type="application/json")
+    try:
+        case = FirstAidCase.objects.get(id=id)
+        data = {"id": case.id, "title": case.title, "steps": []}
+        steps = case.steps.all()
+        for step in steps:
+            step_data = {
+                "step_number": step.step_number,
+                "description": step.description,
+            }
+            data["steps"].append(step_data)
+        return JsonResponse(data)
+    except FirstAidCase.DoesNotExist:
+        return JsonResponse({"error": "FirstAidCase not found"}, status=404)

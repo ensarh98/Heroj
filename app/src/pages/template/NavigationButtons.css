@@ -1,0 +1,7 @@
+#back,
+#next {
+    size: 5px;
+    background-color: transparent;
+    border: 1px solid rgb(58, 124, 165);
+    border-radius: 20%;
+}
