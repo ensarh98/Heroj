@@ -17,4 +17,4 @@ def result_view(request, id):
             data["steps"].append(step_data)
         return JsonResponse(data)
     except FirstAidCase.DoesNotExist:
-        return JsonResponse({"error": "FirstAidCase not found"}, status=404)
+        return JsonResponse({"error": "Not found!"}, status=404)
