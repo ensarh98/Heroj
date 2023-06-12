@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from .models import FirstAidCase
+from django.views.decorators.http import require_GET
 from rest_framework.decorators import api_view
 
 
@@ -18,3 +19,21 @@ def result_view(request, id):
         return JsonResponse(data)
     except FirstAidCase.DoesNotExist:
         return JsonResponse({"error": "Not found!"}, status=404)
+
+
+@require_GET
+def search_cases(request):
+    query = request.GET.get("query", "")
+    results = FirstAidCase.objects.filter(title__icontains=query)
+    serialized_results = [
+        {
+            "id": case.id,
+            "title": case.title,
+            "steps": [
+                {"step_number": step.step_number, "description": step.description}
+                for step in case.steps.all()
+            ],
+        }
+        for case in results
+    ]
+    return JsonResponse(serialized_results, safe=False)
