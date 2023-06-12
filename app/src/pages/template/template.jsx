@@ -48,10 +48,14 @@ const Template = () => {
     const currentStepData = steps[currentStep];
 
     return (
-        <div id="tempDiv1">
-            <div id="tempDiv2">
+        <div id="tempDiv">
+            <div id="tempHead">
                 <TemplateHeader title={title} />
+            </div>
+            <div id="tempContent">
                 <StepContent step={currentStepData} />
+            </div>
+            <div id="tempButtons">
                 <NavigationButtons
                     hasPreviousStep={currentStep > 0}
                     hasNextStep={currentStep < steps.length - 1}
