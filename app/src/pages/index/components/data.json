@@ -1,0 +1,92 @@
+[
+    {
+      "author": "Jorge Luis Borges",
+      "country": "Argentina",
+      "link": "http://en.wikipedia.org/wiki/Ficciones"
+    },
+    {
+      "author": "Gabriel Garcia Marquez",
+      "country": "Colombia",
+      "link": "http://en.wikipedia.org/wiki/One_Hundred_Years_of_Solitude"
+    },
+    {
+      "author": "Haruki Murakami",
+      "country": "Japan",
+      "link": "http://en.wikipedia.org/wiki/Kafka_on_the_Shore"
+    },
+    {
+      "author": "Jane Austen",
+      "country": "England",
+      "link": "http://en.wikipedia.org/wiki/Pride_and_Prejudice"
+    },
+    {
+      "author": "Leo Tolstoy",
+      "country": "Russia",
+      "link": "http://en.wikipedia.org/wiki/War_and_Peace"
+    },
+    {
+      "author": "Fyodor Dostoevsky",
+      "country": "Russia",
+      "link": "http://en.wikipedia.org/wiki/Crime_and_Punishment"
+    },
+    {
+      "author": "Ernest Hemingway",
+      "country": "United States",
+      "link": "http://en.wikipedia.org/wiki/The_Old_Man_and_the_Sea"
+    },
+    {
+      "author": "Mark Twain",
+      "country": "United States",
+      "link": "http://en.wikipedia.org/wiki/The_Adventures_of_Tom_Sawyer"
+    },
+    {
+      "author": "Franz Kafka",
+      "country": "Austria",
+      "link": "http://en.wikipedia.org/wiki/The_Metamorphosis"
+    },
+    {
+      "author": "Albert Camus",
+      "country": "France",
+      "link": "http://en.wikipedia.org/wiki/The_Stranger_(novel)"
+    },
+    {
+      "author": "Miguel de Cervantes",
+      "country": "Spain",
+      "link": "http://en.wikipedia.org/wiki/Don_Quixote"
+    },
+    {
+      "author": "Virginia Woolf",
+      "country": "England",
+      "link": "http://en.wikipedia.org/wiki/To_the_Lighthouse"
+    },
+    {
+      "author": "Hermann Hesse",
+      "country": "Germany",
+      "link": "http://en.wikipedia.org/wiki/Siddhartha_(novel)"
+    },
+    {
+      "author": "William Shakespeare",
+      "country": "England",
+      "link": "http://en.wikipedia.org/wiki/Hamlet"
+    },
+    {
+      "author": "George Orwell",
+      "country": "England",
+      "link": "http://en.wikipedia.org/wiki/Nineteen_Eighty-Four"
+    },
+    {
+      "author": "F. Scott Fitzgerald",
+      "country": "United States",
+      "link": "http://en.wikipedia.org/wiki/The_Great_Gatsby"
+    },
+    {
+      "author": "Antoine de Saint-Exupery",
+      "country": "France",
+      "link": "http://en.wikipedia.org/wiki/The_Little_Prince"
+    },
+    {
+      "author": "Emily Bronte",
+      "country": "England",
+      "link": "http://en.wikipedia.org/wiki/Wuthering_Heights"
+    }
+]
