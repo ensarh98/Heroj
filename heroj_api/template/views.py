@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from .models import FirstAidCase
+from .models import FirstAidStep
 from django.views.decorators.http import require_GET
 from rest_framework.decorators import api_view
 
@@ -37,3 +38,21 @@ def search_cases(request):
         for case in results
     ]
     return JsonResponse(serialized_results, safe=False)
+
+
+cases_ordered_by_title = FirstAidCase.objects.order_by("title")
+
+keyword = "rijec_za_pretragu"
+steps_with_keyword = FirstAidStep.objects.filter(
+    description__icontains=keyword
+).select_related("case")
+
+for step in steps_with_keyword:
+    print(step.description)
+    print(step.case.title)
+
+some_word = "rijec"
+cases_with_specific_word = FirstAidCase.objects.filter(title__icontains=some_word)
+
+some_id = "id_slucaja"
+cases_with_specific_id = FirstAidCase.objects.filter(id=some_id)
