@@ -4,6 +4,7 @@ import Quiz from "./pages/quiz";
 import Forum from "./pages/forum";
 import NoPage from "./pages/nopage";
 import IndexApp from "./pages/index/components/IndexApp";
+import Template from "./pages/template/Template.jsx";
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
@@ -19,21 +20,22 @@ import Login from "./pages/login/Login";
 
 export default function App() {
   return (
-      <BrowserRouter>
-        <Routes>
-            <Route index element={<IndexApp />} />
-            <Route path="/forum" element={<Forum />} />
-            <Route path="/forum/profile" element={<ForumProfile />} />
-            <Route path="/forum/register" element={<ForumRegister />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/forum/register/:id" element={<ForumRegisterId />} />
-            <Route path="/forum/:id" element={<ForumDistinct />} />
-            <Route path="/forum/:forumid/:id" element={<Topic />} />
-            <Route path="quiz" element={<Quiz />} />
-            <Route path="*" element={<NoPage />} />
-        </Routes>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<IndexApp />} />
+        <Route path="/forum" element={<Forum />} />
+        <Route path="/forum/profile" element={<ForumProfile />} />
+        <Route path="/forum/register" element={<ForumRegister />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/forum/register/:id" element={<ForumRegisterId />} />
+        <Route path="/forum/:id" element={<ForumDistinct />} />
+        <Route path="/forum/:forumid/:id" element={<Topic />} />
+        <Route path="/template/:id" element={<Template />} />
+        <Route path="quiz" element={<Quiz />} />
+        <Route path="*" element={<NoPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
