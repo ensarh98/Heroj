@@ -20,11 +20,11 @@ function IndexApp() {
   };
 
   const handleClickSignUp = () => {
-    window.location.href = 'http://localhost:3000/forum/register/';
+    window.location.href = 'http://localhost:3000/register/';
   };
 
   const handleClickLogIn = () => {
-    window.location.href = 'http://localhost:3000/forum/login/';
+    window.location.href = 'http://localhost:3000/login/';
   };
 
   return (
