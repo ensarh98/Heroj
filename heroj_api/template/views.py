@@ -1,7 +1,5 @@
 from django.http import JsonResponse
 from .models import FirstAidCase
-from .models import FirstAidStep
-from django.views.decorators.http import require_GET
 from rest_framework.decorators import api_view
 
 
@@ -20,4 +18,3 @@ def result_view(request, id):
         return JsonResponse(data)
     except FirstAidCase.DoesNotExist:
         return JsonResponse({"error": "Not found!"}, status=404)
-
