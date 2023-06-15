@@ -21,4 +21,5 @@ urlpatterns = [
     path("forum/", include("forum.urls")),
     path("template/", include("template.urls")),
     path('admin/', admin.site.urls),
+    path("quiz/", include("quiz.urls")),
 ]

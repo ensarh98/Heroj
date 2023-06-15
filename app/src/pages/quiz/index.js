@@ -1,4 +1,5 @@
+import App from "./App";
 
 export default function Quiz() {
-  return <h1>Quiz</h1>
+  return <App />;
 }
