@@ -13,14 +13,13 @@ function Searchfield1(props) {
   const onValueChange = (str) => {
     setSearchText(str);
     if (str) {
-      axios.get(`http://localhost:8000/template/${str}/search/`)
-        .then((res) => {
-          setData(res.data)
+      axios.get(`http://localhost:8000/template/${str}/search/`).then((res) => {
+        setData(res.data);
       });
     } else {
       setData([]);
     }
-  }
+  };
 
   const handleSearchText = () => {
     setData([]);
@@ -50,13 +49,15 @@ function Searchfield1(props) {
             onBlur={handleInputBlur}
             ref={inputRef}
           />
-          <button className="search-button" onClick={handleSearchText}>
-            <img
-              src="../images/search-icon.png"
-              className="search-bar-icon"
-              alt="search"
-            />
-          </button>
+          {searchText == "" && (
+            <span className="search-button" onClick={handleSearchText}>
+              <img
+                src="../images/search-icon.png"
+                className="search-bar-icon"
+                alt="search"
+              />
+            </span>
+          )}
         </div>
       </div>
       {data.length != 0 && (
