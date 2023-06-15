@@ -5,9 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { TemplateHeader } from './TemplateHeader';
 import { StepContent } from './StepContent';
 import './Template.css';
-import Button1 from '../../shared_components/Button1'
+import Button1 from '../../shared_components/Button1';
 import Sidebar from '../../shared_components/Sidebar';
-import ShowSidebar from "../../shared_components/ShowSidebarButton";
+import ShowSidebar from '../../shared_components/ShowSidebarButton';
 
 const Template = () => {
     const { id } = useParams();
@@ -28,21 +28,21 @@ const Template = () => {
     const sidebarRef = useRef(null);
 
     const openNav = () => {
-        sidebarRef.current.style.left = "0";
+        sidebarRef.current.style.left = '0';
     };
 
     const closeNav = () => {
-        sidebarRef.current.style.left = "-400px";
+        sidebarRef.current.style.left = '-400px';
     };
 
     const handleNextStep = () => {
-        if (currentStep < steps.length - 1) {
+        if (currentStep < steps.length - 1 && !isLastStep) {
             setCurrentStep((prevStep) => prevStep + 1);
         }
     };
 
     const handlePreviousStep = () => {
-        if (currentStep > 0) {
+        if (currentStep > 0 && !isFirstStep) {
             setCurrentStep((prevStep) => prevStep - 1);
         }
     };
@@ -53,6 +53,9 @@ const Template = () => {
 
     const { title, steps } = template;
     const currentStepData = steps[currentStep];
+
+    const isFirstStep = currentStep === 0;
+    const isLastStep = currentStep === steps.length - 1;
 
     return (
         <div id="tempPage">
@@ -71,17 +74,20 @@ const Template = () => {
                 </div>
                 <div id="tempButtons">
                     <div id="buttonBack">
-                        <Button1 id="but1"
-                            text={"Back"}
-                            fontSize={"25px"}
-                            onClick={handlePreviousStep}
+                        <Button1
+                            id="but1"
+                            text={'Back'}
+                            fontSize={'25px'}
+                            onClick={isFirstStep ? null : handlePreviousStep}
+                            disabled={isFirstStep}
                         />
                     </div>
                     <div id="buttonNext">
                         <Button1
-                            text={"Next"}
-                            fontSize={"25px"}
-                            onClick={handleNextStep}
+                            text={'Next'}
+                            fontSize={'25px'}
+                            onClick={isLastStep ? null : handleNextStep}
+                            disabled={isLastStep}
                         />
                     </div>
                 </div>
