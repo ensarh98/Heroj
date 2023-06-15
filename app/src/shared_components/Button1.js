@@ -7,7 +7,7 @@ function Button1(props){
         };
 
         return(
-                <button className={"Button1"} style={fontSize}>{props.text}</button>
+                <button className={"Button1"} style={fontSize} onClick={props.onClick}>{props.text}</button>
         )
 }
 
