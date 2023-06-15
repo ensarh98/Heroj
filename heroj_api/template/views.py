@@ -20,20 +20,25 @@ def result_view(request, id):
         return JsonResponse({"error": "Not found!"}, status=404)
 
 @api_view(["GET"])
-def searchFor(request, words):
+def searchForKeywords(request, words):
     word_list = words.split()
     word = words[0]
 
     keyword = None
 
     # Find keyword match
-    keyword = Keywords.objects.filter(word=word).first()    
+    keyword = Keywords.objects.filter(word__icontains=word).first()    
     if keyword == None:
         try:
-            synonym = Synonyms.objects.get(synonym=word)
+            synonym = Synonyms.objects.get(synonym__icontains=word)
             keyword = synonym.word
         except Synonyms.DoesNotExist:
             return JsonResponse({"error": "Not found!"}, status=404)
 
-    Assoc.objects.filter(keyword=keyword)
+    assocs = Assoc.objects.filter(keyword=keyword).order_by('-hit_count', '-view_count').values()
 
+    data = []
+    for assoc in assocs:
+        data.append(assoc.json())
+
+    return JsonResponse(data, safe=False)
