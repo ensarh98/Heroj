@@ -33,7 +33,7 @@ def searchForKeywords(request, words):
             synonym = Synonyms.objects.get(synonym__icontains=word)
             keyword = synonym.word
         except Synonyms.DoesNotExist:
-            return JsonResponse({"error": "Not found!"}, status=404)
+            return JsonResponse([], safe=False)
 
     print(keyword.word)
 
