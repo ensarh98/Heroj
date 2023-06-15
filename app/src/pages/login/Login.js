@@ -95,7 +95,7 @@ export default function Login(){
                 <FormGroup>
                     <Button1 text={"Prijavi se"} fontSize={"20px"}></Button1>
                 </FormGroup>
-        </Form>
+            </Form>
         </div>
     )
 }
