@@ -1,29 +1,29 @@
 import React, { useRef, useState } from "react";
 import "./Searchfield1.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Searchfield1(props) {
   const [searchText, setSearchText] = useState("");
   const [isPlaceholderVisible, setIsPlaceholderVisible] = useState(true);
   const inputRef = useRef(null);
 
-  const [filteredData, setFilteredData] = useState([]);
+  const [data, setData] = useState([]);
 
-  const handleFilter = (e) => {
-    const searchWord = e.target.value;
-    const newFilter = props.data.filter((value) => {
-      return value.title.toLowerCase().includes(searchWord.toLowerCase());
-    });
-
-    if (searchWord === "") {
-      setFilteredData([]);
+  const onValueChange = (str) => {
+    setSearchText(str);
+    if (str) {
+      axios.get(`http://localhost:8000/template/${str}/search/`)
+        .then((res) => {
+          setData(res.data)
+      });
     } else {
-      setFilteredData(newFilter);
+      setData([]);
     }
-  };
+  }
 
   const handleSearchText = () => {
-    setFilteredData([]);
+    setData([]);
     setSearchText("");
   };
 
@@ -44,10 +44,7 @@ function Searchfield1(props) {
             className="search-bar"
             type="search"
             value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value);
-              handleFilter(e);
-            }}
+            onChange={(e) => onValueChange(e.target.value)}
             placeholder={isPlaceholderVisible ? props.placeholder : ""}
             onFocus={handleInputFocus}
             onBlur={handleInputBlur}
@@ -62,18 +59,18 @@ function Searchfield1(props) {
           </button>
         </div>
       </div>
-      {filteredData.length != 0 && (
+      {data.length != 0 && (
         <div className="result-wrapper">
           <div className="dataResult">
-            {filteredData.slice(0, 5).map((value, key) => {
+            {data.map((value, key) => {
               return (
                 <Link
-                  to="/"
+                  to={`http://localhost:3000/template/${value.case.id}`}
                   className="dataItem"
                   key={key}
                   onClick={handleSearchText}
                 >
-                  <h5 className="data-title">{value.title}</h5>
+                  <h5 className="data-title">{value.case.title}</h5>
                 </Link>
               );
             })}
