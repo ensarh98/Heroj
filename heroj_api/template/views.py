@@ -26,6 +26,9 @@ def result_view(request, id):
 
 @api_view(["GET"])
 def searchForKeywords(request, words):
+    if len(words) < 2:
+        return JsonResponse([], safe=False)
+
     word_list = words.split()
     word = word_list[0]
 
@@ -40,7 +43,7 @@ def searchForKeywords(request, words):
         except Synonyms.DoesNotExist:
             return JsonResponse([], safe=False)
 
-    assocs = Assoc.objects.filter(keyword=keyword).order_by('-hit_count', '-view_count')
+    assocs = Assoc.objects.filter(keyword=keyword).order_by('-hit_count')
 
     data = []
     for assoc in assocs:
@@ -50,7 +53,6 @@ def searchForKeywords(request, words):
 
 @api_view(["GET"])
 def getTopCases(request, count):
-
     cases = FirstAidCase.objects.all().order_by('-view_count')[:count]
 
     data = []

@@ -47,5 +47,4 @@ class Assoc(models.Model):
                 'title': self.case.title
             },
             'hit_count': self.hit_count,
-            'view_count': self.view_count
         }
