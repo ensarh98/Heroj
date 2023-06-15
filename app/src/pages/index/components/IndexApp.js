@@ -21,11 +21,11 @@ function IndexApp() {
   };
 
   const handleClickSignUp = () => {
-    window.location.href = "http://localhost:3000/forum/register/";
+    window.location.href = "http://localhost:3000/register/";
   };
 
   const handleClickLogIn = () => {
-    window.location.href = "http://localhost:3000/forum/login/";
+    window.location.href = "http://localhost:3000/login/";
   };
 
   return (
@@ -72,17 +72,6 @@ function IndexApp() {
             link={""}
           />
         </div>
-        {/* <div id="img-container">
-          <div className="img-item">
-            <img src="../../../images/prvapomoc 1.png"></img>
-          </div>
-          <div className="img-item">
-            <img src="../../../images/drugapomoc 1.png"></img>
-          </div>
-          <div className="img-item">
-            <img src="../../../images/trecapomoc 1.png"></img>
-          </div>
-        </div> */}
       </div>
     </div>
   );

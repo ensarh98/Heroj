@@ -43,10 +43,6 @@ body,
   margin-top: 6%;
 }
 
-/* .img-item img {
-  width: 12%;
-} */
-
 .row-cases {
   display: flex;
   flex-direction: row;
