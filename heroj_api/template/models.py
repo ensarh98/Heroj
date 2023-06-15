@@ -30,4 +30,3 @@ class Assoc(models.Model):
     keyword = models.ForeignKey(Keywords, on_delete=models.CASCADE)
     case = models.ForeignKey(FirstAidCase, on_delete=models.CASCADE)
     count = models.IntegerField(default=0)
-    in_title = models.BooleanField(default=False)
