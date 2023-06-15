@@ -35,7 +35,7 @@ def searchForKeywords(request, words):
         except Synonyms.DoesNotExist:
             return JsonResponse({"error": "Not found!"}, status=404)
 
-    assocs = Assoc.objects.filter(keyword=keyword).order_by('-hit_count', '-view_count').values()
+    assocs = Assoc.objects.filter(keyword=keyword).order_by('-hit_count', '-view_count')
 
     data = []
     for assoc in assocs:
