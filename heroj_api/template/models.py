@@ -18,3 +18,16 @@ class FirstAidStep(models.Model):
 
     def __str__(self):
         return f"Step {self.step_number} of {self.case.title}"
+
+class Keywords(models.Model):
+    word = models.CharField(max_length=255, primary_key=True)
+
+class Synonyms(models.Model):
+    synonym = models.CharField(max_length=255, primary_key=True)
+    word = models.ForeignKey(Keywords, on_delete=models.CASCADE)
+
+class Assoc(models.Model):
+    keyword = models.ForeignKey(Keywords, on_delete=models.CASCADE)
+    case = models.ForeignKey(FirstAidCase, on_delete=models.CASCADE)
+    count = models.IntegerField(default=0)
+    in_title = models.BooleanField(default=False)
