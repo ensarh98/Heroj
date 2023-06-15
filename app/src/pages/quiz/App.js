@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import Question from "./components/Question";
 import QuizEnd from "./components/QuizEnd";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Button1 from "../../shared_components/Button1";
+import Sidebar from "../../shared_components/Sidebar";
+import ShowSidebar from "../../shared_components/ShowSidebarButton";
 
 function App() {
   const [questions, setQuestions] = useState([]);
@@ -93,8 +95,22 @@ function App() {
     setQuestions(questions);
   }
 
+  const sidebarRef = useRef(null);
+
+  const openNav = () => {
+    sidebarRef.current.style.left = "0";
+  };
+
+  const closeNav = () => {
+    sidebarRef.current.style.left = "-400px";
+  };
+
   return (
     <div className="container-quiz-wrapper">
+      <Sidebar innerRef={sidebarRef} closeNav={closeNav} />
+      <div id="heading-left">
+        <ShowSidebar onClick={openNav} />
+      </div>
       {numberOfQuestion <= 10 ? (
         showQuiz ? (
           <>
