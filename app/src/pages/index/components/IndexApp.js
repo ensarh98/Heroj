@@ -5,12 +5,14 @@ import Searchfield1 from "../../../shared_components/Searchfield1";
 import Sidebar from "../../../shared_components/Sidebar";
 import ShowSidebar from "../../../shared_components/ShowSidebarButton";
 import Case from "../../../shared_components/Case";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import data from "./data.json";
+import axios from "axios";
 
 function IndexApp() {
   const mainRef = useRef(null);
   const sidebarRef = useRef(null);
+  const [topCases, setTopCases] = useState([]);
 
   const openNav = () => {
     sidebarRef.current.style.left = "0";
@@ -27,6 +29,11 @@ function IndexApp() {
   const handleClickLogIn = () => {
     window.location.href = "http://localhost:3000/login/";
   };
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/template/top/3/")
+      .then(res => setTopCases(res.data));
+  }, []);
 
   return (
     <div id="main" ref={mainRef}>
@@ -54,23 +61,15 @@ function IndexApp() {
           <Searchfield1 placeholder="Unesite simptom" data={data} />
         </div>
         <div className="row-cases">
-          <Case
-            imagePath={"../../../images/prvapomoc 1.png"}
-            text={"Najpopularniji prvi"}
-            link={""}
-          />
-          <Case
-            imagePath={"../../../images/drugapomoc 1.png"}
-            text={
-              "Najpopularniji prvi sa malo dužim tekstom djgsdgjpsog lksdgj lksjglksdjgkl sdjgl"
-            }
-            link={""}
-          />
-          <Case
-            imagePath={"../../../images/trecapomoc 1.png"}
-            text={"Najpopularniji prvi"}
-            link={""}
-          />
+          {
+            topCases.length !== 0 && topCases.map((value, index) => (
+              <Case
+                imagePath={`../../../images/slucaj_${index}.png`}
+                text={value.title}
+                link={`http://localhost:3000/template/${value.id}`}
+              />
+            ))
+          }
         </div>
       </div>
     </div>
