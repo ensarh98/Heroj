@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { TemplateHeader } from './TemplateHeader';
 import { StepContent } from './StepContent';
-import { NavigationButtons } from './NavigationButtons';
 import './Template.css';
+import Button1 from '../../shared_components/Button1'
+import Sidebar from '../../shared_components/Sidebar';
+import ShowSidebar from "../../shared_components/ShowSidebarButton";
 
 const Template = () => {
     const { id } = useParams();
     const [template, setTemplate] = useState(null);
     const [currentStep, setCurrentStep] = useState(0);
-    const navigate = useNavigate();
 
     useEffect(() => {
         axios
@@ -23,6 +24,16 @@ const Template = () => {
                 console.error('Error fetching template:', error);
             });
     }, [id]);
+
+    const sidebarRef = useRef(null);
+
+    const openNav = () => {
+        sidebarRef.current.style.left = "0";
+    };
+
+    const closeNav = () => {
+        sidebarRef.current.style.left = "-400px";
+    };
 
     const handleNextStep = () => {
         if (currentStep < steps.length - 1) {
@@ -36,10 +47,6 @@ const Template = () => {
         }
     };
 
-    const handleButtonClick = () => {
-        navigate('/');
-    };
-
     if (!template) {
         return <p>Loading...</p>;
     }
@@ -48,21 +55,36 @@ const Template = () => {
     const currentStepData = steps[currentStep];
 
     return (
-        <div id="tempDiv">
-            <div id="tempHead">
-                <TemplateHeader title={title} />
+        <div id="tempPage">
+            <div id="tempBar">
+                <Sidebar innerRef={sidebarRef} closeNav={closeNav} />
+                <div id="heading-left">
+                    <ShowSidebar onClick={openNav} />
+                </div>
             </div>
-            <div id="tempContent">
-                <StepContent step={currentStepData} />
-            </div>
-            <div id="tempButtons">
-                <NavigationButtons
-                    hasPreviousStep={currentStep > 0}
-                    hasNextStep={currentStep < steps.length - 1}
-                    onPreviousStep={handlePreviousStep}
-                    onNextStep={handleNextStep}
-                    onButtonClick={handleButtonClick}
-                />
+            <div id="tempDiv">
+                <div id="tempHead">
+                    <TemplateHeader title={title} />
+                </div>
+                <div id="tempContent">
+                    <StepContent step={currentStepData} />
+                </div>
+                <div id="tempButtons">
+                    <div id="buttonBack">
+                        <Button1 id="but1"
+                            text={"Back"}
+                            fontSize={"25px"}
+                            onClick={handlePreviousStep}
+                        />
+                    </div>
+                    <div id="buttonNext">
+                        <Button1
+                            text={"Next"}
+                            fontSize={"25px"}
+                            onClick={handleNextStep}
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     );
