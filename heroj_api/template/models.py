@@ -4,6 +4,7 @@ from django.db import models
 class FirstAidCase(models.Model):
     id = models.CharField(max_length=255, primary_key=True)
     title = models.CharField(max_length=255)
+    view_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
