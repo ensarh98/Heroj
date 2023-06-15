@@ -15,6 +15,11 @@ def result_view(request, id):
                 "description": step.description,
             }
             data["steps"].append(step_data)
+
+        # Increment view count
+        case.view_count = case.view_count + 1
+        case.save()
+
         return JsonResponse(data)
     except FirstAidCase.DoesNotExist:
         return JsonResponse({"error": "Not found!"}, status=404)
@@ -35,15 +40,21 @@ def searchForKeywords(request, words):
         except Synonyms.DoesNotExist:
             return JsonResponse([], safe=False)
 
-    print(keyword.word)
-
     assocs = Assoc.objects.filter(keyword=keyword).order_by('-hit_count', '-view_count')
 
     data = []
     for assoc in assocs:
-        print(assoc.json())
         data.append(assoc.json())
 
-    print("Ovdje smo")
+    return JsonResponse(data, safe=False)
+
+@api_view(["GET"])
+def getTopCases(request, count):
+
+    cases = FirstAidCase.objects.all().order_by('-view_count')[:count]
+
+    data = []
+    for case in cases:
+        data.append(case.json())
 
     return JsonResponse(data, safe=False)

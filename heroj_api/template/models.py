@@ -8,6 +8,13 @@ class FirstAidCase(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def json(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'view_count': self.view_count
+        }
 
 class FirstAidStep(models.Model):
     case = models.ForeignKey(
