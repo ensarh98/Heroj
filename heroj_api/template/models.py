@@ -4,9 +4,17 @@ from django.db import models
 class FirstAidCase(models.Model):
     id = models.CharField(max_length=255, primary_key=True)
     title = models.CharField(max_length=255)
+    view_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
+    
+    def json(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'view_count': self.view_count
+        }
 
 class FirstAidStep(models.Model):
     case = models.ForeignKey(
@@ -29,7 +37,6 @@ class Assoc(models.Model):
     keyword = models.ForeignKey(Keywords, on_delete=models.CASCADE)
     case = models.ForeignKey(FirstAidCase, on_delete=models.CASCADE)
     hit_count = models.IntegerField()
-    view_count = models.IntegerField(default=0)
 
     def json(self):
         return {
@@ -40,5 +47,4 @@ class Assoc(models.Model):
                 'title': self.case.title
             },
             'hit_count': self.hit_count,
-            'view_count': self.view_count
         }
