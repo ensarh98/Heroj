@@ -12,7 +12,7 @@ export default function Sidebar({ innerRef, closeNav }) {
       </div>
       <div className="sidebar-body">
         <SidebarButton 
-          link="http://localhost:3000/home"
+          link="http://localhost:3000/"
           text="HOME"
         />
         <SidebarButton
