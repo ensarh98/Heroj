@@ -26,7 +26,7 @@ def result_view(request, id):
 
 @api_view(["GET"])
 def searchForKeywords(request, words):
-    if len(words) < 2:
+    if len(words) < 3:
         return JsonResponse([], safe=False)
 
     word_list = words.split()
