@@ -62,7 +62,7 @@ function Searchfield1(props) {
       </div>
       {data.length != 0 && (
         <div className="result-wrapper">
-          <div className="dataResult">
+          <div className="dataResult fade-in">
             {data.map((value, key) => {
               return (
                 <Link

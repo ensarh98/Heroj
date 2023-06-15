@@ -4,14 +4,12 @@
   display: flex;
   flex-direction: row;
   height: 60px;
-  gap: 15px;
   justify-content: center;
-  width: 70%;
 }
 
 .search-bar {
   box-sizing: border-box;
-  width: 70%;
+  width: 50%;
   height: 60px;
   background: #ffffff;
   border: 1px solid #000000;
@@ -24,15 +22,15 @@
   line-height: 38px;
   text-align: center;
   color: rgba(0, 0, 0, 0.5);
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   order: 0;
 }
 
 .search-button {
-  margin-left: -60px;
   display: flex;
+  margin-left: -50px;
   align-items: center;
 }
 
@@ -51,17 +49,15 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-top: 5px;
   width: 47%;
   height: max-content;
-  display: flex;
-  flex-direction: column;
   gap: 5px;
+  align-items: center;
+  position: absolute;
 }
 
 .search-column {
   text-align: -webkit-center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  inline-size: -webkit-fill-available;
 }
 
 .result-wrapper {
@@ -71,7 +67,6 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .dataItem {
   font-family: "Allerta Stencil";
-  width: -moz-fit-content;
   padding: 15px 20px;
   border: 2px solid black;
   border-radius: 20px;
@@ -79,6 +74,7 @@ input[type="search"]::-webkit-search-cancel-button {
   box-shadow: 2px 2px 2px rgb(0 0 0 / 20%);
   transition: transform 0.2s ease;
   text-decoration: none;
+  width: max-content;
 }
 
 .dataItem:hover {
@@ -102,4 +98,27 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .dataItem h5 {
   margin: 0px;
+}
+
+.dataResult.fade-in {
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  animation: fade-in 0.5s ease-in-out forwards;
+  margin-bottom: 40px;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dataResult.fade-in > * {
+  animation-delay: 0.8s;
 }
