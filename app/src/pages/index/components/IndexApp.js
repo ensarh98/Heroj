@@ -6,7 +6,6 @@ import Sidebar from "../../../shared_components/Sidebar";
 import ShowSidebar from "../../../shared_components/ShowSidebarButton";
 import Case from "../../../shared_components/Case";
 import { useEffect, useRef, useState } from "react";
-import data from "./data.json";
 import axios from "axios";
 
 function IndexApp() {
@@ -31,8 +30,9 @@ function IndexApp() {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:8000/template/top/3/")
-      .then(res => setTopCases(res.data));
+    axios
+      .get("http://localhost:8000/template/top/3/")
+      .then((res) => setTopCases(res.data));
   }, []);
 
   return (
@@ -58,18 +58,17 @@ function IndexApp() {
       <div id="content">
         <div id="logo-and-search">
           <LogoComponent />
-          <Searchfield1 placeholder="Unesite simptom" data={data} />
+          <Searchfield1 placeholder="Unesite simptom" />
         </div>
         <div className="row-cases">
-          {
-            topCases.length !== 0 && topCases.map((value, index) => (
+          {topCases.length !== 0 &&
+            topCases.map((value, index) => (
               <Case
                 imagePath={`../../../images/slucaj_${index}.png`}
                 text={value.title}
                 link={`http://localhost:3000/template/${value.id}`}
               />
-            ))
-          }
+            ))}
         </div>
       </div>
     </div>
