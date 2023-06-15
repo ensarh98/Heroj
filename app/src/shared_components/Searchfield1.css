@@ -6,7 +6,7 @@
   height: 60px;
   gap: 15px;
   justify-content: center;
-  width: 58%;
+  width: 70%;
 }
 
 .search-bar {
@@ -56,16 +56,7 @@ input[type="search"]::-webkit-search-cancel-button {
   align-items: center;
 }
 
-.dataResult {
-  margin-top: 5px;
-  width: 38%;
-  height: max-content;
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  overflow: hidden;
-  overflow-y: auto;
-  margin-left: -70px;
-}
+/* 
 
 .dataResult::-webkit-scrollbar {
   display: none;
@@ -95,15 +86,61 @@ a:hover {
   background-color: lightgrey;
 }
 
+
+
+.wrapp-result {
+  width: 50%;
+} */
+
+.dataResult {
+  margin-top: 5px;
+  width: 50%;
+  height: max-content;
+  /* background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+  /* overflow: hidden;
+  overflow-y: auto; */
+  margin-left: -70px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .search-column {
   text-align: -webkit-center;
-  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
   inline-size: -webkit-fill-available;
 }
 
-.wrapp-result {
-  width: 50%;
+.result-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.dataItem {
+  font-family: "Allerta Stencil";
+  width: -moz-fit-content;
+  /* width: fit-content; */
+  padding: 15px 20px;
+  border: 2px solid black;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 2px 2px 2px rgb(0 0 0 / 20%);
+  transition: transform 0.2s ease;
+  text-decoration: none;
+}
+
+.data-title {
+  color: #5378f4;
+}
+
+.ordinalNumber {
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.dataItem h5 {
+  margin: 0px;
 }

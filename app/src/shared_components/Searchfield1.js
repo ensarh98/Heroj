@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./Searchfield1.css";
+import { Link } from "react-router-dom";
 
 function Searchfield1(props) {
   const [searchText, setSearchText] = useState("");
@@ -11,7 +12,7 @@ function Searchfield1(props) {
   const handleFilter = (e) => {
     const searchWord = e.target.value;
     const newFilter = props.data.filter((value) => {
-      return value.author.toLowerCase().includes(searchWord.toLowerCase());
+      return value.title.toLowerCase().includes(searchWord.toLowerCase());
     });
 
     if (searchWord === "") {
@@ -60,23 +61,25 @@ function Searchfield1(props) {
             />
           </button>
         </div>
-        {filteredData.length != 0 && (
+      </div>
+      {filteredData.length != 0 && (
+        <div className="result-wrapper">
           <div className="dataResult">
             {filteredData.slice(0, 5).map((value, key) => {
               return (
-                <a
+                <Link
+                  to="/"
                   className="dataItem"
+                  key={key}
                   onClick={handleSearchText}
-                  href={value.link}
-                  target="_blank"
                 >
-                  <p>{value.author}</p>
-                </a>
+                  <h5 className="data-title">{value.title}</h5>
+                </Link>
               );
             })}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 }
