@@ -8,7 +8,6 @@ class FirstAidCase(models.Model):
     def __str__(self):
         return self.title
 
-
 class FirstAidStep(models.Model):
     case = models.ForeignKey(
         FirstAidCase, on_delete=models.CASCADE, related_name="steps"
@@ -18,3 +17,28 @@ class FirstAidStep(models.Model):
 
     def __str__(self):
         return f"Step {self.step_number} of {self.case.title}"
+
+class Keywords(models.Model):
+    word = models.CharField(max_length=255, primary_key=True)
+
+class Synonyms(models.Model):
+    synonym = models.CharField(max_length=255, primary_key=True)
+    word = models.ForeignKey(Keywords, on_delete=models.CASCADE)
+
+class Assoc(models.Model):
+    keyword = models.ForeignKey(Keywords, on_delete=models.CASCADE)
+    case = models.ForeignKey(FirstAidCase, on_delete=models.CASCADE)
+    hit_count = models.IntegerField()
+    view_count = models.IntegerField(default=0)
+
+    def json(self):
+        return {
+            'id': self.pk,
+            'keyword': self.keyword.word,
+            'case': {
+                'id': self.case.id,
+                'title': self.case.title
+            },
+            'hit_count': self.hit_count,
+            'view_count': self.view_count
+        }
