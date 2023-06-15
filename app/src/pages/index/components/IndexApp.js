@@ -63,17 +63,6 @@ function IndexApp() {
             link={""}
           />
         </div>
-        {/* <div id="img-container">
-          <div className="img-item">
-            <img src="../../../images/prvapomoc 1.png"></img>
-          </div>
-          <div className="img-item">
-            <img src="../../../images/drugapomoc 1.png"></img>
-          </div>
-          <div className="img-item">
-            <img src="../../../images/trecapomoc 1.png"></img>
-          </div>
-        </div> */}
       </div>
     </div>
   );

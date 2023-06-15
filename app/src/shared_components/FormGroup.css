@@ -1,6 +1,5 @@
 .FormGroup{
     display: flex;
     flex-direction: column;
-    padding-bottom: 40px;
-    border: 1px solid greenyellow;
+    padding: 20px;
 }

@@ -1,10 +1,11 @@
+import Button1 from "../../shared_components/Button1";
+import Form from "../../shared_components/Form";
+import FormControl from "../../shared_components/FormControl";
+import FormGroup from "../../shared_components/FormGroup";
 import FormInput from "../../shared_components/FormInput";
 import FormLabel from "../../shared_components/FormLabel";
-import Form from "../../shared_components/Form";
-import FormGroup from "../../shared_components/FormGroup";
-import Button1 from "../../shared_components/Button1";
+
 import React from "react";
-import FormControl from "../../shared_components/FormControl";
 import axios from "axios";
 
 export default function Login(){
@@ -99,7 +100,7 @@ export default function Login(){
         setErrorField(
             'password',
             invalidPassword(password),
-            'Password must contain only alphanumeric values or _, at least 6 and max 15 characters'
+            'Password must contain only alphanumeric values or _, at least 6 and max 15 characters.'
         );
     }
 
@@ -108,7 +109,7 @@ export default function Login(){
         setErrorField(
             'confirmPassword',
             invalidConfirmPassword(confirmPassword),
-            'Passwords must match'
+            'Passwords must match!'
         );
     }
 
