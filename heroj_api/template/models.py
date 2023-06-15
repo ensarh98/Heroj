@@ -29,7 +29,6 @@ class Assoc(models.Model):
     keyword = models.ForeignKey(Keywords, on_delete=models.CASCADE)
     case = models.ForeignKey(FirstAidCase, on_delete=models.CASCADE)
     hit_count = models.IntegerField()
-    view_count = models.IntegerField(default=0)
 
     def json(self):
         return {
