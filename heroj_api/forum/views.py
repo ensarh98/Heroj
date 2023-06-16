@@ -84,7 +84,7 @@ def registerUser(request):
     # Send verify email response
     send_mail(
         "Heroj, Verify email",
-        f"Please follow the link below to verify your email:\n{env('REACT_APP')}forum/register/{uid}",
+        f"Please follow the link below to verify your email:\n{env('REACT_APP')}/forum/register/{uid}",
         "heroj.grupa.4@gmail.com",
         [email],
         fail_silently=False,
@@ -127,17 +127,19 @@ def add_years(d, years):
 @api_view(['POST'])
 def login(request):
     body = json.loads(request.body)
-    email = body['email']
+    username = body['username']
     password = body['password']
     remember = body['remember']
 
-    if User.objects.filter(email=email).exists() == False:
-        return HttpResponse('email not found', status=401)
+    if User.objects.filter(username=username).exists() == False:
+        #return HttpResponse('email not found', status=401)
+        return JsonResponse({ "error": { "field": "username", "msg": "username not found" } })
     
-    user = User.objects.get(email=email)
+    user = User.objects.get(username=username)
 
     if check_password(password, user.password) == False:
-        return HttpResponse('wrong password', status=401)
+        #return HttpResponse('wrong password', status=401)
+        return JsonResponse({ "error": { "field": "password", "msg": "wrong password" } })
     
     if remember:
         today = date.today()
