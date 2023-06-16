@@ -7,6 +7,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import Button1 from "../../shared_components/Button1";
 import Sidebar from "../../shared_components/Sidebar";
 import ShowSidebar from "../../shared_components/ShowSidebarButton";
+import LogoComponent from "../../shared_components/LogoComponent";
 
 function App() {
   const [questions, setQuestions] = useState([]);
@@ -137,15 +138,18 @@ function App() {
             </div>
           </>
         ) : (
-          <div className="start-quiz-button">
-            <Button1
-              onClick={handleStartQuiz}
-              fontSize={25}
-              text={"Start Quiz"}
-            >
-              Start Quiz
-            </Button1>
-          </div>
+          <>
+            <div className="logo-component-quiz">
+              <LogoComponent />
+            </div>
+            <div className="start-quiz-button">
+              <Button1
+                onClick={handleStartQuiz}
+                fontSize={25}
+                text={"Igraj Kviz"}
+              ></Button1>
+            </div>
+          </>
         )
       ) : (
         <>

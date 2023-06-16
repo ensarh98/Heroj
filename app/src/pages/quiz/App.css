@@ -40,6 +40,10 @@
   justify-content: center;
 }
 
+.logo-component-quiz {
+  margin-top: 8%;
+}
+
 .start-quiz-button {
   position: fixed;
   top: 50%;
