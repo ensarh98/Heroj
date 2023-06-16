@@ -12,6 +12,7 @@ function IndexApp() {
   const mainRef = useRef(null);
   const sidebarRef = useRef(null);
   const [topCases, setTopCases] = useState([]);
+  const [showCases, setShowCases] = useState(true);
 
   const openNav = () => {
     sidebarRef.current.style.left = "0";
@@ -58,18 +59,23 @@ function IndexApp() {
       <div id="content">
         <div id="logo-and-search">
           <LogoComponent />
-          <Searchfield1 placeholder="Unesite simptom" />
+          <Searchfield1
+            placeholder="Unesite simptom"
+            setShowCases={setShowCases}
+          />
         </div>
-        <div className="row-cases">
-          {topCases.length !== 0 &&
-            topCases.map((value, index) => (
-              <Case
-                imagePath={`../../../images/slucaj_${index}.png`}
-                text={value.title}
-                link={`http://localhost:3000/template/${value.id}`}
-              />
-            ))}
-        </div>
+        {showCases && (
+          <div className="row-cases fade-in">
+            {topCases.length !== 0 &&
+              topCases.map((value, index) => (
+                <Case
+                  imagePath={`../../../images/slucaj_${index}.png`}
+                  text={value.title}
+                  link={`http://localhost:3000/template/${value.id}`}
+                />
+              ))}
+          </div>
+        )}
       </div>
     </div>
   );
