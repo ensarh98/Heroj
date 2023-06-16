@@ -1,0 +1,66 @@
+.ForumTopicCard{
+    height: 100px;
+    display: flex;
+    font-family: Montserrat;
+    width: 100%;
+}
+
+.SectionBox{
+    height: 100%;
+    width: 100%;
+    max-width: 100px;
+    max-height: 100px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #0563C1;
+}
+
+.MainSection{
+    padding: 5px;
+    border: 1px solid black;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.TopicText{
+    font-size: 35px;
+}
+
+.UsernameSpan{
+    padding-left: 5px;
+    color: #0563C1;
+}
+
+.TopicText:hover{
+    cursor: pointer;
+    color: #03417f;
+}
+
+.RepliesIcon{
+    filter: invert(42%) sepia(77%) saturate(578%) hue-rotate(190deg) brightness(97%) contrast(97%);
+}
+
+@media (max-width: 700px) {
+    .ForumTopicCard {
+        height: 50px;
+    }
+
+    .SectionBox {
+        max-width: 50px;
+        max-height: 50px;
+        font-size: 9px;
+    }
+
+    .MainSection {
+        font-size: 9px;
+    }
+
+    .TopicText {
+        font-size: 20px;
+    }
+}

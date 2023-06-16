@@ -1,23 +1,39 @@
 import "../css/IndexApp.css";
 import Button1 from "../../../shared_components/Button1";
 import LogoComponent from "../../../shared_components/LogoComponent";
-import SearchField1 from "../../../shared_components/Searchfield1";
+import Searchfield1 from "../../../shared_components/Searchfield1";
 import Sidebar from "../../../shared_components/Sidebar";
 import ShowSidebar from "../../../shared_components/ShowSidebarButton";
-import { useEffect, useRef } from "react";
+import Case from "../../../shared_components/Case";
+import { useEffect, useRef, useState } from "react";
+import data from "./data.json";
+import axios from "axios";
 
 function IndexApp() {
-
   const mainRef = useRef(null);
   const sidebarRef = useRef(null);
+  const [topCases, setTopCases] = useState([]);
 
   const openNav = () => {
     sidebarRef.current.style.left = "0";
-  }
+  };
 
   const closeNav = () => {
     sidebarRef.current.style.left = "-400px";
-  }
+  };
+
+  const handleClickSignUp = () => {
+    window.location.href = "http://localhost:3000/register/";
+  };
+
+  const handleClickLogIn = () => {
+    window.location.href = "http://localhost:3000/login/";
+  };
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/template/top/3/")
+      .then(res => setTopCases(res.data));
+  }, []);
 
   return (
     <div id="main" ref={mainRef}>
@@ -27,26 +43,34 @@ function IndexApp() {
           <ShowSidebar onClick={openNav} />
         </div>
         <div id="heading-right">
-          <Button1 text={"Prijava"} fontSize={"25px"} />
-          <Button1 text={"Registracija"} fontSize={"25px"} />
+          <Button1
+            text={"Prijava"}
+            fontSize={"25px"}
+            onClick={handleClickLogIn}
+          />
+          <Button1
+            text={"Registracija"}
+            fontSize={"25px"}
+            onClick={handleClickSignUp}
+          />
         </div>
       </div>
       <div id="content">
         <div id="logo-and-search">
           <LogoComponent />
-          <SearchField1 placeholder="Unesite simptom" />
+          <Searchfield1 placeholder="Unesite simptom" data={data} />
         </div>
-        {/* <div id="img-container">
-          <div className="img-item">
-            <img src="../../../images/prvapomoc 1.png"></img>
-          </div>
-          <div className="img-item">
-            <img src="../../../images/drugapomoc 1.png"></img>
-          </div>
-          <div className="img-item">
-            <img src="../../../images/trecapomoc 1.png"></img>
-          </div>
-        </div> */}
+        <div className="row-cases">
+          {
+            topCases.length !== 0 && topCases.map((value, index) => (
+              <Case
+                imagePath={`../../../images/slucaj_${index}.png`}
+                text={value.title}
+                link={`http://localhost:3000/template/${value.id}`}
+              />
+            ))
+          }
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,65 @@
+#tempPage {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    position: relative;
+}
+
+#tempPage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../public/images/quiz/two_ecg_lines_in_red_and_glyph\ 1.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.25;
+    z-index: -1;
+}
+
+#tempDiv {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items: center;
+    font-family: Roboto, sans-serif;
+    color: #405ae9;
+}
+
+#heading-right {
+    flex: 1;
+    display: flex;
+    justify-content: right;
+}
+
+#tempContent {
+    font-size: 24pt;
+    margin-bottom: 50px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+#tempHead {
+    font-family: "Allerta Stencil";
+    margin-bottom: 50px;
+    margin-top: 20px;
+    text-shadow: 2px 2px 4px rgba(110, 110, 110, 0.5);
+    font-size: 30pt;
+}
+
+#tempButtons {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    padding-bottom: 50px;
+}
+
+#buttonBack {
+    margin-right: 30px;
+}

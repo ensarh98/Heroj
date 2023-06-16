@@ -1,15 +1,31 @@
 import React, { useRef, useState } from "react";
 import "./Searchfield1.css";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
-function App(props) {
+function Searchfield1(props) {
   const [searchText, setSearchText] = useState("");
   const [isPlaceholderVisible, setIsPlaceholderVisible] = useState(true);
   const inputRef = useRef(null);
 
-  function handleSearchText() {
-    console.log(searchText);
-    setSearchText("");
+  const [data, setData] = useState([]);
+
+  const onValueChange = (str) => {
+    setSearchText(str);
+    if (str) {
+      axios.get(`http://localhost:8000/template/${str}/search/`)
+        .then((res) => {
+          setData(res.data)
+      });
+    } else {
+      setData([]);
+    }
   }
+
+  const handleSearchText = () => {
+    setData([]);
+    setSearchText("");
+  };
 
   const handleInputFocus = () => {
     setIsPlaceholderVisible(false);
@@ -22,27 +38,47 @@ function App(props) {
 
   return (
     <>
-      <div className="wrapp-search-bar">
-        <input
-          className="search-bar"
-          type="search"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          placeholder={isPlaceholderVisible ? props.placeholder : ""}
-          onFocus={handleInputFocus}
-          onBlur={handleInputBlur}
-          ref={inputRef}
-        />
-        <button className="search-button" onClick={handleSearchText}>
-          <img
-            src="../images/search-icon.png"
-            className="search-bar-icon"
-            alt="search"
+      <div className="search-column">
+        <div className="wrapp-search-bar">
+          <input
+            className="search-bar"
+            type="search"
+            value={searchText}
+            onChange={(e) => onValueChange(e.target.value)}
+            placeholder={isPlaceholderVisible ? props.placeholder : ""}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
+            ref={inputRef}
           />
-        </button>
+          <button className="search-button" onClick={handleSearchText}>
+            <img
+              src="../images/search-icon.png"
+              className="search-bar-icon"
+              alt="search"
+            />
+          </button>
+        </div>
       </div>
+      {data.length != 0 && (
+        <div className="result-wrapper">
+          <div className="dataResult">
+            {data.map((value, key) => {
+              return (
+                <Link
+                  to={`http://localhost:3000/template/${value.case.id}`}
+                  className="dataItem"
+                  key={key}
+                  onClick={handleSearchText}
+                >
+                  <h5 className="data-title">{value.case.title}</h5>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </>
   );
 }
 
-export default App;
+export default Searchfield1;

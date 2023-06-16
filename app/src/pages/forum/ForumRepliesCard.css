@@ -1,0 +1,55 @@
+.ForumReplyCard{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    font-family: Montserrat;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+.ProfileSection{
+    height: 200px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.TopSection {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    color: #0563c1;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+}
+
+.ReplyTo {
+    display: flex;
+    width: 100%;
+}
+
+
+.MainSectionReply{
+    width: 100%;
+}
+
+.Username{
+    color: #0563C1;
+}
+
+.ImageReply{
+    border: 1px solid black;
+}
+.Datetime span{
+    padding: 5px;
+}
+.ReplyText{
+    padding: 10px;
+    word-wrap: break-word
+}

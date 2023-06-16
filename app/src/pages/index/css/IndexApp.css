@@ -1,14 +1,16 @@
-
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   margin: 0;
+  user-select: none;
 }
 
 #main {
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: margin-left .5s;
+  transition: margin-left 0.5s;
 }
 
 #heading {
@@ -21,6 +23,7 @@ html, body, #root {
 
 #heading-left {
   flex: 1;
+  position: absolute;
 }
 
 #heading-right {
@@ -41,6 +44,21 @@ html, body, #root {
   margin-top: 6%;
 }
 
-/* .img-item img {
-  width: 12%;
-} */
+.row-cases {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10%;
+  margin-top: 3%;
+  margin-bottom: 5%;
+}
+
+@media (max-width: 768px) {
+  .row-cases {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10%;
+    margin-top: 3%;
+  }
+}
