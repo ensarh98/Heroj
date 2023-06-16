@@ -22,9 +22,6 @@
   line-height: 38px;
   text-align: center;
   color: rgba(0, 0, 0, 0.5);
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   order: 0;
 }
 
@@ -37,7 +34,6 @@
 .search-bar-icon {
   width: 30px;
   height: 30px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 input[type="search"]::-webkit-search-cancel-button {
@@ -46,7 +42,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .dataResult {
-  margin-top: 5px;
+  margin-top: 15px;
   width: 47%;
   height: max-content;
   gap: 5px;
