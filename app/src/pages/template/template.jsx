@@ -74,15 +74,28 @@ const Template = () => {
                 </div>
                 <div id="tempButtons">
                     <div id="buttonBack">
-                        <Button1
-                            id="but1"
-                            text={'Back'}
-                            fontSize={'25px'}
-                            onClick={isFirstStep ? null : handlePreviousStep}
-                            disabled={isFirstStep}
-                        />
+                        {isFirstStep ? (
+                            <a href='http://localhost:3000/'>
+                                <Button1
+                                    id="but1"
+                                    text={'Back'}
+                                    fontSize={'25px'}
+                                    disabled={isFirstStep}
+                                />
+                            </a>
+                        ) : (
+                            <Button1
+                                id="but1"
+                                text={'Back'}
+                                fontSize={'25px'}
+                                onClick={isFirstStep ? null : handlePreviousStep}
+                                disabled={isFirstStep}
+                            />
+                        )}
                     </div>
-                    <div id="buttonNext">
+                    
+                    {!isLastStep && (
+                        <div id="buttonNext">
                         <Button1
                             text={'Next'}
                             fontSize={'25px'}
@@ -90,6 +103,8 @@ const Template = () => {
                             disabled={isLastStep}
                         />
                     </div>
+                    )}
+                    
                 </div>
             </div>
         </div>
