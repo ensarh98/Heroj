@@ -10,6 +10,10 @@ import React, { useState } from 'react';
 import ForumCard from './ForumCard';
 import ForumSideCard from './ForumSideCard';
 import ForumNavbar from './ForumNavbar';
+import RelevantCard from "./RelevantCard";
+import RelevantCardRow from "./RelevantCardRow";
+import ForumTopicCard from "./ForumTopicCard";
+import ForumRepliesCard from "./ForumRepliesCard";
 
 export default function Forum() {
 
@@ -21,48 +25,46 @@ export default function Forum() {
   }, [])
 
   return (
-    <>
-      <Container>
-        <Row>
-          <Col>
-            <ForumNavbar></ForumNavbar>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Breadcrumb>
-              <Breadcrumb.Item href="#" active>Forum</Breadcrumb.Item>
-            </Breadcrumb>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={9}>
-            <ForumCard title={<h4>Forums</h4>}>
-              {forums.map((forum) => (
-                <Link to={`/forum/${forum.pk}`}>
-                  {forum.fields.title}
-                </Link>
-              ))}
-            </ForumCard>
+      <>
+    <RelevantCard name={"Popularno"}>
+        <RelevantCardRow text={"Popularno 1"} link={"nekiUrl"}/>
+        <RelevantCardRow text={"Popularno 2"} link={"nekiUrl"}/>
+        <RelevantCardRow text={"Popularno 3fgkjdshgkjfdshgkjhfdkjghkjfdhg"} link={"nekiUrl"}/>
+        <RelevantCardRow text={"Popularno 3fgkjdshgkjfdshgkjhfdkjghkjfdhg"} link={"nekiUrl"}/>
+        <RelevantCardRow text={"Popularno 3fgkjdshgkjfdshgkjhfdkjghkjfdhg"} link={"nekiUrl"}/>
+      </RelevantCard>
+
+    <ForumTopicCard dayOfTheWeek={"Utorak"} date={"22/03/2023"} repliesNumber={"22"} topicText={"Topic "} username={"HarunHadzic22"}/>
+      <ForumTopicCard dayOfTheWeek={"Utorak"} date={"22/03/2023"} repliesNumber={"22"} topicText={"TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST"} username={"HarunHadzic22"}/>
+
+          <ForumRepliesCard time={"23:08:22"} date={"13/06/2022"} username={"harun.hadzic"} text={"Primjerak testa"} replyTo={"Tema neka"} replyNumber={"1"}/>
+      </>
+    /*
+  <>
+    <Container>
+      <Row>
+        <Col>
+          <ForumNavbar></ForumNavbar>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Breadcrumb>
+            <Breadcrumb.Item href="#" active>Forum</Breadcrumb.Item>
+          </Breadcrumb>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={9}>
+          <ForumCard title={<h4>Forums</h4>}>
             {forums.map((forum) => (
-              <ForumCard title={<h4>{forum.fields.title}</h4>}>
-                <Link to={`#`}>
-                  Post 1
-                </Link>
-                <Link to={`#`}>
-                  Post 2
-                </Link>
-                <Link to={`#`}>
-                  Post 3
-                </Link>
-                <Link to={`#`}>
-                  Post 4
-                </Link>
-              </ForumCard>
+              <Link to={`/forum/${forum.pk}`}>
+                {forum.fields.title}
+              </Link>
             ))}
-          </Col>
-          <Col>
-            <ForumSideCard title={"Recent posts"}>
+          </ForumCard>
+          {forums.map((forum) => (
+            <ForumCard title={<h4>{forum.fields.title}</h4>}>
               <Link to={`#`}>
                 Post 1
               </Link>
@@ -75,30 +77,49 @@ export default function Forum() {
               <Link to={`#`}>
                 Post 4
               </Link>
-              <Link to={`#`}>
-                Post 4
-              </Link>
-            </ForumSideCard>
-            <ForumSideCard title={"Top posts"}>
-              <Link to={`#`}>
-                Post 1
-              </Link>
-              <Link to={`#`}>
-                Post 2
-              </Link>
-              <Link to={`#`}>
-                Post 3
-              </Link>
-              <Link to={`#`}>
-                Post 4
-              </Link>
-              <Link to={`#`}>
-                Post 4
-              </Link>
-            </ForumSideCard>
-          </Col>
-        </Row>
-      </Container>
-    </>
+            </ForumCard>
+          ))}
+        </Col>
+        <Col>
+          <ForumSideCard title={"Recent posts"}>
+            <Link to={`#`}>
+              Post 1
+            </Link>
+            <Link to={`#`}>
+              Post 2
+            </Link>
+            <Link to={`#`}>
+              Post 3
+            </Link>
+            <Link to={`#`}>
+              Post 4
+            </Link>
+            <Link to={`#`}>
+              Post 4
+            </Link>
+          </ForumSideCard>
+          <ForumSideCard title={"Top posts"}>
+            <Link to={`#`}>
+              Post 1
+            </Link>
+            <Link to={`#`}>
+              Post 2
+            </Link>
+            <Link to={`#`}>
+              Post 3
+            </Link>
+            <Link to={`#`}>
+              Post 4
+            </Link>
+            <Link to={`#`}>
+              Post 4
+            </Link>
+          </ForumSideCard>
+        </Col>
+      </Row>
+    </Container>
+  </>
+
+     */
   );
 }
