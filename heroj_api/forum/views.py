@@ -37,29 +37,36 @@ def registerUser(request):
 
     # Validate for empty fields (just in case)
     if username == '':
-        return HttpResponse(content='username is required', status=200)
+        #return HttpResponse(content='username is required', status=200)
+        return JsonResponse({ "error": { "field": "username", "msg": "username is required" } })
     if email == '':
-        return HttpResponse(content='email is required', status=200)
+        #return HttpResponse(content='email is required', status=200)
+        return JsonResponse({ "error": { "field": "email", "msg": "email is required" } })
     if password == '':
-        return HttpResponse(content='password is required', status=200)
+        #return HttpResponse(content='password is required', status=200)
+        return JsonResponse({ "error": { "field": "password", "msg": "password is required" } })
 
     # Validate username format
     if re.match("^[a-zA-Z0-9_]{5,15}$", username) == False:
-        print("bad username: " + username)
-        return HttpResponse(content='wrong username format', status=401)
+        #print("bad username: " + username)
+        #return HttpResponse(content='wrong username format', status=401)
+        return JsonResponse({ "error": { "field": "username", "msg": "wrong username format" } })
     
     # Validate password format
     if re.match("^[a-zA-Z0-9_]{5,15}$", password) == False:
-        print("bad password")
-        return HttpResponse(content='wrong password format', status=401)
+        #print("bad password")
+        #return HttpResponse(content='wrong password format', status=401)
+        return JsonResponse({ "error": { "field": "password", "msg": "wrong password format" } })
 
     # Check if email is not avalible
     if User.objects.filter(email=email).exists():
-        return HttpResponse(content='email is not avaliable', status=200)
+        #return HttpResponse(content='email is not avaliable', status=200)
+        return JsonResponse({ "error": { "field": "email", "msg": "email is not avaliable" } })
 
     # Check if username already exists
     if User.objects.filter(username=username).exists():
-        return HttpResponse(content='username already exists', status=200)
+        #return HttpResponse(content='username already exists', status=200)
+        return JsonResponse({ "error": { "field": "username", "msg": "username already exists" } })
 
     # Create new user in database
     user = User(username=username, email=email, password=make_password(password))
@@ -69,9 +76,10 @@ def registerUser(request):
     try:
         validate_email(email)
     except ValidationError as e:
-        print("bad email: " + e)
-        return HttpResponse(content='wrong email format', status=401)
-    
+        #print("bad email: " + e)
+        #return HttpResponse(content='wrong email format', status=401)
+        return JsonResponse({ "error": { "field": "email", "msg": "wrong email format" } })
+
     # Generate token for verification url for user
     uid = ""
     while True:
@@ -90,7 +98,8 @@ def registerUser(request):
         fail_silently=False,
     )
 
-    return HttpResponse(content='successful registration', status=201)
+    #return HttpResponse(content='successful registration', status=201)
+    return JsonResponse({ "success": { "msg": "successful registration" } })
 
 @api_view(['GET'])
 def checkForUserId(request, id):

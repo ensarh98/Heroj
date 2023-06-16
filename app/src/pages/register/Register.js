@@ -51,15 +51,10 @@ export default function Register() {
       username,
       password
     }).then((res) => {
-      if (res.status === 201) {
+      if (res.data.error) {
+        setErrorField(res.data.error.field, true, res.data.error.msg);
+      } else if (res.data.success) {
         setSuccess(true);
-      } else if (res.status === 200) {
-        if (res.data === 'email is not avaliable') {
-          setErrorField('email', true, 'Email is not avalible.');
-        }
-        else if (res.data === 'username already exists') {
-          setErrorField('username', true, 'Username is not avalible.');
-        }
       }
     });
   }
