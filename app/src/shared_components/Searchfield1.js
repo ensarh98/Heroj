@@ -86,7 +86,7 @@ function Searchfield1(props) {
                   key={key}
                   onClick={handleSearchText}
                 >
-                  <h5 className="data-title">{value.case.title}</h5>
+                  <h5 className="data-title">{`${key+1}. ${value.case.title}`}</h5>
                 </Link>
               );
             })}
