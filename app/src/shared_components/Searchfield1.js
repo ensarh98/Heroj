@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Searchfield1.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -7,8 +7,15 @@ function Searchfield1(props) {
   const [searchText, setSearchText] = useState("");
   const [isPlaceholderVisible, setIsPlaceholderVisible] = useState(true);
   const inputRef = useRef(null);
-
   const [data, setData] = useState([]);
+
+  useEffect(() => {
+    if (data.length > 0) {
+      props.setShowCases(false);
+    } else {
+      props.setShowCases(true);
+    }
+  }, [data]);
 
   const onValueChange = (str) => {
     setSearchText(str);
@@ -41,7 +48,7 @@ function Searchfield1(props) {
         <div className="wrapp-search-bar">
           <input
             className="search-bar"
-            type="search"
+            type="text"
             value={searchText}
             onChange={(e) => onValueChange(e.target.value)}
             placeholder={isPlaceholderVisible ? props.placeholder : ""}
@@ -49,10 +56,18 @@ function Searchfield1(props) {
             onBlur={handleInputBlur}
             ref={inputRef}
           />
-          {searchText == "" && (
-            <span className="search-button" onClick={handleSearchText}>
+          {searchText == "" ? (
+            <span className="search-button">
               <img
                 src="../images/search-icon.png"
+                className="search-bar-icon"
+                alt="search"
+              />
+            </span>
+          ) : (
+            <span className="search-button" onClick={handleSearchText}>
+              <img
+                src="../images/iks.png"
                 className="search-bar-icon"
                 alt="search"
               />
