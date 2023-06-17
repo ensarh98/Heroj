@@ -1,20 +1,8 @@
-import { Link } from 'react-router-dom';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
 import axios from "axios";
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
-
 import './index.css'
 import React, { useState } from 'react';
-import ForumCard from './ForumCard';
-import ForumSideCard from './ForumSideCard';
-import ForumNavbar from './ForumNavbar';
 import RelevantCard from "./RelevantCard";
-import RelevantCardRow from "./RelevantCardRow";
 import ForumTopicCard from "./ForumTopicCard";
-import ForumRepliesCard from "./ForumRepliesCard";
-import LogedIn from "../../shared_components/LogedIn";
 
 export default function Forum() {
 
@@ -22,26 +10,37 @@ export default function Forum() {
   
   React.useEffect(() => {
     axios.get("http://localhost:8000/forum/forums/general")
-      .then(res => setForumData(res.data))
-  }, [])
+      .then(res => setForumData(res.data.topics));
+  }, []);
 
   return (
-      <>
-    <RelevantCard name={"Popularno"}>
-        <RelevantCardRow text={"Popularno 1"} link={"nekiUrl"}/>
-        <RelevantCardRow text={"Popularno 2"} link={"nekiUrl"}/>
-        <RelevantCardRow text={"Popularno 3fgkjdshgkjfdshgkjhfdkjghkjfdhg"} link={"nekiUrl"}/>
-        <RelevantCardRow text={"Popularno 3fgkjdshgkjfdshgkjhfdkjghkjfdhg"} link={"nekiUrl"}/>
-        <RelevantCardRow text={"Popularno 3fgkjdshgkjfdshgkjhfdkjghkjfdhg"} link={"nekiUrl"}/>
+    <>
+      <RelevantCard name={"Teme"}>
+        { forumData && forumData.map((value) => (
+          <ForumTopicCard dayOfTheWeek={"Utorak"} date={value.date_modified} repliesNumber={"22"} topicText={value.title} username={value.created_by}/>
+          ))
+        }
       </RelevantCard>
+    </>
+  );
 
-    <ForumTopicCard dayOfTheWeek={"Utorak"} date={"22/03/2023"} repliesNumber={"22"} topicText={"Topic "} username={"HarunHadzic22"}/>
-      <ForumTopicCard dayOfTheWeek={"Utorak"} date={"22/03/2023"} repliesNumber={"22"} topicText={"TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST"} username={"HarunHadzic22"}/>
+  // return (
+  //     <>
+  //   <RelevantCard name={"Popularno"}>
+  //       <RelevantCardRow text={"Popularno 1"} link={"nekiUrl"}/>
+  //       <RelevantCardRow text={"Popularno 2"} link={"nekiUrl"}/>
+  //       <RelevantCardRow text={"Popularno 3fgkjdshgkjfdshgkjhfdkjghkjfdhg"} link={"nekiUrl"}/>
+  //       <RelevantCardRow text={"Popularno 3fgkjdshgkjfdshgkjhfdkjghkjfdhg"} link={"nekiUrl"}/>
+  //       <RelevantCardRow text={"Popularno 3fgkjdshgkjfdshgkjhfdkjghkjfdhg"} link={"nekiUrl"}/>
+  //     </RelevantCard>
 
-          <ForumRepliesCard time={"23:08:22"} date={"13/06/2022"} username={"harun.hadzic"} text={"Primjerak testa"} replyTo={"Tema neka"} replyNumber={"1"}/>
+  //   <ForumTopicCard dayOfTheWeek={"Utorak"} date={"22/03/2023"} repliesNumber={"22"} topicText={"Topic "} username={"HarunHadzic22"}/>
+  //     <ForumTopicCard dayOfTheWeek={"Utorak"} date={"22/03/2023"} repliesNumber={"22"} topicText={"TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST"} username={"HarunHadzic22"}/>
 
-          <LogedIn username={"HarunHadzic22"}/>
-      </>
+  //         <ForumRepliesCard time={"23:08:22"} date={"13/06/2022"} username={"harun.hadzic"} text={"Primjerak testa"} replyTo={"Tema neka"} replyNumber={"1"}/>
+
+  //         <LogedIn username={"HarunHadzic22"}/>
+  //     </>
     /*
   <>
     <Container>
@@ -123,6 +122,5 @@ export default function Forum() {
     </Container>
   </>
 
-     */
-  );
+    ); */
 }
