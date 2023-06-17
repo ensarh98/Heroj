@@ -1,0 +1,62 @@
+.LogedIn{
+    display: flex;
+    width: fit-content;
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    font-family: Montserrat;
+    color: #405ae9;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+}
+
+.LogedInUsername{
+    font-size: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.ImageLogedIn{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 1px solid #405ae9;
+}
+
+#LogedInDropdown{
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+    border-radius: 20px;
+}
+
+.ImageLogedIn:hover{
+    cursor: pointer;
+    border: 2px solid #0F42EB;
+}
+
+.ForLogedInDropdown{
+    position: relative;
+    display: inline-block;
+}
+
+.LogedInDropdownOption{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    padding: 12px 16px;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+.LogedInDropdownOption:hover{
+    cursor: pointer;
+    background: #cfd2e2;
+}
