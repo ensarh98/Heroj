@@ -54,7 +54,6 @@
 .container-quiz-wrapper {
   height: -webkit-fill-available;
   background-color: white;
-  display: flex;
   flex-direction: column;
   gap: 2vw;
 }

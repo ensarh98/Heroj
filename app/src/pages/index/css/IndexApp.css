@@ -23,7 +23,6 @@ body,
 
 #heading-left {
   flex: 1;
-  position: absolute;
 }
 
 #heading-right {
