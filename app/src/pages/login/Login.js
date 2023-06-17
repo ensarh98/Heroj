@@ -100,59 +100,56 @@ export default function Login() {
 
   return (
     <>
-      <div className="reg-wrapper">
-        <div className="reg-left">
-          <Sidebar innerRef={sidebarRef} closeNav={closeNav} />
-          <div id="heading-left">
-            <ShowSidebar onClick={openNav} />
-          </div>
+      <Sidebar innerRef={sidebarRef} closeNav={closeNav} />
+      <div id="heading-left">
+        <ShowSidebar onClick={openNav} />
+      </div>
+      <div className="reg-wrapperr">
+        {/* <div className="reg-right"> */}
+        <div className="pic-warpperr">
+          <div className="head-picc"></div>
         </div>
-        <div className="reg-right">
-          <div className="pic-warpper">
-            <div className="head-pic"></div>
-          </div>
-          <div className="header-text-log">LOGIN</div>
-          <div className="login-form">
-            <Form>
-              <FormGroup>
-                <FormLabel for={"username"} text={"Korisničko ime"} />
-                <FormInput
-                  name={"username"}
-                  type={"text"}
-                  onChange={(e) => onChangeUsername(e.target.value)}
-                />
-                <FormControl
-                  text={errors.username.msg}
-                  isInvalid={errors.username.value}
-                />
-              </FormGroup>
+        <div className="header-text-logg">LOGIN</div>
+        <div className="register-formm">
+          <Form>
+            <FormGroup>
+              <FormLabel for={"username"} text={"Korisničko ime"} />
+              <FormInput
+                name={"username"}
+                type={"text"}
+                onChange={(e) => onChangeUsername(e.target.value)}
+              />
+              <FormControl
+                text={errors.username.msg}
+                isInvalid={errors.username.value}
+              />
+            </FormGroup>
 
-              <FormGroup paddingBottom={"30px"}>
-                <FormLabel for={"password"} text={"Šifra"} />
-                <FormInput
-                  name={"password"}
-                  type={"password"}
-                  onChange={(e) => onChangePassword(e.target.value)}
-                />
-                <FormControl
-                  text={errors.password.msg}
-                  isInvalid={errors.password.value}
-                />
-              </FormGroup>
+            <FormGroup paddingBottom={"30px"}>
+              <FormLabel for={"password"} text={"Šifra"} />
+              <FormInput
+                name={"password"}
+                type={"password"}
+                onChange={(e) => onChangePassword(e.target.value)}
+              />
+              <FormControl
+                text={errors.password.msg}
+                isInvalid={errors.password.value}
+              />
+            </FormGroup>
 
-              <FormGroup>
-                <Button1
-                  text={"Prijavi se"}
-                  fontSize={"20px"}
-                  onClick={onSubmit}
-                ></Button1>
-              </FormGroup>
-            </Form>
-          </div>
+            <FormGroup>
+              <Button1
+                text={"Prijavi se"}
+                fontSize={"20px"}
+                onClick={onSubmit}
+              ></Button1>
+            </FormGroup>
+          </Form>
+        </div>
 
-          <div className="logo-component-log">
-            <LogoComponent />
-          </div>
+        <div className="logo-component-logg">
+          <LogoComponent />
         </div>
       </div>
     </>
