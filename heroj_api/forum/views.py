@@ -178,8 +178,9 @@ def logout(request):
 @api_view(['GET'])
 def getUser(request, id):
     if Session.objects.filter(id=id).exists() == False:
-        return HttpResponse('session not found', satus=404)
-    
+        #return HttpResponse('session not found', satus=404)
+        return JsonResponse({ "error": "session not found" })
+
     session = Session.objects.get(id=id)
 
     return JsonResponse({
