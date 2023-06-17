@@ -2,11 +2,11 @@ import "./Form.css";
 
 export default function Form(props){
     return(
-        <form className={"Form"} onSubmit={props.onSubmit}>
+        <div className={"Form"}>
             {
                 props.children &&
                 props.children
             }
-        </form>
+        </div>
     )
 }
