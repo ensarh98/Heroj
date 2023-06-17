@@ -18,6 +18,10 @@
     color: #0563C1;
 }
 
+.LeftSectionBoxImage{
+    border-radius: 50%;
+    border: 1px solid black;
+}
 .MainSection{
     padding: 5px;
     border: 1px solid black;

@@ -4,7 +4,7 @@ export default function ForumTopicCard(props) {
     return(
         <div className={"ForumTopicCard"}>
             <div className={"SectionBox"}>
-                <img src={"../../../images/TopicCardLeftImage.png"}/>
+                <img src={"../../../images/TopicCardLeftImage.png"} className={"LeftSectionBoxImage"}/>
             </div>
             <div className={"MainSection"}>
                 <a className={"TopicText"} href={props.link}>

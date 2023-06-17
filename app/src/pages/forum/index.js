@@ -14,6 +14,7 @@ import RelevantCard from "./RelevantCard";
 import RelevantCardRow from "./RelevantCardRow";
 import ForumTopicCard from "./ForumTopicCard";
 import ForumRepliesCard from "./ForumRepliesCard";
+import LogedIn from "../../shared_components/LogedIn";
 
 export default function Forum() {
 
@@ -38,6 +39,8 @@ export default function Forum() {
       <ForumTopicCard dayOfTheWeek={"Utorak"} date={"22/03/2023"} repliesNumber={"22"} topicText={"TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST"} username={"HarunHadzic22"}/>
 
           <ForumRepliesCard time={"23:08:22"} date={"13/06/2022"} username={"harun.hadzic"} text={"Primjerak testa"} replyTo={"Tema neka"} replyNumber={"1"}/>
+
+          <LogedIn username={"HarunHadzic22"}/>
       </>
     /*
   <>
