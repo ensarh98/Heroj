@@ -18,11 +18,11 @@ import LogedIn from "../../shared_components/LogedIn";
 
 export default function Forum() {
 
-  const [forums, setForums] = useState([])
+  const [forumData, setForumData] = useState([])
   
   React.useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API}forum/`)
-      .then(res => setForums(res.data))
+    axios.get("http://localhost:8000/forum/forums/general")
+      .then(res => setForumData(res.data))
   }, [])
 
   return (
