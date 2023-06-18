@@ -8,7 +8,7 @@ import FormLabel from "../../shared_components/FormLabel";
 import React from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LogoComponent from "../../../src/shared_components/LogoComponent";
 import Sidebar from "../../shared_components/Sidebar";
 import ShowSidebar from "../../shared_components/ShowSidebarButton";
@@ -105,7 +105,6 @@ export default function Login() {
         <ShowSidebar onClick={openNav} />
       </div>
       <div className="reg-wrapperr">
-        {/* <div className="reg-right"> */}
         <div className="pic-warpperr">
           <div className="head-picc"></div>
         </div>
@@ -138,13 +137,21 @@ export default function Login() {
               />
             </FormGroup>
 
-            <FormGroup>
-              <Button1
-                text={"Prijavi se"}
-                fontSize={"20px"}
-                onClick={onSubmit}
-              ></Button1>
-            </FormGroup>
+            <div className="log-button">
+              <FormGroup>
+                <Button1
+                  text={"Prijavi se"}
+                  fontSize={"20px"}
+                  onClick={onSubmit}
+                ></Button1>
+              </FormGroup>
+              <div className="login-and-register-text">
+                <span className="vec-ste-prijavljeni">Niste registrovani?</span>
+                <Link to="/register" className="register-text-button">
+                  Registracija
+                </Link>
+              </div>
+            </div>
           </Form>
         </div>
 
