@@ -9,11 +9,17 @@ function Searchfield1(props) {
   const inputRef = useRef(null);
   const [data, setData] = useState([]);
 
+  const resultWrapperRef = useState(null);
+
   useEffect(() => {
     if (data.length > 0) {
       props.setShowCases(false);
     } else {
       props.setShowCases(true);
+    }
+
+    if (resultWrapperRef.current) {
+      resultWrapperRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [data]);
 
@@ -77,7 +83,7 @@ function Searchfield1(props) {
       </div>
       {data.length != 0 && (
         <div className="result-wrapper">
-          <div className="dataResult fade-in">
+          <div className="dataResult fade-in" ref={resultWrapperRef}>
             {data.map((value, key) => {
               return (
                 <Link
