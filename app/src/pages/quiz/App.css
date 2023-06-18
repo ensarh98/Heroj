@@ -56,4 +56,5 @@
   background-color: white;
   flex-direction: column;
   gap: 2vw;
+  display: flex;
 }
