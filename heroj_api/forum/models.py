@@ -10,6 +10,7 @@ class User(models.Model):
     date_suspension = models.DateTimeField(default=None, blank=True, null=True)
     banned = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=False)
+    is_certified = models.BooleanField(default=False)
     def __str__(self):
         return self.username
     def is_suspended(self):
