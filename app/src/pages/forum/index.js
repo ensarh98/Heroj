@@ -10,6 +10,7 @@ import Button1 from "../../shared_components/Button1";
 import Cookies from "universal-cookie";
 import LogedIn from "../../shared_components/LogedIn";
 import CreateBox from "./CreateBox";
+import { useNavigate } from "react-router-dom";
 
 export default function Forum() {
   const weekday = ["Nedjelja","Ponedeljak","Utorak","Srijeda","Četvrtak","Petak","Subota"];
@@ -46,19 +47,14 @@ export default function Forum() {
   };
 
   const handleClickCreate = () => {
-    // axios.post(`http://localhost:8000/forum/topic/general/create`, {
-    //   topicTitle,
-    //   topicText,
-    //   session_token: cookies.get('session_token'),
-    // }).then((res) => {
-
-    // });
     setOpenCreateBox(true);
   };
 
   const handleClickCancel = () => {
     setOpenCreateBox(false);
   };
+
+  const navigate = useNavigate();
 
   const handleClickPost = () => {
     if (cookies.get("session_token")) axios.post(`http://localhost:8000/forum/topic/general/create`, {
@@ -72,6 +68,7 @@ export default function Forum() {
           res.data
         ]);
         setOpenCreateBox(false);
+        navigate(`/forum/${res.data.id}`);
       }
     });
   }
