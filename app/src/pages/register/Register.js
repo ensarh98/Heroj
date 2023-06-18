@@ -137,6 +137,10 @@ export default function Register() {
           <div className="head-pic"></div>
         </div>
         <div className="header-text-reg">REGISTRACIJA</div>
+        <span>
+          {success &&
+            "Uspješno ste se registrirali! Provjerite email za aktivaciju vašeg računa."}
+        </span>
         <div className="register-form">
           <Form>
             <FormGroup>
@@ -209,8 +213,6 @@ export default function Register() {
               </div>
             </div>
           </Form>
-          {success &&
-            "Uspješno ste se registrirali! Provjerite email za aktivaciju vašeg računa."}
         </div>
 
         <div className="logo-component-reg">
