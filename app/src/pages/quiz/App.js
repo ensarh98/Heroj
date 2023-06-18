@@ -8,6 +8,8 @@ import Button1 from "../../shared_components/Button1";
 import Sidebar from "../../shared_components/Sidebar";
 import ShowSidebar from "../../shared_components/ShowSidebarButton";
 import LogoComponent from "../../shared_components/LogoComponent";
+import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 function App() {
   const [questions, setQuestions] = useState([]);
@@ -18,6 +20,15 @@ function App() {
   const [questionsAnswered, setQuestionsAnswered] = useState([]);
   const [selectedAnswer, setselectedAnswer] = useState(-1);
   const [answerSelections, setAnswerSelections] = useState([]);
+
+  const cookies = new Cookies();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!cookies.get("session_token")) {
+      navigate("/login");
+    }
+  }, []);
 
   useEffect((question) => {
     const dataFetch = async () => {
