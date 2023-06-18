@@ -311,7 +311,8 @@ def postReply(request, id):
 def createTopic(request, id):
     # Check first if forum exists
     if Forum.objects.filter(id=id).exists() == False:
-        return HttpResponse('forum not found', satus=404)
+        #return HttpResponse('forum not found', satus=404)
+        return JsonResponse({ "error": "forum not found" })
     
     forum = Forum.objects.get(id=id)
 
@@ -322,11 +323,14 @@ def createTopic(request, id):
     session_token = body['session_token']
 
     if Session.objects.filter(id=session_token).exists() == False:
-        return HttpResponse('session not found', satus=404)
+        #return HttpResponse('session not found', satus=404)
+        return JsonResponse({ "error": "session not found" })
     
     session = Session.objects.get(id=session_token)
 
     topic = Topic(title=title, user=session.user, forum=forum)
+    # Increment topic comment counter
+    topic.post_count = topic.post_count + 1
     topic.save()
 
     post = Post(text=text, topic=topic, user=session.user)

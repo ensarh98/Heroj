@@ -1,6 +1,6 @@
 import axios from "axios";
 import './index.css'
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import RelevantCard from "./RelevantCard";
 import ForumTopicCard from "./ForumTopicCard";
 import Typography1 from "./Typography1";
@@ -9,15 +9,23 @@ import Sidebar from "../../shared_components/Sidebar";
 import Button1 from "../../shared_components/Button1";
 import Cookies from "universal-cookie";
 import LogedIn from "../../shared_components/LogedIn";
+import CreateBox from "./CreateBox";
 
 export default function Forum() {
   const weekday = ["Nedjelja","Ponedeljak","Utorak","Srijeda","Četvrtak","Petak","Subota"];
 
-  const [forumData, setForumData] = useState([])
-  
+  const [forumData, setForumData] = useState([]);
+
+  const [openCreateBox, setOpenCreateBox] = useState(false);
+
+  const [topicTitle, setTopicTitle] = useState("");
+  const [topicText, setTopicText] = useState("");
+
   const sidebarRef = useRef(null);
 
   const [username, setUsername] = useState("");
+
+  const createBoxRef = useRef(null);
 
   const cookies = new Cookies();
 
@@ -36,6 +44,43 @@ export default function Forum() {
   const handleClickLogIn = () => {
     window.location.href = "http://localhost:3000/login/";
   };
+
+  const handleClickCreate = () => {
+    // axios.post(`http://localhost:8000/forum/topic/general/create`, {
+    //   topicTitle,
+    //   topicText,
+    //   session_token: cookies.get('session_token'),
+    // }).then((res) => {
+
+    // });
+    setOpenCreateBox(true);
+  };
+
+  const handleClickCancel = () => {
+    setOpenCreateBox(false);
+  };
+
+  const handleClickPost = () => {
+    if (cookies.get("session_token")) axios.post(`http://localhost:8000/forum/topic/general/create`, {
+      title: topicTitle,
+      text: topicText,
+      session_token: cookies.get('session_token'),
+    }).then((res) => {
+      if (!res.data.error) {
+        setForumData([
+          ...forumData,
+          res.data
+        ]);
+        setOpenCreateBox(false);
+      }
+    });
+  }
+
+  useEffect(() => {
+    if (createBoxRef.current) {
+      createBoxRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [openCreateBox]);
 
   React.useEffect(() => {
     axios.get("http://localhost:8000/forum/forums/general")
@@ -90,6 +135,24 @@ export default function Forum() {
             ))
           }
         </RelevantCard>
+        { !openCreateBox && cookies.get("session_token") &&
+          <div className="reply-btn-container">
+            <Button1
+              text={"Create"}
+              fontSize={"20px"}
+              onClick={handleClickCreate}
+            />
+          </div>
+        }
+        { openCreateBox &&
+          <CreateBox
+            innerRef={createBoxRef}
+            handleClickCancel={handleClickCancel}
+            handleClickPost={handleClickPost}
+            handleTitleChange={setTopicTitle}
+            handleTextChange={setTopicText}
+          />
+        }
       </div>
     </>
   );
