@@ -8,6 +8,9 @@ import ShowSidebar from "../../shared_components/ShowSidebarButton";
 import Typography1 from "./Typography1";
 import Button1 from "../../shared_components/Button1";
 import './index.css'
+import ReplyBox from "./ReplyBox";
+import Cookies from "universal-cookie";
+import LogedIn from "../../shared_components/LogedIn";
 
 export default function Topic() {
   const { id } = useParams();
@@ -15,6 +18,16 @@ export default function Topic() {
   const [topicData, setTopicData] = useState({});
 
   const sidebarRef = useRef(null);
+
+  const [openReplyBox, setOpenReplyBox] = useState(false);
+
+  const replyBoxRef = useRef(null);
+
+  const [replyText, setReplyText] = useState("");
+
+  const [username, setUsername] = useState("");
+
+  const cookies = new Cookies();
 
   const openNav = () => {
     sidebarRef.current.style.left = "0";
@@ -32,15 +45,50 @@ export default function Topic() {
     window.location.href = "http://localhost:3000/login/";
   };
 
+  const handleClickReply = () => {
+    setOpenReplyBox(true);
+  }
+
+  const handleClickCancel = () => {
+    setOpenReplyBox(false);
+  }
+
   useEffect(() => {
     axios.get(`http://localhost:8000/forum/topic/${id}`)
       .then((res) => {
         setTopicData(res.data);
       });
+
+    if (cookies.get("session_token")) axios.get(`http://localhost:8000/forum/user/${cookies.get("session_token")}`)
+      .then((res) => setUsername(res.data.username));
   }, []);
 
+  useEffect(() => {
+    if (replyBoxRef.current) {
+      replyBoxRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [openReplyBox]);
+
+  const handleClickPost = () => {
+    axios.post(`http://localhost:8000/forum/topic/${id}/reply`, {
+      text: replyText,
+      session_token: cookies.get("session_token")
+    }).then((res) => {
+        if (!res.data.error) {
+          setTopicData({
+            ...topicData,
+            posts: [
+              ...topicData.posts,
+              res.data,
+            ]
+          });
+          setOpenReplyBox(false);
+        }
+      });
+  };
+
   return (
-    <>
+    <div>
       <Sidebar innerRef={sidebarRef} closeNav={closeNav} />
       <div className="row1">
         <div>
@@ -52,16 +100,23 @@ export default function Topic() {
           </Typography1>
         </div>
         <div className="login-container">
-          <Button1
-            text={"Prijava"}
-            fontSize={"25px"}
-            onClick={handleClickLogIn}
-          />
-          <Button1
-            text={"Registracija"}
-            fontSize={"25px"}
-            onClick={handleClickSignUp}
-          />
+          { !cookies.get("session_token") ?
+            <>
+              <Button1
+                text={"Prijava"}
+                fontSize={"25px"}
+                onClick={handleClickLogIn}
+              />
+              <Button1
+                text={"Registracija"}
+                fontSize={"25px"}
+                onClick={handleClickSignUp}
+              />
+            </> :
+            <>
+              <LogedIn username={username} />
+            </>
+          }
         </div>
       </div>
       <div className="forum-container">
@@ -77,7 +132,24 @@ export default function Topic() {
             }
           </RelevantCard>
         }
+        { !openReplyBox && cookies.get("session_token") &&
+          <div className="reply-btn-container">
+            <Button1
+              text={"Reply"}
+              fontSize={"20px"}
+              onClick={handleClickReply}
+            />
+          </div>
+        }
+        { openReplyBox &&
+          <ReplyBox
+            innerRef={replyBoxRef}
+            handleClickCancel={handleClickCancel}
+            handleClickPost={handleClickPost}
+            handleTextChange={setReplyText}
+          />
+        }
       </div>
-    </>
+    </div>
   );
 }

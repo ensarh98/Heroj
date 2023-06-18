@@ -277,7 +277,8 @@ def getTopic(request, id):
 @api_view(['POST'])
 def postReply(request, id):
     if Topic.objects.filter(id=id).exists() == False:
-        return HttpResponse('topic not found', satus=404)
+        #return HttpResponse('topic not found', satus=404)
+        return JsonResponse({ "error": "topic not found" })
     
     topic = Topic.objects.get(id=id)
 
@@ -287,7 +288,8 @@ def postReply(request, id):
     session_token = body['session_token']
 
     if Session.objects.filter(id=session_token).exists() == False:
-        return HttpResponse('session not found', satus=404)
+        #return HttpResponse('session not found', satus=404)
+        return JsonResponse({ "error": "session not found" })
     
     session = Session.objects.get(id=session_token)
 

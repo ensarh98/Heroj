@@ -24,3 +24,8 @@ body {
   padding: 25px;
 }
 
+.reply-btn-container {
+  border: 1px solid black;
+  padding: 12px;
+  text-align: right;
+}

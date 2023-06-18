@@ -1,0 +1,11 @@
+
+.replybox-container {
+  width: 100%;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.textarea-box {
+  resize: none;
+  width: 100%;
+}
