@@ -5,7 +5,7 @@ export default function ForumRepliesCard(props) {
         <div className={"ForumReplyCard"}>
             <div className={"ProfileSection"}>
                 <img src={"../../../images/TopicCardLeftImage.png"} className={"ImageReply"}/>
-                { props.is_certified && <img src="../../../images/is_certified.png" /> }
+                { props.is_certified && <img src="../../../images/is_certified.png" title="certified user" /> }
                 <span className={"Username"}>{props.username}</span>
                 <span className={"Datetime"}>
                     <span>{props.time}</span>
