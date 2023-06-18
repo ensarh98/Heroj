@@ -91,7 +91,7 @@ export default function Register() {
     setErrorField(
       "username",
       invalidUsername(username),
-      "Username must contain only alphanumeric values or _, at least 5 and max 15 characters."
+      "Korisničko ime mora imati samo alfanumeričke vrijednosti ili _, minimalno 5 i maksimalno 15 slova."
     );
   };
 
@@ -105,7 +105,7 @@ export default function Register() {
     setErrorField(
       "password",
       invalidPassword(password),
-      "Password must contain only alphanumeric values or _, at least 6 and max 15 characters."
+      "Šifra mora imati samo alfanumeričke vrijednosti ili _, minimalno 6 i maksimalno 15 slova."
     );
   };
 
@@ -114,7 +114,7 @@ export default function Register() {
     setErrorField(
       "confirmPassword",
       invalidConfirmPassword(confirmPassword),
-      "Passwords must match!"
+      "Šifre moraju biti iste!"
     );
   };
 
@@ -133,7 +133,7 @@ export default function Register() {
         <ShowSidebar onClick={openNav} />
       </div>
       <div className="reg-wrapper">
-        <div className="pic-warpper">
+        <div className="pic-wrapper">
           <div className="head-pic"></div>
         </div>
         <div className="header-text-reg">REGISTRACIJA</div>
@@ -142,7 +142,7 @@ export default function Register() {
             "Uspješno ste se registrirali! Provjerite email za aktivaciju vašeg računa."}
         </span>
         <div className="register-form">
-          <Form>
+          <Form class={"FormRegister"}>
             <FormGroup>
               <FormLabel for={"username"} text={"Korisničko ime"} />
               <FormInput
@@ -194,15 +194,15 @@ export default function Register() {
                 isInvalid={errors.confirmPassword.value}
               />
             </FormGroup>
-
             <div className="reg-button">
               <FormGroup>
-                <Button1
-                  text={"Registriraj se"}
-                  fontSize={"20px"}
-                  onClick={onSubmit}
-                ></Button1>
-              </FormGroup>
+              <Button1
+                text={"Registriraj se"}
+                fontSize={"20px"}
+                onClick={onSubmit}
+                class={"ButtonRegister"}
+              ></Button1>
+            </FormGroup>
               <div className="register-and-login-text">
                 <span className="vec-ste-registrovani">
                   Već ste registrovani?

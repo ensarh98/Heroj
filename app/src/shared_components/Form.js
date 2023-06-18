@@ -2,7 +2,7 @@ import "./Form.css";
 
 export default function Form(props){
     return(
-        <div className={"Form"}>
+        <div className={props.class + " Form"}>
             {
                 props.children &&
                 props.children

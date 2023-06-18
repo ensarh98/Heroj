@@ -30,26 +30,29 @@ def searchForKeywords(request, words):
         return JsonResponse([], safe=False)
 
     word_list = words.split()
-    word = word_list[0]
+    
+    for word in word_list:
+        keyword = None
 
-    keyword = None
+        # Find keyword match
+        keyword = Keywords.objects.filter(word__icontains=word).first()    
+        if keyword == None:
+            try:
+                synonym = Synonyms.objects.get(synonym__icontains=word)
+                keyword = synonym.word
+            except Synonyms.DoesNotExist:
+                if word == word_list[-1]:
+                    return JsonResponse([], safe=False)
+                else:
+                    continue
 
-    # Find keyword match
-    keyword = Keywords.objects.filter(word__icontains=word).first()    
-    if keyword == None:
-        try:
-            synonym = Synonyms.objects.get(synonym__icontains=word)
-            keyword = synonym.word
-        except Synonyms.DoesNotExist:
-            return JsonResponse([], safe=False)
+        assocs = Assoc.objects.filter(keyword=keyword).order_by('-hit_count')
 
-    assocs = Assoc.objects.filter(keyword=keyword).order_by('-hit_count')
+        data = []
+        for assoc in assocs:
+            data.append(assoc.json())
 
-    data = []
-    for assoc in assocs:
-        data.append(assoc.json())
-
-    return JsonResponse(data, safe=False)
+        return JsonResponse(data, safe=False)
 
 @api_view(["GET"])
 def getTopCases(request, count):
