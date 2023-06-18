@@ -14,7 +14,6 @@
 
 .reg-wrapperr {
   display: flex;
-  height: 100%;
   width: 100%;
   flex-direction: column;
   align-items: center;
@@ -53,9 +52,8 @@
 }
 
 .logo-component-logg {
-  display: flex;
   align-items: center;
-  height: -webkit-fill-available;
+  margin-top: 4vw;
 }
 
 .log-button {
@@ -82,32 +80,32 @@
   gap: 1vw;
 }
 @media (max-width: 900px) {
-  .pic-warpperr{
+  .pic-warpperr {
     width: 50%;
     height: 50%;
   }
-  .head-picc{
+  .head-picc {
     width: 100%;
     height: 100%;
   }
-  .LoginForm{
+  .LoginForm {
     width: 100% !important;
   }
-  .register-formm{
+  .register-formm {
     width: 100%;
   }
-  .FormInput{
+  .FormInput {
     width: 100%;
   }
-  .FormControl{
+  .FormControl {
     width: 100%;
   }
-  .header-text-logg{
+  .header-text-logg {
     width: 100%;
     text-align: center;
     font-size: 10vw;
   }
-  .LoginButton{
+  .LoginButton {
     font-size: 100% !important;
   }
 }
