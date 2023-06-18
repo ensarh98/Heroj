@@ -14,6 +14,7 @@ export default function ForumRepliesCard(props) {
             <img
               src="../../../images/is_certified.png"
               className="certified-image"
+              title="certified user"
             />
           )}
         </div>
