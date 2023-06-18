@@ -12,6 +12,7 @@ import ShowSidebar from "../../shared_components/ShowSidebarButton";
 
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const [email, setEmail] = React.useState("");
@@ -190,13 +191,23 @@ export default function Register() {
               />
             </FormGroup>
 
-            <FormGroup>
-              <Button1
-                text={"Registriraj se"}
-                fontSize={"20px"}
-                onClick={onSubmit}
-              ></Button1>
-            </FormGroup>
+            <div className="reg-button">
+              <FormGroup>
+                <Button1
+                  text={"Registriraj se"}
+                  fontSize={"20px"}
+                  onClick={onSubmit}
+                ></Button1>
+              </FormGroup>
+              <div className="register-and-login-text">
+                <span className="vec-ste-registrovani">
+                  Već ste registrovani?
+                </span>
+                <Link to="/login" className="login-text-button">
+                  Login
+                </Link>
+              </div>
+            </div>
           </Form>
           {success &&
             "Uspješno ste se registrirali! Provjerite email za aktivaciju vašeg računa."}

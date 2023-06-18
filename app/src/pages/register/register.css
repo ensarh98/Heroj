@@ -56,3 +56,27 @@
   align-items: center;
   height: -webkit-fill-available;
 }
+
+.reg-button {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vec-ste-registrovani {
+  color: rgba(0, 0, 0, 0.5);
+  font-family: Montserrat;
+}
+
+.register-and-login-text {
+  display: flex;
+  margin-top: 1vw;
+  gap: 1vw;
+}
+
+.login-text-button {
+  text-decoration: none;
+  color: #5378f4;
+  font-weight: 500;
+}
