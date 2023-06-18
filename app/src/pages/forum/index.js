@@ -69,6 +69,8 @@ export default function Forum() {
         ]);
         setOpenCreateBox(false);
         navigate(`/forum/${res.data.id}`);
+      } else {
+        alert(res.data.error);
       }
     });
   }

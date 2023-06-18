@@ -83,6 +83,8 @@ export default function Topic() {
             ]
           });
           setOpenReplyBox(false);
+        } else {
+          alert(res.data.error);
         }
       });
   };
