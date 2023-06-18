@@ -1,9 +1,13 @@
 import "./LogedIn.css";
-import Button1 from "./Button1";
 import {useState} from "react";
+import Cookies from "universal-cookie";
+import axios from "axios";
 
 export default function LogedIn(props) {
     const [open, setOpen] = useState(false);
+
+    const ucookies = new Cookies();
+
     function profileClicked() {
         if (open){
             document.getElementById('LogedInDropdown').style.display = "none";
@@ -14,15 +18,21 @@ export default function LogedIn(props) {
         }
     }
 
-    function LogOut(){
-        var cookies = document.cookie.split(";");
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i];
-            var eqPos = cookie.indexOf("=");
-            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-        }
-        window.location.href = "/";
+    function LogOut() {
+        axios.post(`${process.env.REACT_APP_API}forum/logout`, {
+            id: ucookies.get('session_token')
+        }).then((res) => {
+            if (res.data.success) {
+                var cookies = document.cookie.split(";");
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i];
+                    var eqPos = cookie.indexOf("=");
+                    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+                }
+                window.location.href = "/";
+            }
+        });
     }
 
 

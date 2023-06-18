@@ -168,12 +168,14 @@ def logout(request):
     id = body['id']
 
     if Session.objects.filter(id=id).exists() == False:
-        return HttpResponse('session not found', satus=404)
+        #return HttpResponse('session not found', satus=404)
+        return JsonResponse({ "error": "session not found" })
     
     session = Session.objects.get(id=id)
     session.delete()
 
-    return HttpResponse('logout successful', status=200)
+    #return HttpResponse('logout successful', status=200)
+    return JsonResponse({ "success": "logout successful" })
 
 @api_view(['GET'])
 def getUser(request, id):
