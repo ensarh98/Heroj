@@ -9,10 +9,23 @@ body {
   align-items: center;
 }
 
+.show-sidebar-container {
+  flex: 0;
+  display: flex;
+  text-align: left;
+  align-self: flex-start;
+  margin: 6px;
+}
+
 .login-container {
   flex: 0;
   display: flex;
   text-align: right;
+  align-self: flex-start;
+}
+
+.login-container > * {
+  margin: 6px;
 }
 
 .heading-container {

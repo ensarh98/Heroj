@@ -23,11 +23,13 @@ body,
 
 #heading-left {
   flex: 1;
-  position: absolute;
+  align-self: flex-start;
+  margin: 6px;
 }
 
 #heading-right {
   flex: 1;
+  align-self: flex-start;
   display: flex;
   justify-content: right;
 }

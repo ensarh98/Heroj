@@ -93,7 +93,7 @@ export default function Forum() {
     <>
       <Sidebar innerRef={sidebarRef} closeNav={closeNav} />
       <div className="row1">
-        <div>
+        <div className="show-sidebar-container">
           <ShowSidebar onClick={openNav} />
         </div>
         <div className="heading-container">
