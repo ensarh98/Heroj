@@ -13,6 +13,7 @@ import Topic from "./pages/forum/Topic";
 import ForumRegisterId from "./pages/forum/ForumRegisterId";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
+import About from "./pages/about/about";
 //import "./pages/index/css/index.css"
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/forum/register/:id" element={<ForumRegisterId />} />
         <Route path="/template/:id" element={<Template />} />
         <Route path="quiz" element={<Quiz />} />
+        <Route path="/about" element={<About />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>
