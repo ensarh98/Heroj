@@ -14,7 +14,6 @@
 
 .reg-wrapper {
   display: flex;
-  height: 100%;
   width: 100%;
   flex-direction: column;
   align-items: center;
@@ -82,32 +81,32 @@
 }
 
 @media (max-width: 900px) {
-  .pic-wrapper{
+  .pic-wrapper {
     width: 50%;
     height: 50%;
   }
-  .head-pic{
+  .head-pic {
     width: 100%;
     height: 100%;
   }
-  .FormRegister{
+  .FormRegister {
     width: 100% !important;
   }
-  .register-form{
+  .register-form {
     width: 100%;
   }
-  .FormInput{
+  .FormInput {
     width: 100%;
   }
-  .FormControl{
+  .FormControl {
     width: 100%;
   }
-  .header-text-reg{
+  .header-text-reg {
     width: 100%;
     text-align: center;
     font-size: 10vw;
   }
-  .ButtonRegister{
+  .ButtonRegister {
     font-size: 100% !important;
   }
 }
