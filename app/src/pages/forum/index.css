@@ -1,4 +1,31 @@
 
 body {
-    background: #F5F5F5;
+  background: #F5F5F5;
+}
+
+.row1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.login-container {
+  flex: 0;
+  display: flex;
+  text-align: right;
+}
+
+.heading-container {
+  flex: 1;
+  text-align: center;
+}
+
+.forum-container {
+  padding: 25px;
+}
+
+.reply-btn-container {
+  border: 1px solid black;
+  padding: 12px;
+  text-align: right;
 }

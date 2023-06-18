@@ -1,47 +1,100 @@
-import { Link } from 'react-router-dom';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
 import axios from "axios";
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
-
 import './index.css'
-import React, { useState } from 'react';
-import ForumCard from './ForumCard';
-import ForumSideCard from './ForumSideCard';
-import ForumNavbar from './ForumNavbar';
+import React, { useRef, useState } from 'react';
 import RelevantCard from "./RelevantCard";
-import RelevantCardRow from "./RelevantCardRow";
 import ForumTopicCard from "./ForumTopicCard";
-import ForumRepliesCard from "./ForumRepliesCard";
-import LogedIn from "../../shared_components/LogedIn";
+import Typography1 from "./Typography1";
+import ShowSidebar from "../../shared_components/ShowSidebarButton";
+import Sidebar from "../../shared_components/Sidebar";
+import Button1 from "../../shared_components/Button1";
 
 export default function Forum() {
+  const weekday = ["Nedjelja","Ponedeljak","Utorak","Srijeda","Četvrtak","Petak","Subota"];
 
   const [forumData, setForumData] = useState([])
   
+  const sidebarRef = useRef(null);
+
+  const openNav = () => {
+    sidebarRef.current.style.left = "0";
+  };
+
+  const closeNav = () => {
+    sidebarRef.current.style.left = "-400px";
+  };
+
+  const handleClickSignUp = () => {
+    window.location.href = "http://localhost:3000/register/";
+  };
+
+  const handleClickLogIn = () => {
+    window.location.href = "http://localhost:3000/login/";
+  };
+
   React.useEffect(() => {
     axios.get("http://localhost:8000/forum/forums/general")
-      .then(res => setForumData(res.data))
-  }, [])
+      .then(res => setForumData(res.data.topics));
+  }, []);
 
   return (
-      <>
-    <RelevantCard name={"Popularno"}>
-        <RelevantCardRow text={"Popularno 1"} link={"nekiUrl"}/>
-        <RelevantCardRow text={"Popularno 2"} link={"nekiUrl"}/>
-        <RelevantCardRow text={"Popularno 3fgkjdshgkjfdshgkjhfdkjghkjfdhg"} link={"nekiUrl"}/>
-        <RelevantCardRow text={"Popularno 3fgkjdshgkjfdshgkjhfdkjghkjfdhg"} link={"nekiUrl"}/>
-        <RelevantCardRow text={"Popularno 3fgkjdshgkjfdshgkjhfdkjghkjfdhg"} link={"nekiUrl"}/>
-      </RelevantCard>
+    <>
+      <Sidebar innerRef={sidebarRef} closeNav={closeNav} />
+      <div className="row1">
+        <div>
+          <ShowSidebar onClick={openNav} />
+        </div>
+        <div className="heading-container">
+          <Typography1>
+            FORUM
+          </Typography1>
+        </div>
+        <div className="login-container">
+          <Button1
+            text={"Prijava"}
+            fontSize={"25px"}
+            onClick={handleClickLogIn}
+          />
+          <Button1
+            text={"Registracija"}
+            fontSize={"25px"}
+            onClick={handleClickSignUp}
+          />
+        </div>
+      </div>
+      <div className="forum-container">
+        <RelevantCard name={"Teme"}>
+          { forumData && forumData.map((value) => (
+            <ForumTopicCard dayOfTheWeek={weekday[new Date(value.date_created).getDay()]} 
+              date={value.date_created}
+              repliesNumber={value.post_count} 
+              topicText={value.title}
+              link={`http://localhost:3000/forum/${value.id}`}
+              username={value.created_by}
+            />
+            ))
+          }
+        </RelevantCard>
+      </div>
+    </>
+  );
 
-    <ForumTopicCard dayOfTheWeek={"Utorak"} date={"22/03/2023"} repliesNumber={"22"} topicText={"Topic "} username={"HarunHadzic22"}/>
-      <ForumTopicCard dayOfTheWeek={"Utorak"} date={"22/03/2023"} repliesNumber={"22"} topicText={"TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST"} username={"HarunHadzic22"}/>
+  // return (
+  //     <>
+  //   <RelevantCard name={"Popularno"}>
+  //       <RelevantCardRow text={"Popularno 1"} link={"nekiUrl"}/>
+  //       <RelevantCardRow text={"Popularno 2"} link={"nekiUrl"}/>
+  //       <RelevantCardRow text={"Popularno 3fgkjdshgkjfdshgkjhfdkjghkjfdhg"} link={"nekiUrl"}/>
+  //       <RelevantCardRow text={"Popularno 3fgkjdshgkjfdshgkjhfdkjghkjfdhg"} link={"nekiUrl"}/>
+  //       <RelevantCardRow text={"Popularno 3fgkjdshgkjfdshgkjhfdkjghkjfdhg"} link={"nekiUrl"}/>
+  //     </RelevantCard>
 
-          <ForumRepliesCard time={"23:08:22"} date={"13/06/2022"} username={"harun.hadzic"} text={"Primjerak testa"} replyTo={"Tema neka"} replyNumber={"1"}/>
+  //   <ForumTopicCard dayOfTheWeek={"Utorak"} date={"22/03/2023"} repliesNumber={"22"} topicText={"Topic "} username={"HarunHadzic22"}/>
+  //     <ForumTopicCard dayOfTheWeek={"Utorak"} date={"22/03/2023"} repliesNumber={"22"} topicText={"TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST"} username={"HarunHadzic22"}/>
 
-          <LogedIn username={"HarunHadzic22"}/>
-      </>
+  //         <ForumRepliesCard time={"23:08:22"} date={"13/06/2022"} username={"harun.hadzic"} text={"Primjerak testa"} replyTo={"Tema neka"} replyNumber={"1"}/>
+
+  //         <LogedIn username={"HarunHadzic22"}/>
+  //     </>
     /*
   <>
     <Container>
@@ -123,6 +176,5 @@ export default function Forum() {
     </Container>
   </>
 
-     */
-  );
+    ); */
 }

@@ -209,6 +209,7 @@ def getForum(request, id):
             'date_modified': topic.date_modified,
             'view_count': topic.view_count,
             'created_by': topic.user.username,
+            'post_count': topic.post_count
         })
 
     return JsonResponse({
@@ -247,6 +248,10 @@ def getTopic(request, id):
     
     topic = Topic.objects.get(id=id)
 
+    # Increment view count
+    topic.view_count = topic.view_count + 1
+    topic.save()
+
     posts = Post.objects.filter(topic=topic)
 
     data = []
@@ -255,7 +260,7 @@ def getTopic(request, id):
             'text': post.text,
             'created_by': post.user.username,
             'date_created': post.date_created,
-            'date_modified': post.date_modified
+            'date_modified': post.date_modified,
         })
 
     return JsonResponse({
@@ -266,13 +271,14 @@ def getTopic(request, id):
         'view_count': topic.view_count,
         'created_by': topic.user.username,
         'forum_id': topic.forum.id,
-        'posts': data
+        'posts': data,
     })
 
 @api_view(['POST'])
 def postReply(request, id):
     if Topic.objects.filter(id=id).exists() == False:
-        return HttpResponse('topic not found', satus=404)
+        #return HttpResponse('topic not found', satus=404)
+        return JsonResponse({ "error": "topic not found" })
     
     topic = Topic.objects.get(id=id)
 
@@ -282,12 +288,17 @@ def postReply(request, id):
     session_token = body['session_token']
 
     if Session.objects.filter(id=session_token).exists() == False:
-        return HttpResponse('session not found', satus=404)
+        #return HttpResponse('session not found', satus=404)
+        return JsonResponse({ "error": "session not found" })
     
     session = Session.objects.get(id=session_token)
 
     post = Post(text=text, topic=topic, user=session.user)
     post.save()
+
+    # Increment repy counter
+    topic.post_count = topic.post_count + 1
+    topic.save()
 
     return JsonResponse({
         'text': post.text,

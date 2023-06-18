@@ -57,6 +57,7 @@ export default function Login() {
           setErrorField(res.data.error.field, true, res.data.error.msg);
         } else if (res.data.session_token) {
           cookies.set("session_token", res.data["session_token"], {
+            path: "/",
             expires: new Date(res.data["expires"]),
           });
           navigate("/");

@@ -32,6 +32,7 @@ class Topic(models.Model):
     view_count = models.IntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
+    post_count = models.IntegerField(default=0)
 
 class Post(models.Model):
     text = models.CharField(max_length=1000)
