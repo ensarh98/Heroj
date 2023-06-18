@@ -139,15 +139,17 @@ function App() {
           </>
         ) : (
           <>
-            <div className="logo-component-quiz">
-              <LogoComponent />
-            </div>
-            <div className="start-quiz-button">
-              <Button1
-                onClick={handleStartQuiz}
-                fontSize={25}
-                text={"Igraj Kviz"}
-              ></Button1>
+            <div className="logo-and-start-button">
+              <div className="logo-component-quiz">
+                <LogoComponent />
+              </div>
+              <div className="start-quiz-button">
+                <Button1
+                  onClick={handleStartQuiz}
+                  fontSize={25}
+                  text={"Igraj Kviz"}
+                ></Button1>
+              </div>
             </div>
           </>
         )
