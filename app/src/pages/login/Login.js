@@ -77,7 +77,7 @@ export default function Login() {
     setErrorField(
       "username",
       invalidUsername(username),
-      "Username must contain only alphanumeric values or _, at least 5 and max 15 characters."
+      "Korisničko ime mora imati samo alfanumeričke vrijednosti ili _, minimalno 5 i maksimalno 15 slova."
     );
   };
 
@@ -86,7 +86,7 @@ export default function Login() {
     setErrorField(
       "password",
       invalidPassword(password),
-      "Password must contain only alphanumeric values or _, at least 6 and max 15 characters."
+      "Šifra mora imati samo alfanumeričke vrijednosti ili _, minimalno 6 i maksimalno 15 slova."
     );
   };
 
@@ -111,7 +111,7 @@ export default function Login() {
         </div>
         <div className="header-text-logg">LOGIN</div>
         <div className="register-formm">
-          <Form>
+          <Form class={"LoginForm"}>
             <FormGroup>
               <FormLabel for={"username"} text={"Korisničko ime"} />
               <FormInput
@@ -143,6 +143,7 @@ export default function Login() {
                 text={"Prijavi se"}
                 fontSize={"20px"}
                 onClick={onSubmit}
+                class={"LoginButton"}
               ></Button1>
             </FormGroup>
           </Form>

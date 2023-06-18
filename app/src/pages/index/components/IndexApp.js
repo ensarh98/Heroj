@@ -58,11 +58,13 @@ function IndexApp() {
                 text={"Prijava"}
                 fontSize={"25px"}
                 onClick={handleClickLogIn}
+                class={"ButtonHome"}
               />
               <Button1
                 text={"Registracija"}
                 fontSize={"25px"}
                 onClick={handleClickSignUp}
+                class={"ButtonHome"}
               />
             </> :
             <>

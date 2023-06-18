@@ -16,6 +16,7 @@ import ForumDistinct from "./pages/forum/ForumDistinct";
 import ForumProfile from "./pages/forum/ForumProfile";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
+import About from "./pages/about/about";
 //import "./pages/index/css/index.css"
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
         <Route path="/forum/:forumid/:id" element={<Topic />} />
         <Route path="/template/:id" element={<Template />} />
         <Route path="quiz" element={<Quiz />} />
+        <Route path="/about" element={<About />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>

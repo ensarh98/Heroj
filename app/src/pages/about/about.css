@@ -1,0 +1,38 @@
+.AboutMainDiv{
+    font-family: Montserrat;
+    background-image: url("../../../public/images/firstAidAboutUsImage.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.AboutMainSection{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.ONamaDiv{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ONamaSpan{
+    margin-right: 10px;
+    font-weight: bolder;
+}
+
+@media (max-width: 900px) {
+    .AboutMainSection{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .AboutWindow{
+        width: 90% !important;
+        margin-bottom: 5%;
+    }
+}
