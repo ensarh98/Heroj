@@ -66,7 +66,7 @@ export default function Forum() {
           { forumData && forumData.map((value) => (
             <ForumTopicCard dayOfTheWeek={weekday[new Date(value.date_created).getDay()]} 
               date={value.date_created}
-              repliesNumber={"22"} 
+              repliesNumber={value.post_count} 
               topicText={value.title} 
               username={value.created_by}
             />
