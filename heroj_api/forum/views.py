@@ -263,6 +263,7 @@ def getTopic(request, id):
             'created_by': post.user.username,
             'date_created': post.date_created,
             'date_modified': post.date_modified,
+            'is_certified': post.user.is_certified
         })
 
     return JsonResponse({
@@ -352,3 +353,15 @@ def createTopic(request, id):
         'view_count': topic.view_count,
         'created_by': topic.user.username,
     })
+
+@api_view(['POST'])
+def certifyUser(request, id):
+    if Session.objects.filter(id=id).exists() == False:
+        return JsonResponse({ "error": "session not found" })
+
+    user = Session.objects.get(id=id).user
+
+    user.is_certified = True
+    user.save()
+
+    return JsonResponse({ "success": "user is now verified" })

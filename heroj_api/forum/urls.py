@@ -11,6 +11,7 @@ urlpatterns = [
     path("login", views.login, name="login"),
     path("logout", views.logout, name="logout"),
     path("user/<str:id>", views.getUser, name="user"),
+    path("user/<str:id>/certify", views.certifyUser, name="certifyUser"),
     path("topics/<str:id>", views.getTopics, name="getTopics"),
     path("topic/<str:id>", views.getTopic, name="getTopic"),
     path("topic/<str:id>/reply", views.postReply, name="postReply"),

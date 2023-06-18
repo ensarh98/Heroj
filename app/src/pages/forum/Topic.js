@@ -129,6 +129,8 @@ export default function Topic() {
                   username={value.created_by}
                   date={value.date_created}
                   text={value.text}
+                  is_certified={value.is_certified}
+                  // replyNumber={index+1}
                 />
               ))
             }
