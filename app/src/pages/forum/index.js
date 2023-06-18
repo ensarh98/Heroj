@@ -67,7 +67,8 @@ export default function Forum() {
             <ForumTopicCard dayOfTheWeek={weekday[new Date(value.date_created).getDay()]} 
               date={value.date_created}
               repliesNumber={value.post_count} 
-              topicText={value.title} 
+              topicText={value.title}
+              link={`http://localhost:3000/forum/${value.id}`}
               username={value.created_by}
             />
             ))
