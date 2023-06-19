@@ -21,6 +21,11 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const sidebarRef = useRef(null);
 
+  const emailRef = useRef(null);
+  const usernameRef = useRef(null);
+  const passwordRef = useRef(null);
+  const confirmPasswordRef = useRef(null);
+
   const [success, setSuccess] = React.useState(false);
 
   const [errors, setErrors] = React.useState({
@@ -64,6 +69,14 @@ export default function Register() {
           setErrorField(res.data.error.field, true, res.data.error.msg);
         } else if (res.data.success) {
           setSuccess(true);
+          setEmail("");
+          setUsername("");
+          setPassword("");
+          setConfirmPassword("");
+          emailRef.current.value = "";
+          usernameRef.current.value = "";
+          passwordRef.current.value = "";
+          confirmPasswordRef.current.value = "";
         }
       });
   };
@@ -146,6 +159,7 @@ export default function Register() {
             <FormGroup>
               <FormLabel for={"username"} text={"Korisničko ime"} />
               <FormInput
+                innerRef={usernameRef}
                 name={"username"}
                 type={"text"}
                 onChange={(e) => onChangeUsername(e.target.value)}
@@ -159,6 +173,7 @@ export default function Register() {
             <FormGroup>
               <FormLabel for={"email"} text={"Email"} />
               <FormInput
+                innerRef={emailRef}
                 name={"email"}
                 type={"email"}
                 onChange={(e) => onChangeEmail(e.target.value)}
@@ -172,6 +187,7 @@ export default function Register() {
             <FormGroup>
               <FormLabel for={"password"} text={"Šifra"} />
               <FormInput
+                innerRef={passwordRef}
                 name={"password"}
                 type={"password"}
                 onChange={(e) => onChangePassword(e.target.value)}
@@ -185,6 +201,7 @@ export default function Register() {
             <FormGroup paddingBottom={"30px"}>
               <FormLabel for={"confirmPassword"} text={"Ponovi Šifru"} />
               <FormInput
+                innerRef={confirmPasswordRef}
                 name={"confirmPassword"}
                 type={"password"}
                 onChange={(e) => onChangeConfirmPassword(e.target.value)}

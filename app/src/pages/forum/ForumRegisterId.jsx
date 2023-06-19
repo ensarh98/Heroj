@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from 'react';
 import Button1 from '../../shared_components/Button1';
@@ -11,6 +11,8 @@ export default function ForumRegisterId() {
 
   const [success, setSuccess] = useState(false);
   const [exists, setExists] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API}forum/register/${id}/check/`)
@@ -28,6 +30,7 @@ export default function ForumRegisterId() {
       .then((res) => {
         if (res.status === 201) {
           setSuccess(true);
+          setTimeout(() => navigate("/login"), 3000);
         }
       });
   }
@@ -40,7 +43,7 @@ export default function ForumRegisterId() {
           !exists ?
             (<p>Register token not found.</p>) :
           success ?
-            (<p>Your account is now verified</p>) :
+            (<p>Your account is now verified. You will be redirected shortly.</p>) :
           <div>
             <p>Press button below to verify your account:</p>
             <Button1
