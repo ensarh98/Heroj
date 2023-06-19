@@ -1,0 +1,19 @@
+.NextButton {
+    margin-left: 50px;
+    width: fit-content;
+    padding: 0px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.NextButton:hover {
+    cursor: pointer;
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+}
+
+.NextButton:active {
+    background-color: #c8ddfc;
+}

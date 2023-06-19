@@ -1,15 +1,19 @@
+import { Link } from "react-router-dom";
 import "./ForumTopicCard.css";
 
 export default function ForumTopicCard(props) {
     return(
         <div className={"ForumTopicCard"}>
             <div className={"SectionBox"}>
-                <img src={"../../../images/TopicCardLeftImage.png"}/>
+                <img src={"../../../images/TopicCardLeftImage.png"} className={"LeftSectionBoxImage"}/>
             </div>
             <div className={"MainSection"}>
-                <a className={"TopicText"} href={props.link}>
+                <Link
+                  to={props.link}
+                  className="TopicText"
+                >
                     {props.topicText}
-                </a>
+                </Link>
                 <div>
                     Korisnik:
                     <span className={"UsernameSpan"}>

@@ -29,19 +29,28 @@ def searchForKeywords(request, words):
     if len(words) < 3:
         return JsonResponse([], safe=False)
 
-    word_list = words.split()
-    word = word_list[0]
-
     keyword = None
 
     # Find keyword match
-    keyword = Keywords.objects.filter(word__icontains=word).first()    
+    keyword = Keywords.objects.filter(word__icontains=words).first()    
     if keyword == None:
         try:
-            synonym = Synonyms.objects.get(synonym__icontains=word)
+            synonym = Synonyms.objects.get(synonym__icontains=words)
             keyword = synonym.word
         except Synonyms.DoesNotExist:
-            return JsonResponse([], safe=False)
+            try:
+                cases = FirstAidCase.objects.filter(id__icontains=words)
+                data = []
+                for case in cases:
+                    data.append({
+                        'case': {
+                            'id': case.id,
+                            'title': case.title
+                        }
+                    })
+                return JsonResponse(data, safe=False)
+            except FirstAidCase.DoesNotExist:
+                return JsonResponse([], safe=False)
 
     assocs = Assoc.objects.filter(keyword=keyword).order_by('-hit_count')
 

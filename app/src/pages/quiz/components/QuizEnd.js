@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./QuizEnd.css";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button1 from "../../../shared_components/Button1";
 import Badge from "react-bootstrap/Badge";
+import axios from "axios";
+import Cookies from "universal-cookie";
 
 export default function QuizEnd(props) {
+
+  const cookies = new Cookies();
+  
+  useEffect(() => {
+    if (cookies.get("session_token") && props.correctlyAnswered > 7) axios.post(`http://localhost:8000/forum/user/${cookies.get("session_token")}/certify`)
+      .then((res) => res.data);
+  }, []);
+
   let i = -1;
   let isCorrect;
   return (

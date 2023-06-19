@@ -40,17 +40,19 @@
   justify-content: center;
 }
 
+.logo-component-quiz {
+  margin-top: 8%;
+}
+
 .start-quiz-button {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  margin-top: 5vw;
 }
 
 .container-quiz-wrapper {
-  height: -webkit-fill-available;
+  height: 100%;
   background-color: white;
-  display: flex;
   flex-direction: column;
   gap: 2vw;
 }
