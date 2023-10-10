@@ -1,9 +1,6 @@
 # Heroj
 Web aplikacija za prvu pomoć.
 
-### Uvod
-Projekat iz predmeta Web Programiranje II/Dinamički Web Sistemi na Prirodno-matematičkom fakultetu, Odsjek za matematičke i kompjuterske nauke, UNSA. 
-
 ### Specifikacije
 Kreirati web aplikaciju koja će pomoći korisnicima da brzo i adekvatno reaguju u hitnim slučajevima i da nauče prvu pomoć. 
 Aplikacija je predviđena za korištenje različitim tipovima korisnika: gosti i učenici.
@@ -23,37 +20,17 @@ U nastavku ćemo detaljnije navesti specifikacije za svaki tip korisnika:
    - Pristup video predavanjima iz prve pomoći
    - Mogućnost angažovanja na forumu
 
-### Plan rada
+### Moj rad na projektu
 
-Do 19.04:
-• Postavljene osnovne specifikacije
-• Postavljen github i zajednička grupa za komunikaciju
+Na projektu "Heroj," radio sam na različitim komponentama koje su unaprijedile funkcionalnost i izgled aplikacije. Evo čemu sam konkretno doprinio:
 
-Do 26.04:
-• Frontend landing page
-• Frontend forum
-• Frontend kviz
-• Frontend view template za simptome
-• Frontend za predavanja
+Quiz (frontend i backend): Odradio sam cijeli quiz sustav, uključujući frontend i backend. U ovom dijelu projekta korisnici mogu testirati svoje znanje iz prve pomoći. Postavili smo 10 pitanja, a korisnik mora točno odgovoriti na barem 8 kako bi dobio certifikat. Osim toga, kreirao sam sustav za generiranje i prikazivanje certifikata. Korisnici koji uspješno prođu kviz za prvu pomoć dobivaju odgovarajuću značku na forumu kao priznanje za svoje znanje.
 
-Do 03.05:
-• Sakupljeni podaci o simptomima, intervencijama i
-predavanjima
-• Dizajniran i istražen backend i baza podataka
+Searchbar: Na početnoj stranici projekta implementirao sam searchbar s autocompletom. Ovo omogućava korisnicima brzu pretragu simptoma i intervencija. Autocomplete pomaže korisnicima da brzo pronađu relevantne informacije.
 
-Do 10.05:
-• Mogućnost registracije i prijave
+Dizajn Login i Registracije: Napravio sam dizajn za stranica za prijavu i registraciju korisnika. Dobar dizajn ovih stranica poboljšava korisničko iskustvo i olakšava korisnicima pristup platformi.
 
-Do 17.05:
-• Funkcionalan forum, mogućnost postavljanja objava na
-forumu i komentarisanja
-• Popunjavanje baze sakupljenim podacima i spajanje na
-frontend (prvenstveno se misli na simptome i intervencije)
-
-Do 24.05:
-• Brza pretraga
-Zadnje dvije sedmice ostavljene za testiranje, implementaciju
-dodatnih specifikacija i u slučaju neispunjenih rokova.
+Dizajn i Pomaganje s Dizajnom Stranica: Doprinio sam implementaciji izgleda dijelova aplikacije. Sudjelovao sam u oblikovanju različitih stranica i komponenti kako bi osigurao konzistentan izgled cijele aplikacije.
 
 ### Studenti
 
