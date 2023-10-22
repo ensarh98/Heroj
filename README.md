@@ -24,13 +24,13 @@ U nastavku ćemo detaljnije navesti specifikacije za svaki tip korisnika:
 
 Na projektu "Heroj," radio sam na različitim komponentama koje su unaprijedile funkcionalnost i izgled aplikacije. Evo čemu sam konkretno doprinio:
 
-Quiz (frontend i backend): Odradio sam cijeli quiz sustav, uključujući frontend i backend. U ovom dijelu projekta korisnici mogu testirati svoje znanje iz prve pomoći. Postavili smo 10 pitanja, a korisnik mora točno odgovoriti na barem 8 kako bi dobio certifikat. Osim toga, kreirao sam sustav za generiranje i prikazivanje certifikata. Korisnici koji uspješno prođu kviz za prvu pomoć dobivaju odgovarajuću značku na forumu kao priznanje za svoje znanje.
+Quiz (frontend i backend): Odradio sam cijeli quiz sustav, uključujući frontend i backend. U ovom dijelu projekta korisnici mogu testirati svoje znanje iz prve pomoći. Postavlja se 10 pitanja, a korisnik mora tačno odgovoriti na barem 8 kako bi dobio certifikat. Osim toga, kreirao sam sustav za generiranje i prikazivanje certifikata. Korisnici koji uspješno prođu kviz za prvu pomoć dobivaju odgovarajuću značku na forumu kao priznanje za svoje znanje.
 
 Searchbar: Na početnoj stranici projekta implementirao sam searchbar s autocompletom. Ovo omogućava korisnicima brzu pretragu simptoma i intervencija. Autocomplete pomaže korisnicima da brzo pronađu relevantne informacije.
 
-Dizajn Login i Registracije: Napravio sam dizajn za stranica za prijavu i registraciju korisnika. Dobar dizajn ovih stranica poboljšava korisničko iskustvo i olakšava korisnicima pristup platformi.
+Dizajn stranica Login i Registracija: Napravio sam dizajn za stranica za prijavu i registraciju korisnika. Dobar dizajn ovih stranica poboljšava korisničko iskustvo i olakšava korisnicima pristup platformi.
 
-Dizajn i Pomaganje s Dizajnom Stranica: Doprinio sam implementaciji izgleda dijelova aplikacije. Sudjelovao sam u oblikovanju različitih stranica i komponenti kako bi osigurao konzistentan izgled cijele aplikacije.
+Dizajn i ostalo: Doprinio sam implementaciji izgleda dijelova aplikacije. Sudjelovao sam u oblikovanju različitih stranica i komponenti kako bi osigurao konzistentan izgled cijele aplikacije.
 
 ### Studenti
 
