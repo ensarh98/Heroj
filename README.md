@@ -28,12 +28,14 @@ Quiz (frontend i backend): Odradio sam cijeli quiz sustav, uključujući fronten
 
 Searchbar: Na početnoj stranici projekta implementirao sam searchbar s autocompletom. Ovo omogućava korisnicima brzu pretragu simptoma i intervencija. Autocomplete pomaže korisnicima da brzo pronađu relevantne informacije.
 
+Top 3 slučaja: Ispod searchbara se prikazuju 3 top slučaja pretrage kako bi korisnicima pružili brzi pregled i pristup najpopularnijim rezultatima pretrage.
+
 Dizajn stranica Login i Registracija: Napravio sam dizajn za stranica za prijavu i registraciju korisnika. Dobar dizajn ovih stranica poboljšava korisničko iskustvo i olakšava korisnicima pristup platformi.
 
 Dizajn i ostalo: Doprinio sam implementaciji izgleda dijelova aplikacije. Sudjelovao sam u oblikovanju različitih stranica i komponenti kako bi osigurao konzistentan izgled cijele aplikacije.
 
 ## Tehnologije
-- Backend: Django
+- Backend: Python, Django
 - Frontend: React, MUI, Bootstrap
 
 ## Instalacija
