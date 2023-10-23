@@ -46,7 +46,7 @@ Ako želite pokrenuti ovaj projekt lokalno na svom računaru, slijedite sljedeć
 2. Instalirajte potrebne biblioteke pomoću "npm install"
 3. Izvršite pokretanje aplikacije s odvojenim frontend i backend komponentama
    
-### Studenti
+### Kolege sa projekta
 
 Harun Hadžić - https://github.com/hare2049
 
