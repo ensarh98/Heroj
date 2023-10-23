@@ -32,6 +32,18 @@ Dizajn stranica Login i Registracija: Napravio sam dizajn za stranica za prijavu
 
 Dizajn i ostalo: Doprinio sam implementaciji izgleda dijelova aplikacije. Sudjelovao sam u oblikovanju različitih stranica i komponenti kako bi osigurao konzistentan izgled cijele aplikacije.
 
+## Tehnologije
+- Backend: Django
+- Frontend: React, MUI, Bootstrap
+
+## Instalacija
+
+Ako želite pokrenuti ovaj projekt lokalno na svom računaru, slijedite sljedeće korake:
+
+1. Klonirajte projekat na svoj računar
+2. Instalirajte potrebne biblioteke pomoću "npm install"
+3. Pokrenite aplikaciju
+   
 ### Studenti
 
 Harun Hadžić - https://github.com/hare2049
