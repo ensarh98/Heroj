@@ -44,7 +44,7 @@ Ako želite pokrenuti ovaj projekt lokalno na svom računaru, slijedite sljedeć
 
 1. Klonirajte projekat na svoj računar
 2. Instalirajte potrebne biblioteke pomoću "npm install"
-3. Pokrenite aplikaciju
+3. Izvršite pokretanje aplikacije s odvojenim frontend i backend komponentama
    
 ### Studenti
 
